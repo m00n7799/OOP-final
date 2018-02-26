@@ -12,11 +12,9 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-<<<<<<< HEAD
+
 public class Main extends Application  {
-=======
-public class Main extends Application{
->>>>>>> dd35dc0d68897f8086c501ad9abd47c074e3fe6f
+
 	@Override
 	public void start(Stage primaryStage) {
 
