@@ -1,9 +1,9 @@
 package enums;
 
 public enum Suit {
-	CLUB,
-	DIAMOND,
-	SPADE,
-	HEART;
+	Club,
+	Diamond,
+	Spade,
+	Heart;
 
 }
