@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
+<<<<<<< HEAD
 	<name>OOP-final_Final</name>
+=======
+	<name>Final</name>
+>>>>>>> 90e5c0d8d6b7bf66482147a4dfc20d4fb2889bd5
 	<comment></comment>
 	<projects>
 	</projects>
@@ -10,8 +14,19 @@
 			<arguments>
 			</arguments>
 		</buildCommand>
+<<<<<<< HEAD
 	</buildSpec>
 	<natures>
+=======
+		<buildCommand>
+			<name>org.eclipse.xtext.ui.shared.xtextBuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>org.eclipse.xtext.ui.shared.xtextNature</nature>
+>>>>>>> 90e5c0d8d6b7bf66482147a4dfc20d4fb2889bd5
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
 </projectDescription>
