@@ -7,8 +7,8 @@ import enums.Rank;
 import enums.Suit;
 
 public class Deck {
- 	private ArrayList<Card> freshDeck;
-	private ArrayList<Card> shuffledDeck;
+ 	 ArrayList<Card> freshDeck;
+	 ArrayList<Card> shuffledDeck;
 	public Deck() {
 		freshDeck = new ArrayList<Card>();
 		shuffledDeck = new ArrayList<Card>();
@@ -26,5 +26,13 @@ public class Deck {
 			gen=rand.nextInt(freshDeck.size());
 			shuffledDeck.add(freshDeck.remove(gen));
 		}
+	}
+	@Override
+	public String toString() {
+		StringBuilder build=new StringBuilder();
+		for(Card card:shuffledDeck) {
+			build.append(card.toString()).append("\n");
+		}
+		return build.toString();
 	}
 }
