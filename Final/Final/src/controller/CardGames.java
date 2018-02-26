@@ -1,13 +1,14 @@
 package controller;
 
 import games.BlackJack;
+import games.HiLo;
 
 public class CardGames {
-	public void run() {
-		
-	}
-	public void Blackjack() {
+
+	public void runBlackjack() {
 		BlackJack BJ = new BlackJack();
 	}
-	
+	public void runHiLo() {
+		HiLo HL = new HiLo();
+	}
 }

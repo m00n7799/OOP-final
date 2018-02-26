@@ -1,5 +1,6 @@
 package application;
 
+import controller.CardGames;
 import games.BlackJack;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -14,7 +15,7 @@ import javafx.stage.Stage;
 
 
 public class Main extends Application  {
-
+	CardGames CG = new CardGames();
 	@Override
 	public void start(Stage primaryStage) {
 
@@ -37,7 +38,7 @@ public class Main extends Application  {
 			@Override
 			public void handle(ActionEvent event) {
 				System.out.println("Playing BlackJack");
-				
+				CG.runBlackjack();
 			}
 		});
 		
@@ -48,6 +49,7 @@ public class Main extends Application  {
 			@Override
 			public void handle(ActionEvent event) {
 				System.out.println("Playing Hilo");
+				CG.runHiLo();
 			}
 		});
 		
