@@ -1,6 +1,4 @@
 package models;
-
-import models.Human;
 public class Dealer extends Player {
 
 	
@@ -55,9 +53,7 @@ public class Dealer extends Player {
 
 
 	public void setMyBet(double myBet) {
-		this.myBet = myBet;
-		myBet = Human.getBetAmount();
-		
+		this.myBet = myBet;		
 	}
 
 

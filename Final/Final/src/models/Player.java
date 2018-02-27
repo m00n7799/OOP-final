@@ -34,7 +34,7 @@ public class Player {
 	public void setHandValue(int handValue) {
 		this.handValue = handValue;
 	}
-	public static double getBetAmount() {
+	public double getBetAmount() {
 		return betAmount;
 	}
 	public void setBetAmount(double betAmount) {
