@@ -4,7 +4,7 @@ public class Player {
 	private String name;
 	private double balance;
 	private int handValue;
-	private double betAmount;
+	private   double betAmount;
 	private boolean stand;
 	
 	
@@ -34,7 +34,7 @@ public class Player {
 	public void setHandValue(int handValue) {
 		this.handValue = handValue;
 	}
-	public double getBetAmount() {
+	public static double getBetAmount() {
 		return betAmount;
 	}
 	public void setBetAmount(double betAmount) {
