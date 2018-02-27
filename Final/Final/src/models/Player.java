@@ -4,17 +4,12 @@ public class Player {
 	private String name;
 	private double balance;
 	private int handValue;
-	private   double betAmount;
 	protected static boolean stand;
-
 	
-	
-	
-	public Player(double balance, String name, double betAmount, int handValue, boolean stand) {
+	public Player(double balance, String name, int handValue, boolean stand) {
 		this.name = name;
 		this.balance = balance;
 		this.handValue = handValue;
-		this.betAmount = betAmount;
 		Player.stand = stand;
 	}
 	public String getName() {
@@ -34,12 +29,6 @@ public class Player {
 	}
 	public void setHandValue(int handValue) {
 		this.handValue = handValue;
-	}
-	public double getBetAmount() {
-		return betAmount;
-	}
-	public void setBetAmount(double betAmount) {
-		this.betAmount = betAmount;
 	}
 	public boolean isStand() {
 		return stand;
