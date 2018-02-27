@@ -15,7 +15,7 @@ public class Player {
 		this.balance = balance;
 		this.handValue = handValue;
 		this.betAmount = betAmount;
-		this.stand = stand;
+		Player.stand = stand;
 	}
 	public String getName() {
 		return name;
