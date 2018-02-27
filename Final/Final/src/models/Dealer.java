@@ -43,16 +43,6 @@ public class Dealer extends Player {
 	}
 
 
-	public double getMyBet() {
-		return myBet;
-	}
-
-
-	public void setMyBet(double myBet) {
-		this.myBet = myBet;		
-	}
-
-
 	boolean doINeedTODraw() {
 		if(myValue <= 17) {
 			return true;

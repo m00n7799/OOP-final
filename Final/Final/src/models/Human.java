@@ -37,13 +37,6 @@ public class Human extends Player {
 		this.myValue = myValue;
 	}
 
-	public double getMyBet() {
-		return myBet;
-	}
-
-	public void setMyBet(double myBet) {
-		this.myBet = myBet;
-	}
 	
 
 	
