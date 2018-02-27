@@ -27,6 +27,20 @@ public class Deck {
 			shuffledDeck.add(freshDeck.remove(gen));
 		}
 	}
+	public void initialDeal(ArrayList<Player> players) {
+		for(Player player:players) {
+			/*player.hand.add(*/shuffledDeck.get(0).Hidden(true);
+			shuffledDeck.remove(0);
+			/*player.hand.add(*/shuffledDeck.get(0).Hidden(false);
+			shuffledDeck.remove(0);
+		}
+	}
+	public Card nextCard() {
+		shuffledDeck.get(0).Hidden(false);
+		Card card=shuffledDeck.get(0);
+		shuffledDeck.remove(0);
+		return card;
+	}
 	@Override
 	public String toString() {
 		StringBuilder build=new StringBuilder();
