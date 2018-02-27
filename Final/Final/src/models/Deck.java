@@ -17,9 +17,11 @@ public class Deck {
 	private void newDeck() {
 		freshDeck = new ArrayList<Card>();
 		shuffledDeck = new ArrayList<Card>();
+		Card c=new Card(null,null);
 		for (Suit suit : Suit.values()) {
 			for (Rank rank : Rank.values()) {
-				freshDeck.add(new Card(suit, rank));
+				c.setCardValue(rank);
+				freshDeck.add(c=new Card(suit, rank));
 			}
 		}
 		shuffle();
