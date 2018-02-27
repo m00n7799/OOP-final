@@ -4,7 +4,7 @@ public class Player {
 	private String name;
 	private double balance;
 	private int handValue;
-	private   double betAmount;
+	private static   double betAmount;
 	private boolean stand;
 	
 	
