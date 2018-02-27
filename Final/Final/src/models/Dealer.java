@@ -55,14 +55,17 @@ public class Dealer extends Player {
 
 	public void setMyBet(double myBet) {
 		this.myBet = myBet;
+		
 	}
 
 
 	boolean doINeedTODraw() {
-		
-		
+		if(myValue <= 17) {
+			return true;
+		}
+		else {
 		return false;
-		
+		}
 	}
 	double thePayOut() {
 	
