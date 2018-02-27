@@ -24,7 +24,19 @@ public class CardGames {
 		secondStage.setScene(scene);
 		secondStage.show();
 	}
+	
 	public static void runHiLo() {
-		System.out.println("Hi");
+		AnchorPane root = new AnchorPane();
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(Main.class.getResource("/Hilo.fxml"));
+		try {
+			root = loader.load();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		Scene scene = new Scene(root);
+		Stage secondStage = Main.getStage();
+		secondStage.setScene(scene);
+		secondStage.show();
 	}
 }

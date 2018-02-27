@@ -15,6 +15,6 @@
             <Font size="36.0" />
          </font>
       </Label>
-      <Label layoutX="206.0" layoutY="67.0" text="Pick A Game. Any Game. Go Ahead." />
+      <Label layoutX="210.0" layoutY="65.0" text="Pick A Game. Any Game. Go Ahead." />
    </children>
 </AnchorPane>
