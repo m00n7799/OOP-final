@@ -7,15 +7,11 @@ public class Dealer extends Player {
 	int myValue;
 	double myBet;
 	
-	public Dealer() {
-		super();
-		setName(name);
-		setBalance(currentMoney);
-		setHandValue(myValue);
-		setBetAmount(myBet);
-		
+	public Dealer(double balance, String name, double betAmount, int handValue, boolean stand) {
+		super(balance, name, betAmount, handValue, stand);
+		// TODO Auto-generated constructor stub
 	}
-	
+
 	
 	public String getName() {
 		return name;

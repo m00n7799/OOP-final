@@ -5,11 +5,11 @@ public class Player {
 	private double balance;
 	private int handValue;
 	private   double betAmount;
-	private boolean stand;
+	protected static boolean stand;
 	
 	
 	
-	public Player() {
+	public Player(double balance, String name, double betAmount, int handValue, boolean stand) {
 		this.name = name;
 		this.balance = balance;
 		this.handValue = handValue;

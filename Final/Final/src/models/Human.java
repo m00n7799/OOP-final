@@ -2,21 +2,17 @@ package models;
 
 public class Human extends Player {
 
+
+
+
 	String name;
 	double currentMoney;
 	int myValue;
 	double myBet;
-	
-	public Human() { 
-	super();
-	setName(name);
-	setBalance(currentMoney);
-	setHandValue(myValue);
-	setBetAmount(myBet);
-	
-	
-	}
+	public Human(double balance, String name, double betAmount, int handValue, boolean stand) {
+		super(balance, name, betAmount, handValue, stand);
 
+	}
 	public String getName() {
 		return name;
 	}
