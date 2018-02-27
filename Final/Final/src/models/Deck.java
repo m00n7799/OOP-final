@@ -24,7 +24,11 @@ public class Deck {
 		int gen;
 		for(int i=0;i<52;i++) {
 			gen=rand.nextInt(freshDeck.size());
+			try {
 			shuffledDeck.add(freshDeck.remove(gen));
+			}catch(NullPointerException ex) {
+				break;
+			}
 		}
 	}
 	public void initialDeal(ArrayList<Player> players) {
