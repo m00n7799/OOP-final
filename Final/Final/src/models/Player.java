@@ -6,6 +6,7 @@ public class Player {
 	private int handValue;
 	private   double betAmount;
 	protected static boolean stand;
+
 	
 	
 	
