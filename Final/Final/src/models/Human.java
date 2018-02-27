@@ -2,7 +2,7 @@ package models;
 
 public class Human extends Player {
 
-	static String name;
+	String name;
 	double currentMoney;
 	int myValue;
 	double myBet;
