@@ -1,7 +1,6 @@
 
 package models;
 import enums.Rank;
-import enums.Suit;
 import javafx.scene.image.Image;
 public class Card {
 private Rank value;
@@ -39,7 +38,7 @@ public int getCardValue() {
 public void setCardValue(Rank value) {
 	switch(value) {
 	case ACE:
-		this.cardValue = 1;
+		this.cardValue = 11;
 		break;
 	case TWO:
 		this.cardValue = 2;
