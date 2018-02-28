@@ -34,8 +34,7 @@ public class Player {
 		return currentBalance;
 	}
 	public void setCurrentBalance(double currentBalance) {
-		this.currentBalance += balance;
-		this.currentBalance = currentBalance;
+		this.currentBalance = balance + currentBalance;
 		
 	}
 	public int getHandValue() {

@@ -1,10 +1,6 @@
 package models;
 
 public class Human extends Player {
-
-
-
-
 	String name;
 	double currentMoney;
 	int myValue;
@@ -36,9 +32,5 @@ public class Human extends Player {
 	public void setMyValue(int myValue) {
 		this.myValue = myValue;
 	}
-
-	
-
-	
 	
 }
