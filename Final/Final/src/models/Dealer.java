@@ -7,8 +7,8 @@ public class Dealer extends Player {
 	int myValue;
 	double myBet;
 	
-	public Dealer(double balance, String name,  int handValue) {
-		super(balance, name, handValue);
+	public Dealer(double currentBalance, double balance, String name,  int handValue) {
+		super(balance, currentBalance, name, handValue);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -29,7 +29,8 @@ public class Dealer extends Player {
 
 
 	public void setCurrentMoney(double currentMoney) {
-		this.currentMoney = currentMoney;
+		
+		
 	}
 
 

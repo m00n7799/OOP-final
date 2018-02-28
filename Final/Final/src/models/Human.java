@@ -9,8 +9,8 @@ public class Human extends Player {
 	double currentMoney;
 	int myValue;
 	double myBet;
-	public Human(double balance, String name,  int handValue) {
-		super(balance, name,  handValue);
+	public Human(double currentBalance, double balance, String name,  int handValue) {
+		super(balance, currentBalance, name,  handValue);
 
 	}
 	public String getName() {

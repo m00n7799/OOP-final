@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import enums.Rank;
-import enums.Suit;
+import javafx.scene.image.Image;
 
 public class Deck {
 	ArrayList<Card> freshDeck;
@@ -15,10 +15,11 @@ public class Deck {
 	}
 
 	private void newDeck() {
+		CardSuit.suit();
 		freshDeck = new ArrayList<Card>();
 		shuffledDeck = new ArrayList<Card>();
 		Card c=new Card(null,null);
-		for (Suit suit : Suit.values()) {
+		for (Image suit : CardSuit.suits) {
 			for (Rank rank : Rank.values()) {
 				c.setCardValue(rank);
 				freshDeck.add(c=new Card(suit, rank));
