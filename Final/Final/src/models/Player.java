@@ -4,13 +4,15 @@ import java.util.ArrayList;
 import models.Card;
 public class Player {
 	private String name;
-	private double balance;
+	private double balance = 1500.00;
+	private double currentBalance = 0;
 	private int handValue;
+	
 
 	
 	ArrayList<Card> hand = new ArrayList<Card>();
 	
-	public Player(double balance, String name, int handValue) {
+	public Player(double currentBalance, double balance, String name, int handValue) {
 		this.name = name;
 		this.balance = balance;
 		this.handValue = handValue;
@@ -26,6 +28,15 @@ public class Player {
 	}
 	public void setBalance(double balance) {
 		this.balance = balance;
+		
+	}
+	public double getCurrentBalance() {
+		return currentBalance;
+	}
+	public void setCurrentBalance(double currentBalance) {
+		this.currentBalance += balance;
+		this.currentBalance = currentBalance;
+		
 	}
 	public int getHandValue() {
 		return handValue;
