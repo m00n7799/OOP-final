@@ -39,7 +39,7 @@ public int getCardValue() {
 public void setCardValue(Rank value) {
 	switch(value) {
 	case ACE:
-		this.cardValue = 1;
+		this.cardValue = 11;
 		break;
 	case TWO:
 		this.cardValue = 2;
