@@ -1,7 +1,6 @@
 
 package models;
 import enums.Rank;
-import enums.Suit;
 import javafx.scene.image.Image;
 public class Card {
 private Rank value;
