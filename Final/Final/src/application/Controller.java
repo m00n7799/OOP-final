@@ -10,6 +10,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -24,6 +28,19 @@ public class Controller implements Initializable{
 	}
 	@FXML public void exit(ActionEvent event){
 		System.exit(0);
+	}
+	
+    @FXML
+    private Label numberLabel;
+    
+    @FXML
+    private TextField enterNumberOfPlayers;
+    
+	@FXML 
+    void playerNumberEntered(KeyEvent event) {
+		if (event.getCode().equals(KeyCode.ENTER)){
+			System.out.println("PressedEnter");
+		}
 	}
 	
 	@FXML public void returnMain(ActionEvent event) {
@@ -45,5 +62,6 @@ public class Controller implements Initializable{
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
+		
 	}
 }

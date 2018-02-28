@@ -14,7 +14,7 @@
             <Font size="36.0" />
          </font>
       </Label>
-      <TextField layoutX="468.0" layoutY="346.0" prefHeight="53.0" prefWidth="180.0" promptText="None Dealer Players">
+      <TextField fx:id="enterNumberOfPlayers" layoutX="468.0" layoutY="346.0" onKeyPressed="#playerNumberEntered" prefHeight="53.0" prefWidth="180.0" promptText="None Dealer Players">
          <font>
             <Font size="14.0" />
          </font>
