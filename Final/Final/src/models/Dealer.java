@@ -1,14 +1,16 @@
 package models;
+
+import java.util.ArrayList;
+
 public class Dealer extends Player {
 
 	
 	String name;
-	double currentMoney;
-	int myValue;
+	
 	double myBet;
 	
-	public Dealer(double currentBalance, double balance, String name,  int handValue) {
-		super(balance, currentBalance, name, handValue);
+	public Dealer( String name) {
+		super(name);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -23,38 +25,23 @@ public class Dealer extends Player {
 	}
 
 
-	public double getCurrentMoney() {
-		return currentMoney;
-	}
-
-
-	public void setCurrentMoney(double currentMoney) {
-		
-		
-	}
-
-
-	public int getMyValue() {
-		return myValue;
-	}
-
-
-	public void setMyValue(int myValue) {
-		this.myValue = myValue;
-	}
-
 
 	boolean doINeedTODraw() {
-		if(myValue <= 17) {
+		if(super.getHandValue() <= 17) {
 			return true;
 		}
 		else {
 		return false;
 		}
 	}
-	double thePayOut() {
+	double thePayOut(ArrayList<Player> players) {
 	
-		return 0;
+		double totalBet =0;
+		for(Player p: players) {
+			totalBet += p.myBet;
+		}
+
+		return totalBet;
 		
 	}
 }

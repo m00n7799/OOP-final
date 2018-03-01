@@ -2,12 +2,12 @@ package models;
 
 public class Human extends Player {
 	String name;
-	double currentMoney;
-	int myValue;
-	double myBet;
-	public Human(double currentBalance, double balance, String name,  int handValue) {
-		super(balance, currentBalance, name,  handValue);
+	private double balance = 1500.00;
+	private double currentBalance = 0;
 
+	public Human(double currentBalance, String name,  int handValue) {
+		super(name);
+		setCurrentBalance(currentBalance);
 	}
 	public String getName() {
 		return name;
@@ -16,21 +16,19 @@ public class Human extends Player {
 	public void setName(String name) {
 		this.name = name;
 	}
-
-	public double getCurrentMoney() {
-		return currentMoney;
+		
+	public double getBalance() {
+		return balance;
 	}
-
-	public void setCurrentMoney(double currentMoney) {
-		this.currentMoney = currentMoney;
+	public void setBalance(double balance) {
+		this.balance = balance;
+		
 	}
-
-	public int getMyValue() {
-		return myValue;
+	public double getCurrentBalance() {
+		return currentBalance;
 	}
-
-	public void setMyValue(int myValue) {
-		this.myValue = myValue;
+	public void setCurrentBalance(double currentBalance) {
+		this.currentBalance = balance + currentBalance;
+		
 	}
-	
 }
