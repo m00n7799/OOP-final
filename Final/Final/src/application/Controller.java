@@ -58,7 +58,8 @@ public class Controller implements Initializable{
 			enterNumberOfPlayers.setVisible(false);
 			player1Board.setDisable(false);
 			player1Board.setVisible(true);
-			BlackJack.
+			dealerBoard.setDisable(false);
+			dealerBoard.setVisible(true);
 			break;
 		case 2:
 			enterNumberOfPlayers.setDisable(true);
@@ -67,6 +68,8 @@ public class Controller implements Initializable{
 			player2Board.setDisable(false);
 			player3Board.setVisible(true);
 			player3Board.setDisable(false);
+			dealerBoard.setDisable(false);
+			dealerBoard.setVisible(true);
 			break;
 		case 3:
 			enterNumberOfPlayers.setDisable(true);
@@ -77,6 +80,8 @@ public class Controller implements Initializable{
 			player2Board.setDisable(false);
 			player3Board.setVisible(true);
 			player3Board.setDisable(false);
+			dealerBoard.setDisable(false);
+			dealerBoard.setVisible(true);
 			break;
 		default:
 			enterNumberOfPlayers.setText("Not Valid");
