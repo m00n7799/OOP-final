@@ -16,11 +16,16 @@ public class BlackJack{
 			if(check==21) {
 				//win
 			}else if(check<21) {
-				//true check different hights
-				for(int j =0; j < check; j++) {
-					count++;
+				for(int j = 0; j<P.size(); j++) {
+				int hand2 =	P.get(j).getHandValue();
+				int hi =P.get(check).compareTo(hand2);
+				if(hi == check) {
+					//win for check
 				}
-				
+				if(hi==hand2) {
+					//win for hand2
+				}
+				}
 			}else if (check>21) {
 				//lose
 			}
