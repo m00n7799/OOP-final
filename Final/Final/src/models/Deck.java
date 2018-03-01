@@ -43,22 +43,31 @@ public class Deck {
 
 	public void initialDeal(ArrayList<Player> players) {
 		for (Player player : players) {
-			/* player.hand.add( */shuffledDeck.get(0).Hidden(true);
+			ArrayList<Card> hand=new ArrayList<Card>();
+			shuffledDeck.get(0).Hidden(false);
+			 hand.add(shuffledDeck.get(0));
 			shuffledDeck.remove(0);
-			/* player.hand.add( */shuffledDeck.get(0).Hidden(false);
+			shuffledDeck.get(0).Hidden(false);
+			 hand.add(shuffledDeck.get(0));
 			shuffledDeck.remove(0);
+			player.setHand(hand);
 		}
 	}
 
-	public Card nextCard() {
+	public void nextCard(Player p) {
+		ArrayList<Card> hand=new ArrayList<Card>();
 		shuffledDeck.get(0).Hidden(false);
 		Card card = shuffledDeck.get(0);
 		try {
 			shuffledDeck.remove(0);
+			hand.add(card);
+			
 		} catch (NullPointerException ex) {
 			newDeck();
+			card = shuffledDeck.get(0);
+			hand.add(card);
 		}
-		return card;
+		
 	}
 
 	@Override

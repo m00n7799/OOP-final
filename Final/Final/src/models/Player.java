@@ -11,7 +11,7 @@ public class Player {
 	private int handValue;
 	double myBet;
 
-	ArrayList<Card> hand = new ArrayList<Card>();
+	private ArrayList<Card> hand = new ArrayList<Card>();
 	
 	public Player(String name) {
 		this.name = name;
@@ -37,10 +37,14 @@ public class Player {
 			handValue -= 10;
 		}
 	}
-<<<<<<< HEAD
-=======
 
+	public void setHand(ArrayList<Card> hand) {
+		for(int i=0;i<hand.size();i++) {
+		hand.add(hand.get(i));
+		}
+	}
+	public ArrayList<Card> getHand(){
+		return hand;
+	}
 	
-	
->>>>>>> 2ebe5c16c407b97aff650171d677a22b08a8d909
 }
