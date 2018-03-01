@@ -6,109 +6,204 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
    <children>
-      <Button layoutX="44.0" layoutY="32.0" mnemonicParsing="false" onAction="#exit" prefHeight="17.0" prefWidth="100.0" text="Exit Game" />
-      <Label layoutX="426.0" layoutY="18.0" text="BlackJack">
+      <Button layoutX="784.0" layoutY="32.0" mnemonicParsing="false" onAction="#returnMain" prefHeight="25.0" prefWidth="100.0" text="Return To Main" />
+      <Button layoutX="14.0" layoutY="32.0" mnemonicParsing="false" onAction="#exit" prefHeight="17.0" prefWidth="100.0" text="Exit Game" />
+      <Label contentDisplay="CENTER" layoutX="376.0" layoutY="18.0" text="BlackJack">
          <font>
             <Font size="36.0" />
          </font>
       </Label>
-      <TextField fx:id="enterNumberOfPlayers" layoutX="468.0" layoutY="346.0" onKeyPressed="#playerNumberEntered" prefHeight="53.0" prefWidth="180.0" promptText="None Dealer Players">
+      <TextField fx:id="enterNumberOfPlayers" layoutX="267.0" layoutY="277.0" onKeyPressed="#playerNumberEntered" prefHeight="53.0" prefWidth="366.0" promptText="Enter Number OF Players(1-3)">
          <font>
             <Font size="14.0" />
          </font>
       </TextField>
-      <Label layoutX="348.0" layoutY="363.0" text="Number Of Players:">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <Label disable="true" layoutX="844.0" layoutY="18.0" prefHeight="17.0" prefWidth="142.0" text="Number of Non AI Players" />
-      <AnchorPane layoutX="14.0" layoutY="304.0" opacity="0.0" prefHeight="96.0" prefWidth="304.0">
+      <Label fx:id="numberLabel" layoutX="379.0" layoutY="71.0" prefHeight="17.0" prefWidth="142.0" text="Number of Non AI Players" />
+      <AnchorPane fx:id="player3Board" disable="true" layoutY="199.0" prefHeight="50.0" prefWidth="280.0" visible="false">
          <children>
-            <Label layoutX="132.0" layoutY="-4.0" prefHeight="17.0" prefWidth="40.0" text="Dealer" />
-            <Label layoutX="4.0" layoutY="-4.0" text="Card Total" />
-            <AnchorPane layoutX="7.0" layoutY="39.0" prefHeight="53.0" prefWidth="39.0">
+            <Label layoutX="122.0" layoutY="96.0" prefHeight="17.0" prefWidth="40.0" text="Player" />
+            <Label layoutX="4.0" layoutY="96.0" text="Card Total" />
+            <AnchorPane layoutX="7.0" layoutY="139.0" prefHeight="66.0" prefWidth="48.0">
                <children>
                   <Label layoutX="22.0" text="Num" />
                   <Label text="Suit" />
-                  <Label layoutY="30.0" rotate="180.0" text="Num" />
-                  <Label layoutX="22.0" layoutY="30.0" prefHeight="17.0" prefWidth="26.0" rotate="180.0" text="Suit" />
+                  <Label layoutX="-3.0" layoutY="53.0" rotate="180.0" text="Num" />
+                  <Label layoutX="21.0" layoutY="53.0" prefHeight="17.0" prefWidth="26.0" rotate="180.0" text="Suit" />
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="59.0" layoutY="139.0" prefHeight="66.0" prefWidth="48.0">
+               <children>
+                  <Label layoutX="22.0" text="Num" />
+                  <Label text="Suit" />
+                  <Label layoutX="-3.0" layoutY="53.0" rotate="180.0" text="Num" />
+                  <Label layoutX="21.0" layoutY="53.0" prefHeight="17.0" prefWidth="26.0" rotate="180.0" text="Suit" />
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="114.0" layoutY="139.0" prefHeight="66.0" prefWidth="48.0">
+               <children>
+                  <Label layoutX="22.0" text="Num" />
+                  <Label text="Suit" />
+                  <Label layoutX="-3.0" layoutY="53.0" rotate="180.0" text="Num" />
+                  <Label layoutX="21.0" layoutY="53.0" prefHeight="17.0" prefWidth="26.0" rotate="180.0" text="Suit" />
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="172.0" layoutY="139.0" prefHeight="66.0" prefWidth="48.0">
+               <children>
+                  <Label layoutX="22.0" text="Num" />
+                  <Label text="Suit" />
+                  <Label layoutX="-3.0" layoutY="53.0" rotate="180.0" text="Num" />
+                  <Label layoutX="21.0" layoutY="53.0" prefHeight="17.0" prefWidth="26.0" rotate="180.0" text="Suit" />
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="228.0" layoutY="139.0" prefHeight="66.0" prefWidth="48.0">
+               <children>
+                  <Label layoutX="22.0" text="Num" />
+                  <Label text="Suit" />
+                  <Label layoutX="-3.0" layoutY="53.0" rotate="180.0" text="Num" />
+                  <Label layoutX="21.0" layoutY="53.0" prefHeight="17.0" prefWidth="26.0" rotate="180.0" text="Suit" />
                </children>
             </AnchorPane>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="348.0" layoutY="147.0" opacity="0.0" prefHeight="96.0" prefWidth="304.0">
+      <AnchorPane fx:id="player1Board" disable="true" layoutX="324.0" layoutY="330.0" prefHeight="50.0" prefWidth="280.0" visible="false">
          <children>
-            <Label layoutX="132.0" layoutY="-4.0" prefHeight="17.0" prefWidth="40.0" text="Dealer" />
-            <Label layoutX="4.0" layoutY="-4.0" text="Card Total" />
-            <AnchorPane layoutX="7.0" layoutY="39.0" prefHeight="53.0" prefWidth="39.0">
+            <Label layoutX="122.0" layoutY="96.0" prefHeight="17.0" prefWidth="40.0" text="Player" />
+            <Label layoutX="4.0" layoutY="96.0" text="Card Total" />
+            <AnchorPane layoutX="7.0" layoutY="139.0" prefHeight="66.0" prefWidth="48.0">
                <children>
                   <Label layoutX="22.0" text="Num" />
                   <Label text="Suit" />
-                  <Label layoutY="30.0" rotate="180.0" text="Num" />
-                  <Label layoutX="22.0" layoutY="30.0" prefHeight="17.0" prefWidth="26.0" rotate="180.0" text="Suit" />
+                  <Label layoutX="-3.0" layoutY="53.0" rotate="180.0" text="Num" />
+                  <Label layoutX="21.0" layoutY="53.0" prefHeight="17.0" prefWidth="26.0" rotate="180.0" text="Suit" />
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="59.0" layoutY="139.0" prefHeight="66.0" prefWidth="48.0">
+               <children>
+                  <Label layoutX="22.0" text="Num" />
+                  <Label text="Suit" />
+                  <Label layoutX="-3.0" layoutY="53.0" rotate="180.0" text="Num" />
+                  <Label layoutX="21.0" layoutY="53.0" prefHeight="17.0" prefWidth="26.0" rotate="180.0" text="Suit" />
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="114.0" layoutY="139.0" prefHeight="66.0" prefWidth="48.0">
+               <children>
+                  <Label layoutX="22.0" text="Num" />
+                  <Label text="Suit" />
+                  <Label layoutX="-3.0" layoutY="53.0" rotate="180.0" text="Num" />
+                  <Label layoutX="21.0" layoutY="53.0" prefHeight="17.0" prefWidth="26.0" rotate="180.0" text="Suit" />
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="172.0" layoutY="139.0" prefHeight="66.0" prefWidth="48.0">
+               <children>
+                  <Label layoutX="22.0" text="Num" />
+                  <Label text="Suit" />
+                  <Label layoutX="-3.0" layoutY="53.0" rotate="180.0" text="Num" />
+                  <Label layoutX="21.0" layoutY="53.0" prefHeight="17.0" prefWidth="26.0" rotate="180.0" text="Suit" />
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="228.0" layoutY="139.0" prefHeight="66.0" prefWidth="48.0">
+               <children>
+                  <Label layoutX="22.0" text="Num" />
+                  <Label text="Suit" />
+                  <Label layoutX="-3.0" layoutY="53.0" rotate="180.0" text="Num" />
+                  <Label layoutX="21.0" layoutY="53.0" prefHeight="17.0" prefWidth="26.0" rotate="180.0" text="Suit" />
                </children>
             </AnchorPane>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="682.0" layoutY="304.0" opacity="0.0" prefHeight="96.0" prefWidth="304.0">
+      <AnchorPane fx:id="player2Board" disable="true" layoutX="604.0" layoutY="195.0" prefHeight="50.0" prefWidth="280.0" visible="false">
          <children>
-            <Label layoutX="132.0" layoutY="-4.0" prefHeight="17.0" prefWidth="40.0" text="Dealer" />
-            <Label layoutX="4.0" layoutY="-4.0" text="Card Total" />
-            <AnchorPane layoutX="7.0" layoutY="39.0" prefHeight="53.0" prefWidth="39.0">
+            <Label layoutX="122.0" layoutY="96.0" prefHeight="17.0" prefWidth="40.0" text="Player" />
+            <Label layoutX="4.0" layoutY="96.0" text="Card Total" />
+            <AnchorPane layoutX="7.0" layoutY="139.0" prefHeight="66.0" prefWidth="48.0">
                <children>
                   <Label layoutX="22.0" text="Num" />
                   <Label text="Suit" />
-                  <Label layoutY="30.0" rotate="180.0" text="Num" />
-                  <Label layoutX="22.0" layoutY="30.0" prefHeight="17.0" prefWidth="26.0" rotate="180.0" text="Suit" />
+                  <Label layoutX="-3.0" layoutY="53.0" rotate="180.0" text="Num" />
+                  <Label layoutX="21.0" layoutY="53.0" prefHeight="17.0" prefWidth="26.0" rotate="180.0" text="Suit" />
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="59.0" layoutY="139.0" prefHeight="66.0" prefWidth="48.0">
+               <children>
+                  <Label layoutX="22.0" text="Num" />
+                  <Label text="Suit" />
+                  <Label layoutX="-3.0" layoutY="53.0" rotate="180.0" text="Num" />
+                  <Label layoutX="21.0" layoutY="53.0" prefHeight="17.0" prefWidth="26.0" rotate="180.0" text="Suit" />
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="114.0" layoutY="139.0" prefHeight="66.0" prefWidth="48.0">
+               <children>
+                  <Label layoutX="22.0" text="Num" />
+                  <Label text="Suit" />
+                  <Label layoutX="-3.0" layoutY="53.0" rotate="180.0" text="Num" />
+                  <Label layoutX="21.0" layoutY="53.0" prefHeight="17.0" prefWidth="26.0" rotate="180.0" text="Suit" />
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="172.0" layoutY="139.0" prefHeight="66.0" prefWidth="48.0">
+               <children>
+                  <Label layoutX="22.0" text="Num" />
+                  <Label text="Suit" />
+                  <Label layoutX="-3.0" layoutY="53.0" rotate="180.0" text="Num" />
+                  <Label layoutX="21.0" layoutY="53.0" prefHeight="17.0" prefWidth="26.0" rotate="180.0" text="Suit" />
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="228.0" layoutY="139.0" prefHeight="66.0" prefWidth="48.0">
+               <children>
+                  <Label layoutX="22.0" text="Num" />
+                  <Label text="Suit" />
+                  <Label layoutX="-3.0" layoutY="53.0" rotate="180.0" text="Num" />
+                  <Label layoutX="21.0" layoutY="53.0" prefHeight="17.0" prefWidth="26.0" rotate="180.0" text="Suit" />
                </children>
             </AnchorPane>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="652.0" layoutY="465.0" opacity="0.0" prefHeight="96.0" prefWidth="304.0">
+      <AnchorPane fx:id="dealerBoard" disable="true" layoutX="310.0" layoutY="14.0" prefHeight="50.0" prefWidth="280.0" visible="false">
          <children>
-            <Label layoutX="132.0" layoutY="-4.0" prefHeight="17.0" prefWidth="40.0" text="Dealer" />
-            <Label layoutX="4.0" layoutY="-4.0" text="Card Total" />
-            <AnchorPane layoutX="7.0" layoutY="39.0" prefHeight="53.0" prefWidth="39.0">
+            <Label layoutX="122.0" layoutY="96.0" prefHeight="17.0" prefWidth="40.0" text="Player" />
+            <Label layoutX="4.0" layoutY="96.0" text="Card Total" />
+            <AnchorPane layoutX="7.0" layoutY="139.0" prefHeight="66.0" prefWidth="48.0">
                <children>
                   <Label layoutX="22.0" text="Num" />
                   <Label text="Suit" />
-                  <Label layoutY="30.0" rotate="180.0" text="Num" />
-                  <Label layoutX="22.0" layoutY="30.0" prefHeight="17.0" prefWidth="26.0" rotate="180.0" text="Suit" />
+                  <Label layoutX="-3.0" layoutY="53.0" rotate="180.0" text="Num" />
+                  <Label layoutX="21.0" layoutY="53.0" prefHeight="17.0" prefWidth="26.0" rotate="180.0" text="Suit" />
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="59.0" layoutY="139.0" prefHeight="66.0" prefWidth="48.0">
+               <children>
+                  <Label layoutX="22.0" text="Num" />
+                  <Label text="Suit" />
+                  <Label layoutX="-3.0" layoutY="53.0" rotate="180.0" text="Num" />
+                  <Label layoutX="21.0" layoutY="53.0" prefHeight="17.0" prefWidth="26.0" rotate="180.0" text="Suit" />
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="114.0" layoutY="139.0" prefHeight="66.0" prefWidth="48.0">
+               <children>
+                  <Label layoutX="22.0" text="Num" />
+                  <Label text="Suit" />
+                  <Label layoutX="-3.0" layoutY="53.0" rotate="180.0" text="Num" />
+                  <Label layoutX="21.0" layoutY="53.0" prefHeight="17.0" prefWidth="26.0" rotate="180.0" text="Suit" />
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="172.0" layoutY="139.0" prefHeight="66.0" prefWidth="48.0">
+               <children>
+                  <Label layoutX="22.0" text="Num" />
+                  <Label text="Suit" />
+                  <Label layoutX="-3.0" layoutY="53.0" rotate="180.0" text="Num" />
+                  <Label layoutX="21.0" layoutY="53.0" prefHeight="17.0" prefWidth="26.0" rotate="180.0" text="Suit" />
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="228.0" layoutY="139.0" prefHeight="66.0" prefWidth="48.0">
+               <children>
+                  <Label layoutX="22.0" text="Num" />
+                  <Label text="Suit" />
+                  <Label layoutX="-3.0" layoutY="53.0" rotate="180.0" text="Num" />
+                  <Label layoutX="21.0" layoutY="53.0" prefHeight="17.0" prefWidth="26.0" rotate="180.0" text="Suit" />
                </children>
             </AnchorPane>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="348.0" layoutY="622.0" opacity="0.0" prefHeight="96.0" prefWidth="304.0">
-         <children>
-            <Label layoutX="132.0" layoutY="-4.0" prefHeight="17.0" prefWidth="40.0" text="Dealer" />
-            <Label layoutX="4.0" layoutY="-4.0" text="Card Total" />
-            <AnchorPane layoutX="7.0" layoutY="39.0" prefHeight="53.0" prefWidth="39.0">
-               <children>
-                  <Label layoutX="22.0" text="Num" />
-                  <Label text="Suit" />
-                  <Label layoutY="30.0" rotate="180.0" text="Num" />
-                  <Label layoutX="22.0" layoutY="30.0" prefHeight="17.0" prefWidth="26.0" rotate="180.0" text="Suit" />
-               </children>
-            </AnchorPane>
-         </children>
-      </AnchorPane>
-      <AnchorPane layoutX="44.0" layoutY="465.0" opacity="0.0" prefHeight="96.0" prefWidth="304.0">
-         <children>
-            <Label layoutX="132.0" layoutY="-4.0" prefHeight="17.0" prefWidth="40.0" text="Dealer" />
-            <Label layoutX="4.0" layoutY="-4.0" text="Card Total" />
-            <AnchorPane layoutX="7.0" layoutY="39.0" prefHeight="53.0" prefWidth="39.0">
-               <children>
-                  <Label layoutX="22.0" text="Num" />
-                  <Label text="Suit" />
-                  <Label layoutY="30.0" rotate="180.0" text="Num" />
-                  <Label layoutX="22.0" layoutY="30.0" prefHeight="17.0" prefWidth="26.0" rotate="180.0" text="Suit" />
-               </children>
-            </AnchorPane>
-         </children>
-      </AnchorPane>
-      <Button layoutX="162.0" layoutY="32.0" mnemonicParsing="false" onAction="#returnMain" prefHeight="25.0" prefWidth="100.0" text="Return To Main" />
    </children>
 </AnchorPane>

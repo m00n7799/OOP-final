@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import controller.CardGames;
+import games.BlackJack;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,6 +17,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import jdk.nashorn.internal.runtime.arrays.NumericElements;
 
 public class Controller implements Initializable{
 
@@ -31,15 +33,57 @@ public class Controller implements Initializable{
 	}
 	
     @FXML
-    private Label numberLabel;
+    public Label numberLabel;
     
     @FXML
     private TextField enterNumberOfPlayers;
     
+    @FXML
+    private AnchorPane player3Board;
+
+    @FXML
+    private AnchorPane dealerBoard;
+
+    @FXML
+    private AnchorPane player2Board;
+
+    @FXML
+    private AnchorPane player1Board;
+    
 	@FXML 
     void playerNumberEntered(KeyEvent event) {
-		if (event.getCode().equals(KeyCode.ENTER)){
-			System.out.println("PressedEnter");
+		String input = enterNumberOfPlayers.getText();
+		int number = Integer.parseInt(input);
+		
+		switch(number) {
+		case 1:
+			enterNumberOfPlayers.setDisable(true);
+			enterNumberOfPlayers.setVisible(false);
+			player1Board.setDisable(false);
+			player1Board.setVisible(true);
+			BlackJack.
+			break;
+		case 2:
+			enterNumberOfPlayers.setDisable(true);
+			enterNumberOfPlayers.setVisible(false);
+			player2Board.setVisible(true);
+			player2Board.setDisable(false);
+			player3Board.setVisible(true);
+			player3Board.setDisable(false);
+			break;
+		case 3:
+			enterNumberOfPlayers.setDisable(true);
+			enterNumberOfPlayers.setVisible(false);
+			player1Board.setDisable(false);
+			player1Board.setVisible(true);
+			player2Board.setVisible(true);
+			player2Board.setDisable(false);
+			player3Board.setVisible(true);
+			player3Board.setDisable(false);
+			break;
+		default:
+			enterNumberOfPlayers.setText("Not Valid");
+			break;
 		}
 	}
 	

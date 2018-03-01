@@ -19,7 +19,7 @@ public class CardGames {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		Scene scene = new Scene(root);
+		Scene scene = new Scene(root,900,800);
 		Stage secondStage = Main.getStage();
 		secondStage.setScene(scene);
 		secondStage.show();
@@ -34,7 +34,7 @@ public class CardGames {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		Scene scene = new Scene(root);
+		Scene scene = new Scene(root,900,800);
 		Stage secondStage = Main.getStage();
 		secondStage.setScene(scene);
 		secondStage.show();
