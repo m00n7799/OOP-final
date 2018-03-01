@@ -34,10 +34,7 @@ public class Player {
 		}
 		
 	}
-	public int compareTo(int j) {
-		
-		return 0;
-	}
+
 	
 	
 }
