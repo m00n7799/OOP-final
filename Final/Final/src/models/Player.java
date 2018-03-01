@@ -1,6 +1,8 @@
 package models;
 
 import java.util.ArrayList;
+
+import enums.Rank;
 import models.Card;
 public class Player {
 	private String name;
@@ -26,6 +28,9 @@ public class Player {
 	public void setHandValue() {
 		for(int i = 0; i < hand.size(); i++ ) {
 			this.handValue += hand.get(i).getCardValue();
+		}
+		if(hand.contains(Rank.ACE) && handValue > 11) {
+			handValue -= 10;
 		}
 		
 	}

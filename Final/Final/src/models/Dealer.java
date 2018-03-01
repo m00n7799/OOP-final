@@ -1,9 +1,12 @@
 package models;
+
+import java.util.ArrayList;
+
 public class Dealer extends Player {
 
 	
 	String name;
-
+	
 	double myBet;
 	
 	public Dealer( String name) {
@@ -31,9 +34,14 @@ public class Dealer extends Player {
 		return false;
 		}
 	}
-	double thePayOut() {
+	double thePayOut(ArrayList<Player> players) {
 	
-		return 0;
+		double totalBet =0;
+		for(Player p: players) {
+			totalBet += p.myBet;
+		}
+
+		return totalBet;
 		
 	}
 }
