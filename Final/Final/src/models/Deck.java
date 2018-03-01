@@ -61,11 +61,12 @@ public class Deck {
 		try {
 			shuffledDeck.remove(0);
 			hand.add(card);
-			
+			p.setHand(hand);
 		} catch (NullPointerException ex) {
 			newDeck();
 			card = shuffledDeck.get(0);
 			hand.add(card);
+			p.setHand(hand);
 		}
 		
 	}
