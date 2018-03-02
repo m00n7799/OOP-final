@@ -20,7 +20,16 @@ public class BlackJack implements Comparable<Player>{
 			if(check==21) {
 				//win
 			}else if(check<21) {
-				compareTo(P.get(i));
+				int whoWon = compareTo(P.get(i));
+				if(whoWon == check) {
+					//check won
+				}
+				if(whoWon != check) {
+					//other person won
+				}else {
+					//no one won Tie
+				}
+				
 			}else if (check>21) {
 				//lose
 			}
