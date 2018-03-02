@@ -96,12 +96,12 @@ public class Controller implements Initializable {
 		this.player3Board = player3Board;
 	}
 
-	public Label getPlayer3Name() {
-		return player3Name;
+	public String getPlayer3Name() {
+		return player3Name.getText();
 	}
 
-	public void setPlayer3Name(Label player3Name) {
-		this.player3Name = player3Name;
+	public void setPlayer3Name(String name) {
+		player3Name.setText(name);
 	}
 
 	public Label getPlayer3CardTotal() {
@@ -184,12 +184,12 @@ public class Controller implements Initializable {
 		this.player2Board = player2Board;
 	}
 
-	public Label getPlayer2Name() {
-		return player2Name;
+	public String getPlayer2Name() {
+		return player2Name.getText();
 	}
 
-	public void setPlayer2Name(Label player2Name) {
-		this.player2Name = player2Name;
+	public void setPlayer2Name(String name) {
+		player2Name.setText(name);
 	}
 
 	public Label getPlayer2CcardTotal() {
@@ -219,7 +219,9 @@ public class Controller implements Initializable {
 	@FXML
 	void playerNumberEntered(KeyEvent event) {
 		String input = enterNumberOfPlayers.getText();
+		if(!input.equals("")) {
 		int number = Integer.parseInt(input);
+		
 
 
 		switch (number) {
@@ -246,6 +248,8 @@ public class Controller implements Initializable {
 			dealerBoard.setVisible(true);
 			
 			BlackJack.setPlayers(number);
+			setPlayer3Name(BlackJack.getPlayers().get(0).getName());
+			setPlayer2Name(BlackJack.getPlayers().get(1).getName());
 			break;
 
 		case 3:
@@ -262,11 +266,15 @@ public class Controller implements Initializable {
 
 			
 			BlackJack.setPlayers(number);
+			setPlayer3Name(BlackJack.getPlayers().get(0).getName());
+			setPlayer1Name(BlackJack.getPlayers().get(1).getName());
+			setPlayer2Name(BlackJack.getPlayers().get(2).getName());
 			break;
 
 		default:
 			enterNumberOfPlayers.setText("Not Valid");
 			break;
+		}
 		}
 	}
 
