@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import controller.CardGames;
+import games.BlackJack;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,11 +17,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-<<<<<<< HEAD
-import jdk.nashorn.internal.runtime.arrays.NumericElements;
+
 import models.Player;
-=======
->>>>>>> 2ebe5c16c407b97aff650171d677a22b08a8d909
 
 public class Controller implements Initializable {
 	
