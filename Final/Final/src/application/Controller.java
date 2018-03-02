@@ -19,7 +19,7 @@ import javafx.stage.Stage;
 import models.Player;
 
 public class Controller implements Initializable {
-	
+
 	@FXML
 	private TextField enterNumberOfPlayers;
 
@@ -57,6 +57,21 @@ public class Controller implements Initializable {
 	private Label player1CardTotal;
 
 	@FXML
+	private AnchorPane player1Card1;
+
+	@FXML
+	private AnchorPane player1Card2;
+
+	@FXML
+	private AnchorPane Player1Card3;
+
+	@FXML
+	private AnchorPane player1Card4;
+
+	@FXML
+	private AnchorPane player1Card5;
+
+	@FXML
 	private AnchorPane player2Board;
 
 	@FXML
@@ -66,193 +81,374 @@ public class Controller implements Initializable {
 	private Label player2CcardTotal;
 
 	@FXML
+	private AnchorPane player2Card1;
+
+	@FXML
+	private AnchorPane player2Card2;
+
+	@FXML
+	private AnchorPane player2Card3;
+
+	@FXML
+	private AnchorPane player2Card4;
+
+	@FXML
+	private AnchorPane player2Card5;
+
+	@FXML
 	private AnchorPane dealerBoard;
 
 	@FXML
 	private Label DealCardTotal;
 
 	@FXML
-	private void playBlackJack(ActionEvent event) {
-		CardGames.runBlackjack();
+	private AnchorPane dealerCard1;
+
+	@FXML
+	private AnchorPane dealerCard2;
+
+	@FXML
+	private AnchorPane dealerCard3;
+
+	@FXML
+	private AnchorPane dealerCard4;
+
+	@FXML
+	private AnchorPane dealerCard5;
+
+	@FXML
+	public String getEnterNumberOfPlayers() {
+		return enterNumberOfPlayers.getText();
 	}
 
 	@FXML
-	private void playHiLo(ActionEvent event) {
-		CardGames.runHiLo();
+	public Label getPlayer3Name() {
+		return player3Name;
 	}
 
 	@FXML
-	private void exit(ActionEvent event) {
-		System.exit(0);
+	public Label getPlayer3CardTotal() {
+		return player3CardTotal;
 	}
 
-	public AnchorPane getPlayer3Board() {
-		return player3Board;
-	}
-
-	public String getPlayer3Name() {
-		return player3Name.getText();
-	}
-
-	public void setPlayer3Name(String player3Name) {
-		this.player3Name.setText(player3Name);
-	}
-
-	public String getPlayer3CardTotal() {
-		return player3CardTotal.getText();
-	}
-
-	public void setPlayer3CardTotal(int handTotal){
-		this.player3CardTotal.setText(Integer.toString(handTotal));
-	}
-
+	@FXML
 	public AnchorPane getPlayer3Card1() {
 		return player3Card1;
+	}
+
+	@FXML
+	public AnchorPane getPlayer3Card2() {
+		return player3Card2;
+	}
+
+	@FXML
+	public AnchorPane getPlayer3Card3() {
+		return player3Card3;
+	}
+
+	@FXML
+	public AnchorPane getPlayer3Card4() {
+		return player3Card4;
+	}
+
+	@FXML
+	public AnchorPane getPlayer3Card5() {
+		return player3Card5;
+	}
+
+	@FXML
+	public Label getPlayer1Name() {
+		return player1Name;
+	}
+
+	@FXML
+	public Label getPlayer1CardTotal() {
+		return player1CardTotal;
+	}
+
+	@FXML
+	public AnchorPane getPlayer1Card1() {
+		return player1Card1;
+	}
+
+	@FXML
+	public AnchorPane getPlayer1Card2() {
+		return player1Card2;
+	}
+
+	@FXML
+	public AnchorPane getPlayer1Card3() {
+		return Player1Card3;
+	}
+
+	@FXML
+	public AnchorPane getPlayer1Card4() {
+		return player1Card4;
+	}
+
+	@FXML
+	public AnchorPane getPlayer1Card5() {
+		return player1Card5;
+	}
+
+	@FXML
+	public Label getPlayer2Name() {
+		return player2Name;
+	}
+
+	@FXML
+	public Label getPlayer2CcardTotal() {
+		return player2CcardTotal;
+	}
+
+	@FXML
+	public AnchorPane getPlayer2Card1() {
+		return player2Card1;
+	}
+
+	@FXML
+	public AnchorPane getPlayer2Card2() {
+		return player2Card2;
+	}
+
+	@FXML
+	public AnchorPane getPlayer2Card3() {
+		return player2Card3;
+	}
+
+	@FXML
+	public AnchorPane getPlayer2Card4() {
+		return player2Card4;
+	}
+
+	@FXML
+	public AnchorPane getPlayer2Card5() {
+		return player2Card5;
+	}
+
+	@FXML
+	public Label getDealCardTotal() {
+		return DealCardTotal;
+	}
+
+	@FXML
+	public AnchorPane getDealerCard1() {
+		return dealerCard1;
+	}
+
+	@FXML
+	public AnchorPane getDealerCard2() {
+		return dealerCard2;
+	}
+
+	@FXML
+	public AnchorPane getDealerCard3() {
+		return dealerCard3;
+	}
+
+	@FXML
+	public AnchorPane getDealerCard4() {
+		return dealerCard4;
+	}
+
+	@FXML
+	public AnchorPane getDealerCard5() {
+		return dealerCard5;
+	}
+
+	public void setEnterNumberOfPlayers(String enterNumberOfPlayers) {
+		this.enterNumberOfPlayers.setText(enterNumberOfPlayers);
+	}
+
+	public void setPlayer3Name(Label player3Name) {
+		this.player3Name = player3Name;
+	}
+
+	public void setPlayer3CardTotal(Label player3CardTotal) {
+		this.player3CardTotal = player3CardTotal;
 	}
 
 	public void setPlayer3Card1(AnchorPane player3Card1) {
 		this.player3Card1 = player3Card1;
 	}
 
-	public AnchorPane getPlayer3Card2() {
-		return player3Card2;
-	}
-
 	public void setPlayer3Card2(AnchorPane player3Card2) {
 		this.player3Card2 = player3Card2;
-	}
-
-	public AnchorPane getPlayer3Card3() {
-		return player3Card3;
 	}
 
 	public void setPlayer3Card3(AnchorPane player3Card3) {
 		this.player3Card3 = player3Card3;
 	}
 
-	public AnchorPane getPlayer3Card4() {
-		return player3Card4;
-	}
-
 	public void setPlayer3Card4(AnchorPane player3Card4) {
 		this.player3Card4 = player3Card4;
-	}
-
-	public AnchorPane getPlayer3Card5() {
-		return player3Card5;
 	}
 
 	public void setPlayer3Card5(AnchorPane player3Card5) {
 		this.player3Card5 = player3Card5;
 	}
 
-	public AnchorPane getPlayer1Board() {
-		return player1Board;
-	}
-
-	public String getPlayer1Name() {
-		return player1Name.getText();
-	}
-
 	public void setPlayer1Name(String playerName) {
 		player1Name.setText(playerName);
 	}
 
-	public String getPlayer1CardTotal() {
-		return player1CardTotal.getText();
+	public void setPlayer1CardTotal(Label player1CardTotal) {
+		this.player1CardTotal = player1CardTotal;
 	}
 
-	public void setPlayer1CardTotal(int handValue) {
-		this.player1CardTotal.setText(Integer.toString(handValue));
+	public void setPlayer1Card1(AnchorPane player1Card1) {
+		this.player1Card1 = player1Card1;
 	}
 
-	public AnchorPane getPlayer2Board() {
-		return player2Board;
+	public void setPlayer1Card2(AnchorPane player1Card2) {
+		this.player1Card2 = player1Card2;
 	}
 
-	public String getPlayer2Name() {
-		return player2Name.getText();
+	public void setPlayer1Card3(AnchorPane player1Card3) {
+		Player1Card3 = player1Card3;
 	}
 
-	public void setPlayer2Name(String player2Name) {
-		this.player2Name.setText(player2Name);
+	public void setPlayer1Card4(AnchorPane player1Card4) {
+		this.player1Card4 = player1Card4;
 	}
 
-	public String getPlayer2CcardTotal() {
-		return player2CcardTotal.getText();
+	public void setPlayer1Card5(AnchorPane player1Card5) {
+		this.player1Card5 = player1Card5;
 	}
 
-	public void setPlayer2CcardTotal(int handValue) {
-		this.player2CcardTotal.setText(Integer.toString(handValue));
+
+	public void setPlayer2Name(Label player2Name) {
+		this.player2Name = player2Name;
 	}
 
-	public AnchorPane getDealerBoard() {
-		return dealerBoard;
+	public void setPlayer2CcardTotal(Label player2CcardTotal) {
+		this.player2CcardTotal = player2CcardTotal;
 	}
 
-	public String getDealCardTotal() {
-		return DealCardTotal.getText();
+	public void setPlayer2Card1(AnchorPane player2Card1) {
+		this.player2Card1 = player2Card1;
 	}
 
-	public void setDealCardTotal(int dealCardTotal) {
-		DealCardTotal.setText(Integer.toString(dealCardTotal));
+	public void setPlayer2Card2(AnchorPane player2Card2) {
+		this.player2Card2 = player2Card2;
 	}
 
+	
+	public void setPlayer2Card3(AnchorPane player2Card3) {
+		this.player2Card3 = player2Card3;
+	}
+
+	
+	public void setPlayer2Card4(AnchorPane player2Card4) {
+		this.player2Card4 = player2Card4;
+	}
+
+	
+	public void setPlayer2Card5(AnchorPane player2Card5) {
+		this.player2Card5 = player2Card5;
+	}
+
+	
+	public void setDealCardTotal(Label dealCardTotal) {
+		DealCardTotal = dealCardTotal;
+	}
+
+	
+	public void setDealerCard1(AnchorPane dealerCard1) {
+		this.dealerCard1 = dealerCard1;
+	}
+
+	
+	public void setDealerCard2(AnchorPane dealerCard2) {
+		this.dealerCard2 = dealerCard2;
+	}
+
+	
+	public void setDealerCard3(AnchorPane dealerCard3) {
+		this.dealerCard3 = dealerCard3;
+	}
+
+	
+	public void setDealerCard4(AnchorPane dealerCard4) {
+		this.dealerCard4 = dealerCard4;
+	}
+
+	
+	public void setDealerCard5(AnchorPane dealerCard5) {
+		this.dealerCard5 = dealerCard5;
+	}
+
+	
 	@FXML
 	void playerNumberEntered(KeyEvent event) {
+		
 		String input = enterNumberOfPlayers.getText();
-		int number = Integer.parseInt(input);
-		ArrayList<Player> players = new ArrayList<>();
+		if (!input.equals("")) {
 
-		switch (number) {
+			int number = Integer.parseInt(input);
+			ArrayList<Player> players = new ArrayList<>();
 
-		case 1:
-			enterNumberOfPlayers.setDisable(true);
-			enterNumberOfPlayers.setVisible(false);
-			player1Board.setDisable(false);
-			player1Board.setVisible(true);
-			dealerBoard.setDisable(false);
-			dealerBoard.setVisible(true);
-			players.add(new Player("Player 1"));
-			BlackJack.setPlayers(players);
-			break;
+			switch (number) {
 
-		case 2:
-			enterNumberOfPlayers.setDisable(true);
-			enterNumberOfPlayers.setVisible(false);
-			player2Board.setVisible(true);
-			player2Board.setDisable(false);
-			player3Board.setVisible(true);
-			player3Board.setDisable(false);
-			dealerBoard.setDisable(false);
-			dealerBoard.setVisible(true);
-			players.add(new Player("Player 1"));
-			players.add(new Player("Player 2"));
-			BlackJack.setPlayers(players);
-			break;
+			case 1:
+				BlackJack jack = new BlackJack();
+				enterNumberOfPlayers.setDisable(true);
+				enterNumberOfPlayers.setVisible(false);
+				player1Board.setDisable(false);
+				player1Board.setVisible(true);
+				dealerBoard.setDisable(false);
+				dealerBoard.setVisible(true);
 
-		case 3:
-			enterNumberOfPlayers.setDisable(true);
-			enterNumberOfPlayers.setVisible(false);
-			player1Board.setDisable(false);
-			player1Board.setVisible(true);
-			player2Board.setVisible(true);
-			player2Board.setDisable(false);
-			player3Board.setVisible(true);
-			player3Board.setDisable(false);
-			dealerBoard.setDisable(false);
-			dealerBoard.setVisible(true);
+//				players.add(new Player("P1"));
+//				setPlayer1Name(players.get(0).getName());
+				jack.setPlayers(players);
+//				setPlayer1Name("p1");
+				break;
 
-			players.add(new Player("Player 1"));
-			players.add(new Player("Player 2"));
-			players.add(new Player("Player 3"));
+			case 2:
+				enterNumberOfPlayers.setDisable(true);
+				enterNumberOfPlayers.setVisible(false);
+				player2Board.setVisible(true);
+				player2Board.setDisable(false);
+				player3Board.setVisible(true);
+				player3Board.setDisable(false);
+				dealerBoard.setDisable(false);
+				dealerBoard.setVisible(true);
 
-			BlackJack.setPlayers(players);
-			break;
+				players.add(new Player("P1"));
+				players.add(new Player("P2"));
 
-		default:
-			enterNumberOfPlayers.setText("Not Valid");
-			break;
+				setPlayer1Name(players.get(0).getName());
+//				setPlayer2Name(players.get(1).getName());
+
+				break;
+
+			case 3:
+				enterNumberOfPlayers.setDisable(true);
+				enterNumberOfPlayers.setVisible(false);
+				player1Board.setDisable(false);
+				player1Board.setVisible(true);
+				player2Board.setVisible(true);
+				player2Board.setDisable(false);
+				player3Board.setVisible(true);
+				player3Board.setDisable(false);
+				dealerBoard.setDisable(false);
+				dealerBoard.setVisible(true);
+
+				players.add(new Player("P1"));
+				players.add(new Player("P2"));
+				players.add(new Player("P3"));
+
+//				setPlayer1Name(players.get(0).getName());
+//				setPlayer2Name(players.get(1).getName());
+//				setPlayer3Name(players.get(2).getName());
+
+				break;
+
+			default:
+				enterNumberOfPlayers.setText("Not Valid");
+				break;
+			}
 		}
 	}
 
@@ -271,6 +467,21 @@ public class Controller implements Initializable {
 		Stage secondStage = Main.getStage();
 		secondStage.setScene(scene);
 		secondStage.show();
+	}
+
+	@FXML
+	private void playBlackJack(ActionEvent event) {
+		CardGames.runBlackjack();
+	}
+
+	@FXML
+	private void playHiLo(ActionEvent event) {
+		CardGames.runHiLo();
+	}
+
+	@FXML
+	private void exit(ActionEvent event) {
+		System.exit(0);
 	}
 
 	@Override

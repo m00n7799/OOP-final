@@ -3,6 +3,7 @@ package controller;
 import java.io.IOException;
 
 import application.Main;
+import games.BlackJack;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -23,6 +24,7 @@ public class CardGames {
 		Stage secondStage = Main.getStage();
 		secondStage.setScene(scene);
 		secondStage.show();
+		
 	}
 	
 	public static void runHiLo() {

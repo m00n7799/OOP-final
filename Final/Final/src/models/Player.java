@@ -37,9 +37,7 @@ public class Player {
 			handValue -= 10;
 		}
 	}
-<<<<<<< HEAD
-=======
-
+	
 	public void setHand(ArrayList<Card> hand2) {
 		for(int i=0;i<hand2.size();i++) {
 		hand.add(hand2.get(i));
@@ -48,6 +46,4 @@ public class Player {
 	public ArrayList<Card> getHand(){
 		return hand;
 	}
-	
->>>>>>> fa4ddd46f773676d290d23de38fd9b1d51b19741
 }
