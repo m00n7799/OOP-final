@@ -1,25 +1,24 @@
 package games;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+
+import application.Controller;
 import models.Deck;
 import models.Player;
 
-<<<<<<< HEAD
-public class BlackJack{
+public class BlackJack implements Comparable<Player>{
+	
+	Controller controller = new Controller();
+	Deck deck1 = new Deck();
 	
 	static ArrayList <Player> P = new ArrayList<Player>();
-	Deck deck1 = new Deck();
-	int check;
-	int count;
 	
-=======
-public class BlackJack implements Comparable<Player>{
-	ArrayList <Player> P = new ArrayList<Player>();
-	Deck deck1 = new Deck();
+	
 	int check;
 	int count;
 	int hand2;
->>>>>>> 2ebe5c16c407b97aff650171d677a22b08a8d909
+
 	public void win() {
 		for(int i =0; i < P.size(); i++) {
 			check = P.get(i).getHandValue();
@@ -32,14 +31,21 @@ public class BlackJack implements Comparable<Player>{
 			}
 		}
 	}
-<<<<<<< HEAD
 	
 	public static void setPlayers(ArrayList<Player> players) {
+		
+		Controller controller = new Controller();
 		for (int i = 0; i < players.size(); i++) {
 			P.add(players.get(i));
+			System.out.println(players.get(i).getName());
+			try {
+				controller.setPlayer1Name(P.get(i).getName());
+			}catch (Exception e){
+				System.err.println("Joj");
+			}
 		}
 	}
-=======
+	
 	@Override
 	public int compareTo(Player arg0) {
 		int hand1 = check;
@@ -62,7 +68,4 @@ public class BlackJack implements Comparable<Player>{
 		}
 		
 	}
-
-
->>>>>>> 2ebe5c16c407b97aff650171d677a22b08a8d909
 }

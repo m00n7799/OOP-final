@@ -4,8 +4,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-
 import controller.CardGames;
+import games.BlackJack;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,11 +16,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-<<<<<<< HEAD
-import jdk.nashorn.internal.runtime.arrays.NumericElements;
 import models.Player;
-=======
->>>>>>> 2ebe5c16c407b97aff650171d677a22b08a8d909
 
 public class Controller implements Initializable {
 	
@@ -76,17 +72,17 @@ public class Controller implements Initializable {
 	private Label DealCardTotal;
 
 	@FXML
-	public void playBlackJack(ActionEvent event) {
+	private void playBlackJack(ActionEvent event) {
 		CardGames.runBlackjack();
 	}
 
 	@FXML
-	public void playHiLo(ActionEvent event) {
+	private void playHiLo(ActionEvent event) {
 		CardGames.runHiLo();
 	}
 
 	@FXML
-	public void exit(ActionEvent event) {
+	private void exit(ActionEvent event) {
 		System.exit(0);
 	}
 
@@ -94,24 +90,20 @@ public class Controller implements Initializable {
 		return player3Board;
 	}
 
-	public void setPlayer3Board(AnchorPane player3Board) {
-		this.player3Board = player3Board;
+	public String getPlayer3Name() {
+		return player3Name.getText();
 	}
 
-	public Label getPlayer3Name() {
-		return player3Name;
+	public void setPlayer3Name(String player3Name) {
+		this.player3Name.setText(player3Name);
 	}
 
-	public void setPlayer3Name(Label player3Name) {
-		this.player3Name = player3Name;
+	public String getPlayer3CardTotal() {
+		return player3CardTotal.getText();
 	}
 
-	public Label getPlayer3CardTotal() {
-		return player3CardTotal;
-	}
-
-	public void setPlayer3CardTotal(Label player3CardTotal) {
-		this.player3CardTotal = player3CardTotal;
+	public void setPlayer3CardTotal(int handTotal){
+		this.player3CardTotal.setText(Integer.toString(handTotal));
 	}
 
 	public AnchorPane getPlayer3Card1() {
@@ -158,64 +150,52 @@ public class Controller implements Initializable {
 		return player1Board;
 	}
 
-	public void setPlayer1Board(AnchorPane player1Board) {
-		this.player1Board = player1Board;
+	public String getPlayer1Name() {
+		return player1Name.getText();
 	}
 
-	public Label getPlayer1Name() {
-		return player1Name;
+	public void setPlayer1Name(String playerName) {
+		player1Name.setText(playerName);
 	}
 
-	public void setPlayer1Name(Label player1Name) {
-		this.player1Name = player1Name;
+	public String getPlayer1CardTotal() {
+		return player1CardTotal.getText();
 	}
 
-	public Label getPlayer1CardTotal() {
-		return player1CardTotal;
-	}
-
-	public void setPlayer1CardTotal(Label player1CardTotal) {
-		this.player1CardTotal = player1CardTotal;
+	public void setPlayer1CardTotal(int handValue) {
+		this.player1CardTotal.setText(Integer.toString(handValue));
 	}
 
 	public AnchorPane getPlayer2Board() {
 		return player2Board;
 	}
 
-	public void setPlayer2Board(AnchorPane player2Board) {
-		this.player2Board = player2Board;
+	public String getPlayer2Name() {
+		return player2Name.getText();
 	}
 
-	public Label getPlayer2Name() {
-		return player2Name;
+	public void setPlayer2Name(String player2Name) {
+		this.player2Name.setText(player2Name);
 	}
 
-	public void setPlayer2Name(Label player2Name) {
-		this.player2Name = player2Name;
+	public String getPlayer2CcardTotal() {
+		return player2CcardTotal.getText();
 	}
 
-	public Label getPlayer2CcardTotal() {
-		return player2CcardTotal;
-	}
-
-	public void setPlayer2CcardTotal(Label player2CcardTotal) {
-		this.player2CcardTotal = player2CcardTotal;
+	public void setPlayer2CcardTotal(int handValue) {
+		this.player2CcardTotal.setText(Integer.toString(handValue));
 	}
 
 	public AnchorPane getDealerBoard() {
 		return dealerBoard;
 	}
 
-	public void setDealerBoard(AnchorPane dealerBoard) {
-		this.dealerBoard = dealerBoard;
+	public String getDealCardTotal() {
+		return DealCardTotal.getText();
 	}
 
-	public Label getDealCardTotal() {
-		return DealCardTotal;
-	}
-
-	public void setDealCardTotal(Label dealCardTotal) {
-		DealCardTotal = dealCardTotal;
+	public void setDealCardTotal(int dealCardTotal) {
+		DealCardTotal.setText(Integer.toString(dealCardTotal));
 	}
 
 	@FXML

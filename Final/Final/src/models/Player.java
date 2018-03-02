@@ -37,10 +37,4 @@ public class Player {
 			handValue -= 10;
 		}
 	}
-<<<<<<< HEAD
-=======
-
-	
-	
->>>>>>> 2ebe5c16c407b97aff650171d677a22b08a8d909
 }
