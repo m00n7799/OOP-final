@@ -37,10 +37,15 @@ public class BlackJack implements Comparable<Player>{
 	}
 
 	
-	public static void setPlayers(ArrayList<Player> players) {
-		for (int i = 0; i < players.size(); i++) {
-			P.add(players.get(i));
+	public static void setPlayers(int howmany) {
+		Player pl;
+		for (int i = 1; i <= howmany; i++) {
+			pl=new Player("P"+i);
+			P.add(pl);
 		}
+	}
+	public static ArrayList<Player> getPlayers(){
+		return P;
 	}
 
 	@Override

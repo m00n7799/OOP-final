@@ -160,12 +160,12 @@ public class Controller implements Initializable {
 		this.player1Board = player1Board;
 	}
 
-	public Label getPlayer1Name() {
-		return player1Name;
+	public String getPlayer1Name() {
+		return player1Name.getText();
 	}
 
-	public void setPlayer1Name(Label player1Name) {
-		this.player1Name = player1Name;
+	public void setPlayer1Name(String playerName) {
+		player1Name.setText(playerName);
 	}
 
 	public Label getPlayer1CardTotal() {
@@ -231,8 +231,8 @@ public class Controller implements Initializable {
 			player1Board.setVisible(true);
 			dealerBoard.setDisable(false);
 			dealerBoard.setVisible(true);
-			players.add(new Player("Player 1"));
-			BlackJack.setPlayers(players);
+			BlackJack.setPlayers(number);
+			setPlayer1Name(BlackJack.getPlayers().get(0).getName());
 			break;
 
 		case 2:
@@ -244,9 +244,8 @@ public class Controller implements Initializable {
 			player3Board.setDisable(false);
 			dealerBoard.setDisable(false);
 			dealerBoard.setVisible(true);
-			players.add(new Player("Player 1"));
-			players.add(new Player("Player 2"));
-			BlackJack.setPlayers(players);
+			
+			BlackJack.setPlayers(number);
 			break;
 
 		case 3:
@@ -261,11 +260,8 @@ public class Controller implements Initializable {
 			dealerBoard.setDisable(false);
 			dealerBoard.setVisible(true);
 
-			players.add(new Player("Player 1"));
-			players.add(new Player("Player 2"));
-			players.add(new Player("Player 3"));
-
-			BlackJack.setPlayers(players);
+			
+			BlackJack.setPlayers(number);
 			break;
 
 		default:
