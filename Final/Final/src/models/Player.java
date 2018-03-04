@@ -47,8 +47,4 @@ public class Player {
 	public ArrayList<Card> getHand() {
 		return hand;
 	}
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> b93ef8789b2e45108e59085395861323e09bd4eb

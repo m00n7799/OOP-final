@@ -21,7 +21,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-
+import models.Deck;
 import models.Player;
 
 public class Controller implements Initializable {
@@ -130,8 +130,8 @@ public class Controller implements Initializable {
 		return player3CardTotal;
 	}
 
-	public void setPlayer3CardTotal(Label player3CardTotal) {
-		this.player3CardTotal = player3CardTotal;
+	public void setPlayer3CardTotal(String value) {
+		player3CardTotal.setText(value);
 	}
 
 	public AnchorPane getPlayer3Card1() {
@@ -190,12 +190,8 @@ public class Controller implements Initializable {
 		player1Name.setText(playerName);
 	}
 
-	public Label getPlayer1CardTotal() {
-		return player1CardTotal;
-	}
-
-	public void setPlayer1CardTotal(Label player1CardTotal) {
-		this.player1CardTotal = player1CardTotal;
+	public String getPlayer1CardTotal() {
+		return player1CardTotal.getText();
 	}
 
 	public AnchorPane getPlayer2Board() {
@@ -237,16 +233,16 @@ public class Controller implements Initializable {
 	public void setDealCardTotal(Label dealCardTotal) {
 		DealCardTotal = dealCardTotal;
 	}
+	
+	public void setPlayer1CardTotal(String hand) {
+		player1CardTotal.setText(hand);
+	}
+	
 
 	@FXML
 	void playerNumberEntered(KeyEvent event) {
 
 		String input = enterNumberOfPlayers.getText();
-<<<<<<< HEAD
-
-		setPlayer1Name("");
-		setPlayer2Name("");
-		setPlayer3Name("");
 
 		if (!input.equals("") && event.getCode().equals(KeyCode.ENTER)) {
 
@@ -255,6 +251,7 @@ public class Controller implements Initializable {
 			switch (number) {
 
 			case 1:
+				
 				enterNumberOfPlayers.setDisable(true);
 				enterNumberOfPlayers.setVisible(false);
 				player1Board.setDisable(false);
@@ -265,12 +262,21 @@ public class Controller implements Initializable {
 				BlackJack.setPlayers(number);
 				setPlayer1Name(BlackJack.getPlayers().get(0).getName());
 				
+
+				
 				playerOptionsView.setVisible(true);
 				playerOptionsView.setDisable(false);
+				
+				Deck deck = new Deck();
+				deck.shuffle();			
+				deck.initialDeal(BlackJack.getPlayers());	
+				
+				setPlayer1CardTotal(Integer.toString(BlackJack.getPlayers().get(0).getHandValue()));
 				
 				break;
 
 			case 2:
+				
 				enterNumberOfPlayers.setDisable(true);
 				enterNumberOfPlayers.setVisible(false);
 				player2Board.setVisible(true);
@@ -282,15 +288,19 @@ public class Controller implements Initializable {
 
 				BlackJack.setPlayers(number);
 				
-				
 				playerOptionsView.setVisible(true);
 				playerOptionsView.setDisable(false);
 				
 				setPlayer3Name(BlackJack.getPlayers().get(0).getName());
 				setPlayer2Name(BlackJack.getPlayers().get(1).getName());
+				
+				setPlayer3CardTotal(Integer.toString(BlackJack.getPlayers().get(0).getHandValue()));
+				setPlayer2CardTotal(Integer.toString(BlackJack.getPlayers().get(1).getHandValue()));
+
 				break;
 
 			case 3:
+				
 				enterNumberOfPlayers.setDisable(true);
 				enterNumberOfPlayers.setVisible(false);
 				player1Board.setDisable(false);
@@ -303,9 +313,15 @@ public class Controller implements Initializable {
 				dealerBoard.setVisible(true);
 
 				BlackJack.setPlayers(number);
+				
 				setPlayer3Name(BlackJack.getPlayers().get(0).getName());
 				setPlayer1Name(BlackJack.getPlayers().get(1).getName());
 				setPlayer2Name(BlackJack.getPlayers().get(2).getName());
+				
+				setPlayer3CardTotal(Integer.toString(BlackJack.getPlayers().get(0).getHandValue()));
+				setPlayer1CardTotal(Integer.toString(BlackJack.getPlayers().get(1).getHandValue()));
+				setPlayer2CardTotal(Integer.toString(BlackJack.getPlayers().get(2).getHandValue()));
+
 				
 				playerOptionsView.setVisible(true);
 				playerOptionsView.setDisable(false);
@@ -316,65 +332,11 @@ public class Controller implements Initializable {
 				enterNumberOfPlayers.setText("Not Valid");
 				break;
 			}
-=======
-		if(!input.equals("")) {
-		int number = Integer.parseInt(input);
-		
-
-
-		switch (number) {
-
-		case 1:
-			enterNumberOfPlayers.setDisable(true);
-			enterNumberOfPlayers.setVisible(false);
-			player1Board.setDisable(false);
-			player1Board.setVisible(true);
-			dealerBoard.setDisable(false);
-			dealerBoard.setVisible(true);
-			BlackJack.setPlayers(number);
-			setPlayer1Name(BlackJack.getPlayers().get(0).getName());
-			break;
-
-		case 2:
-			enterNumberOfPlayers.setDisable(true);
-			enterNumberOfPlayers.setVisible(false);
-			player2Board.setVisible(true);
-			player2Board.setDisable(false);
-			player3Board.setVisible(true);
-			player3Board.setDisable(false);
-			dealerBoard.setDisable(false);
-			dealerBoard.setVisible(true);
-			
-			BlackJack.setPlayers(number);
-			setPlayer3Name(BlackJack.getPlayers().get(0).getName());
-			setPlayer2Name(BlackJack.getPlayers().get(1).getName());
-			break;
-
-		case 3:
-			enterNumberOfPlayers.setDisable(true);
-			enterNumberOfPlayers.setVisible(false);
-			player1Board.setDisable(false);
-			player1Board.setVisible(true);
-			player2Board.setVisible(true);
-			player2Board.setDisable(false);
-			player3Board.setVisible(true);
-			player3Board.setDisable(false);
-			dealerBoard.setDisable(false);
-			dealerBoard.setVisible(true);
-
-			
-			BlackJack.setPlayers(number);
-			setPlayer3Name(BlackJack.getPlayers().get(0).getName());
-			setPlayer1Name(BlackJack.getPlayers().get(1).getName());
-			setPlayer2Name(BlackJack.getPlayers().get(2).getName());
-			break;
-
-		default:
-			enterNumberOfPlayers.setText("Not Valid");
-			break;
->>>>>>> b93ef8789b2e45108e59085395861323e09bd4eb
 		}
-		}
+	}
+
+	private void setPlayer2CardTotal(String handValue){
+		player2CcardTotal.setText(handValue);
 	}
 
 	@FXML

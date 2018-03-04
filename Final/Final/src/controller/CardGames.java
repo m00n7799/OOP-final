@@ -20,13 +20,13 @@ public class CardGames {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		Scene scene = new Scene(root,900,800);
+		Scene scene = new Scene(root, 900, 800);
 		Stage secondStage = Main.getStage();
 		secondStage.setScene(scene);
 		secondStage.show();
-		
+
 	}
-	
+
 	public static void runHiLo() {
 		AnchorPane root = new AnchorPane();
 		FXMLLoader loader = new FXMLLoader();
@@ -36,7 +36,7 @@ public class CardGames {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		Scene scene = new Scene(root,900,800);
+		Scene scene = new Scene(root, 900, 800);
 		Stage secondStage = Main.getStage();
 		secondStage.setScene(scene);
 		secondStage.show();

@@ -7,9 +7,9 @@ import models.Player;
 public class BlackJack implements Comparable<Player> {
 
 	static ArrayList<Player> P = new ArrayList<Player>();
-	
+
 	Deck deck1 = new Deck();
-	
+
 	int check;
 	int count;
 	int hand2;
