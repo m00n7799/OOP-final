@@ -1,13 +1,14 @@
 
 package models;
 import enums.Rank;
+import enums.Suit;
 import javafx.scene.image.Image;
 public class Card {
 private Rank value;
-private Image suit;
+private Suit suit;
 private boolean hidden;
 private int cardValue;
-public Card(Image suit, Rank rank) {
+public Card(Suit suit, Rank rank) {
 	setSuit(suit);
 	setValue(rank);
 }
@@ -17,10 +18,10 @@ public Rank getValue() {
 public void setValue(Rank value) {
 	this.value=value;
 }
-public Image getSuit() {
+public Suit getSuit() {
 	return suit;
 }
-public void setSuit(Image suit2) {
+public void setSuit(Suit suit2) {
 	this.suit=suit2;
 }
 public boolean isHidden() {
