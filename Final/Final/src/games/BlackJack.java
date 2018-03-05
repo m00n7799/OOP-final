@@ -1,7 +1,10 @@
 package games;
 
 import java.util.ArrayList;
+
+import models.Dealer;
 import models.Deck;
+import models.Human;
 import models.Player;
 
 public class BlackJack {
@@ -99,9 +102,11 @@ public class BlackJack {
 		P.clear();
 		Player pl;
 		for (int i = 1; i <= numberOfPlayers; i++) {
-			pl = new Player("P" + i);
+			pl = new Human("P" + i);
 			P.add(pl);
 		}
+		pl=new Dealer("Dealer");
+		P.add(pl);
 	}
 
 	public static ArrayList<Player> getPlayers() {
