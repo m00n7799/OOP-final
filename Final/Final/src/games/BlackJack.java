@@ -18,7 +18,6 @@ public class BlackJack implements Comparable<Player> {
 
 		setPlayers(numberOfPlayers);
 		deck1 = new Deck();
-		deck1.shuffle();
 		deck1.initialDeal(P);
 	}
 
