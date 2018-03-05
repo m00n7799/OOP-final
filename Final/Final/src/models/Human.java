@@ -5,9 +5,8 @@ public class Human extends Player {
 	private double balance = 1500.00;
 	private double currentBalance = 0;
 
-	public Human(double currentBalance, String name,  int handValue) {
+	public Human( String name) {
 		super(name);
-		setCurrentBalance(currentBalance);
 	}
 	public String getName() {
 		return name;

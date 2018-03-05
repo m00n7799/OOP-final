@@ -1,10 +1,12 @@
 package games;
 
 import java.util.ArrayList;
+import models.Dealer;
 import models.Deck;
+import models.Human;
 import models.Player;
 
-public class BlackJack implements Comparable<Player> {
+public class BlackJack {
 
 	static ArrayList<Player> P = new ArrayList<Player>();
 
@@ -22,23 +24,72 @@ public class BlackJack implements Comparable<Player> {
 	}
 
 	public static void win() {
-		for (int i = 0; i < P.size(); i++) {
-			check = P.get(i).getHandValue();
-			if (check == 21) {
-				// win
-			} else if (check < 21) {
-				int whoWon = compareTo(P.get(i));
-				if (whoWon == check) {
-					// check won
-				}
-				if (whoWon != check) {
-					// other person won
+		ArrayList<Player> posWins = new ArrayList<Player>();
+		for (Player p : P) {
+			if (p.getHandValue() > 21) {
+				p.setBust(true);
+			}
+			if (!p.isBust()) {
+				posWins.add(p);
+			}
+		}
+		int higher = 0;
+		for (Player p : posWins) {
+			for (Player q : posWins) {
+				check = p.getHandValue();
+				if (check == 21 && p.getHand().size() == 2) {
+					// win
+					p.setNat21(true);
 				} else {
-					// no one won Tie
-				}
+					if (p.getName() != q.getName()) {
+						higher = p.compareTo(q);
+						if (higher == 1) {
+							p.setHigher(true);
+							q.setHigher(false);
+						} else if (higher == -1) {
+							q.setHigher(true);
+							p.setHigher(false);
+						} else {
+							p.setHigher(false);
+							q.setHigher(false);
+						}
+					}
 
-			} else if (check > 21) {
-				// lose
+				}
+			}
+		}
+		for (Player p : posWins) {
+			boolean win = true;
+			boolean tie = true;
+			for (Player q : posWins) {
+				ArrayList<Boolean> bool = p.getHigher();
+				ArrayList<Boolean> bool2 = q.getHigher();
+				for (Boolean b : bool) {
+					if (!b) {
+						win = false;
+					}
+				}
+				if (win) {
+					p.setWin(true);
+					tie = false;
+					break;
+				} else {
+					if (p.getName() != q.getName()) {
+						for (int i = 0; i < bool.size();) {
+							for (Boolean b : bool) {
+								if (b != bool2.get(i)) {
+									tie = false;
+								}
+								i++;
+							}
+						}
+						if (tie) {
+							p.setWin(true);
+							q.setWin(true);
+							break;
+						}
+					}
+				}
 			}
 		}
 	}
@@ -47,9 +98,11 @@ public class BlackJack implements Comparable<Player> {
 		P.clear();
 		Player pl;
 		for (int i = 1; i <= numberOfPlayers; i++) {
-			pl = new Player("P" + i);
+			pl = new Human("P" + i);
 			P.add(pl);
 		}
+		pl = new Dealer("Dealer");
+		P.add(pl);
 	}
 
 	public static ArrayList<Player> getPlayers() {
@@ -58,28 +111,5 @@ public class BlackJack implements Comparable<Player> {
 
 	public static Deck getDeck() {
 		return deck1;
-	}
-
-	@Override
-	public static int compareTo(Player other) {
-		
-		int hand1 = check;
-		hand2 = other.getHandValue();
-		for (int j = 0; j < P.size(); j++) {
-			if (P.get(j).getName() == other.getName()) {
-				// return same player
-			}
-		}
-		if (hand1 > hand2) {
-			return hand1;
-		}
-		if (hand2 > hand1) {
-			return hand2;
-		}
-		if (hand1 == hand2) {
-			return 0;
-		} else {
-			return 0;
-		}
 	}
 }
