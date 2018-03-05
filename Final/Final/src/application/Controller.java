@@ -82,19 +82,18 @@ public class Controller implements Initializable {
 
 	@FXML
 	private Label dSuit1;
-	
-    @FXML
-    private Label pot;
 
-    @FXML
-    private Button stand;
+	@FXML
+	private Label pot;
 
-    @FXML
-    private Button hit;
-    
-    @FXML
-    private AnchorPane playerOptionsView;
+	@FXML
+	private Button stand;
 
+	@FXML
+	private Button hit;
+
+	@FXML
+	private AnchorPane playerOptionsView;
 
 	public void playBlackJack(ActionEvent event) {
 		CardGames.runBlackjack();
@@ -233,11 +232,10 @@ public class Controller implements Initializable {
 	public void setDealCardTotal(Label dealCardTotal) {
 		DealCardTotal = dealCardTotal;
 	}
-	
+
 	public void setPlayer1CardTotal(String hand) {
 		player1CardTotal.setText(hand);
 	}
-	
 
 	@FXML
 	void playerNumberEntered(KeyEvent event) {
@@ -251,44 +249,31 @@ public class Controller implements Initializable {
 			switch (number) {
 
 			case 1:
-				
+
 				enterNumberOfPlayers.setDisable(true);
 				enterNumberOfPlayers.setVisible(false);
 				player1Board.setDisable(false);
 				player1Board.setVisible(true);
 				dealerBoard.setDisable(false);
 				dealerBoard.setVisible(true);
+
 				BlackJack.startNewGame(number);
-//				BlackJack.setPlayers(number);
-				setPlayer1Name(BlackJack.getPlayers().get(0).getName());
 				
+//				BlackJack.setPlayers(number);
+				
+				setPlayer1Name(BlackJack.getPlayers().get(0).getName());
+
 				playerOptionsView.setVisible(true);
 				playerOptionsView.setDisable(false);
-				
-//				System.out.println(BlackJack.getPlayers().get(0).getHandValue());
+
+				// System.out.println(BlackJack.getPlayers().get(0).getHandValue());
 				setPlayer1CardTotal(Integer.toString(BlackJack.getPlayers().get(0).getHandValue()));
-				
-				boolean isPlaying = true;
-				int standCount = 0;
-				int playerID = 0;
-				
-				while(isPlaying) {
-					if (isDrawing) {
-						standCount = 0;
-						BlackJack.getDeck().nextCard(BlackJack.getPlayers().get(playerID));
-					}else {
-						standCount++;
-						if (standCount > BlackJack.getPlayers().size()) {
-							BlackJack.win();
-						}
-						playerID++;
-					}
-				}
-				
+				playBlackJackGame(number);
+
 				break;
 
 			case 2:
-				
+
 				enterNumberOfPlayers.setDisable(true);
 				enterNumberOfPlayers.setVisible(false);
 				player2Board.setVisible(true);
@@ -299,20 +284,20 @@ public class Controller implements Initializable {
 				dealerBoard.setVisible(true);
 
 				BlackJack.setPlayers(number);
-				
+
 				playerOptionsView.setVisible(true);
 				playerOptionsView.setDisable(false);
-				
+
 				setPlayer3Name(BlackJack.getPlayers().get(0).getName());
 				setPlayer2Name(BlackJack.getPlayers().get(1).getName());
-				
+
 				setPlayer3CardTotal(Integer.toString(BlackJack.getPlayers().get(0).getHandValue()));
 				setPlayer2CardTotal(Integer.toString(BlackJack.getPlayers().get(1).getHandValue()));
 
 				break;
 
 			case 3:
-				
+
 				enterNumberOfPlayers.setDisable(true);
 				enterNumberOfPlayers.setVisible(false);
 				player1Board.setDisable(false);
@@ -325,19 +310,18 @@ public class Controller implements Initializable {
 				dealerBoard.setVisible(true);
 
 				BlackJack.setPlayers(number);
-				
+
 				setPlayer3Name(BlackJack.getPlayers().get(0).getName());
 				setPlayer1Name(BlackJack.getPlayers().get(1).getName());
 				setPlayer2Name(BlackJack.getPlayers().get(2).getName());
-				
+
 				setPlayer3CardTotal(Integer.toString(BlackJack.getPlayers().get(0).getHandValue()));
 				setPlayer1CardTotal(Integer.toString(BlackJack.getPlayers().get(1).getHandValue()));
 				setPlayer2CardTotal(Integer.toString(BlackJack.getPlayers().get(2).getHandValue()));
 
-				
 				playerOptionsView.setVisible(true);
 				playerOptionsView.setDisable(false);
-				
+
 				break;
 
 			default:
@@ -348,7 +332,8 @@ public class Controller implements Initializable {
 	}
 
 	boolean isDrawing;
-	private void setPlayer2CardTotal(String handValue){
+
+	private void setPlayer2CardTotal(String handValue) {
 		player2CcardTotal.setText(handValue);
 	}
 
@@ -368,15 +353,45 @@ public class Controller implements Initializable {
 		secondStage.setScene(scene);
 		secondStage.show();
 	}
-	
+
 	@FXML
 	public void hit(ActionEvent event) {
 		isDrawing = true;
 	}
-	
+
 	@FXML
-	public void stand(ActionEvent event){
+	public void stand(ActionEvent event) {
 		isDrawing = false;
+	}
+
+	public void playBlackJackGame(int numberOfPlayers) {
+
+		boolean isPlaying = true;
+		int standCount = 0;
+		int playerID = 0;
+
+		while (isPlaying) {
+			if (BlackJack.getPlayers().get(playerID).getHandValue() < 21) {
+				if (isDrawing) {
+					standCount = 0;
+					BlackJack.getDeck().nextCard(BlackJack.getPlayers().get(playerID));
+					setPlayer1CardTotal(Integer.toString(BlackJack.getPlayers().get(0).getHandValue()));
+					playerID++;
+				} else {
+					standCount++;
+					if (standCount > BlackJack.getPlayers().size()) {
+						BlackJack.win();
+					}
+					playerID++;
+				}
+			} else {
+				standCount++;
+				playerID++;
+			}
+			if (playerID < BlackJack.getPlayers().size()) {
+				playerID = 0;
+			}
+		}
 	}
 
 	@Override
