@@ -8,14 +8,14 @@ import javafx.scene.image.Image;
 
 public class Deck {
 
-	static ArrayList<Card> freshDeck;
-	static ArrayList<Card> shuffledDeck;
+	ArrayList<Card> freshDeck;
+	ArrayList<Card> shuffledDeck;
 
 	public Deck() {
 		newDeck();
 	}
 
-	private void newDeck() {
+	void newDeck() {
 
 		CardSuit.suit();
 		freshDeck = new ArrayList<Card>();
@@ -43,7 +43,7 @@ public class Deck {
 		}
 	}
 
-	public static void initialDeal(ArrayList<Player> players) {
+	public void initialDeal(ArrayList<Player> players) {
 		for (Player player : players) {
 
 			ArrayList<Card> hand = new ArrayList<Card>();

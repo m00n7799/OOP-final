@@ -8,13 +8,21 @@ public class BlackJack implements Comparable<Player> {
 
 	static ArrayList<Player> P = new ArrayList<Player>();
 
-	Deck deck1 = new Deck();
+	static Deck deck1 = new Deck();
 
-	int check;
+	static int check;
 	int count;
-	int hand2;
+	static int hand2;
 
-	public void win() {
+	public static void startNewGame(int numberOfPlayers) {
+
+		setPlayers(numberOfPlayers);
+		deck1 = new Deck();
+		deck1.shuffle();
+		deck1.initialDeal(P);
+	}
+
+	public static void win() {
 		for (int i = 0; i < P.size(); i++) {
 			check = P.get(i).getHandValue();
 			if (check == 21) {
@@ -36,10 +44,10 @@ public class BlackJack implements Comparable<Player> {
 		}
 	}
 
-	public static void setPlayers(int howmany) {
+	public static void setPlayers(int numberOfPlayers) {
 		P.clear();
 		Player pl;
-		for (int i = 1; i <= howmany; i++) {
+		for (int i = 1; i <= numberOfPlayers; i++) {
 			pl = new Player("P" + i);
 			P.add(pl);
 		}
@@ -49,12 +57,17 @@ public class BlackJack implements Comparable<Player> {
 		return P;
 	}
 
+	public static Deck getDeck() {
+		return deck1;
+	}
+
 	@Override
-	public int compareTo(Player arg0) {
+	public static int compareTo(Player other) {
+		
 		int hand1 = check;
-		hand2 = arg0.getHandValue();
+		hand2 = other.getHandValue();
 		for (int j = 0; j < P.size(); j++) {
-			if (P.get(j).getName() == arg0.getName()) {
+			if (P.get(j).getName() == other.getName()) {
 				// return same player
 			}
 		}
@@ -69,7 +82,5 @@ public class BlackJack implements Comparable<Player> {
 		} else {
 			return 0;
 		}
-
 	}
-
 }

@@ -258,20 +258,32 @@ public class Controller implements Initializable {
 				player1Board.setVisible(true);
 				dealerBoard.setDisable(false);
 				dealerBoard.setVisible(true);
-				
-				BlackJack.setPlayers(number);
+				BlackJack.startNewGame(number);
+//				BlackJack.setPlayers(number);
 				setPlayer1Name(BlackJack.getPlayers().get(0).getName());
-				
-
 				
 				playerOptionsView.setVisible(true);
 				playerOptionsView.setDisable(false);
 				
-				Deck deck = new Deck();
-				deck.shuffle();			
-				deck.initialDeal(BlackJack.getPlayers());	
-				
+//				System.out.println(BlackJack.getPlayers().get(0).getHandValue());
 				setPlayer1CardTotal(Integer.toString(BlackJack.getPlayers().get(0).getHandValue()));
+				
+				boolean isPlaying = true;
+				int standCount = 0;
+				int playerID = 0;
+				
+				while(isPlaying) {
+					if (isDrawing) {
+						standCount = 0;
+						BlackJack.getDeck().nextCard(BlackJack.getPlayers().get(playerID));
+					}else {
+						standCount++;
+						if (standCount > BlackJack.getPlayers().size()) {
+							BlackJack.win();
+						}
+						playerID++;
+					}
+				}
 				
 				break;
 
@@ -335,6 +347,7 @@ public class Controller implements Initializable {
 		}
 	}
 
+	boolean isDrawing;
 	private void setPlayer2CardTotal(String handValue){
 		player2CcardTotal.setText(handValue);
 	}
@@ -358,12 +371,12 @@ public class Controller implements Initializable {
 	
 	@FXML
 	public void hit(ActionEvent event) {
-		System.out.println("hit ME!");
+		isDrawing = true;
 	}
 	
 	@FXML
 	public void stand(ActionEvent event){
-		System.out.println("GG Gents, Stand");
+		isDrawing = false;
 	}
 
 	@Override
