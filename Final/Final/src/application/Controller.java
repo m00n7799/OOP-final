@@ -362,15 +362,35 @@ public class Controller implements Initializable {
 
 	@FXML
 	public void hit(ActionEvent event) {
-
-		Deck.nextCard(BlackJack.getPlayers().get(playerID));
+		ArrayList<Player> players=new ArrayList<Player>();
+		players.addAll(BlackJack.getPlayers());
+		Deck.nextCard(players.get(playerID));
+		if(players.size()==1) {
 		if (playerID == 0) {
-			setPlayer3CardTotal(Integer.toString(BlackJack.getPlayers().get(playerID).getHandValue()));
+			setPlayer1CardTotal(Integer.toString(BlackJack.getPlayers().get(playerID).getHandValue()));
 		}else {
 			setPlayer2CardTotal(Integer.toString(BlackJack.getPlayers().get(playerID).getHandValue()));
 		}
-		standCount = 0;
-		passTurn();
+		}
+		else if(players.size()==2) {
+			if (playerID == 0) {
+				setPlayer3CardTotal(Integer.toString(BlackJack.getPlayers().get(playerID).getHandValue()));
+			}else {
+				setPlayer2CardTotal(Integer.toString(BlackJack.getPlayers().get(playerID).getHandValue()));
+			}
+			}
+		else if(players.size()==3) {
+			if (playerID == 0) {
+				setPlayer3CardTotal(Integer.toString(BlackJack.getPlayers().get(playerID).getHandValue()));
+			}else if(playerID == 2){
+				setPlayer2CardTotal(Integer.toString(BlackJack.getPlayers().get(playerID).getHandValue()));
+			}
+			else {
+				setPlayer1CardTotal(Integer.toString(BlackJack.getPlayers().get(playerID).getHandValue()));
+			}
+			}
+//		standCount = 0;
+//		passTurn();
 	}
 
 	private void passTurn() {
@@ -379,13 +399,17 @@ public class Controller implements Initializable {
 		// if standcount = number of all players
 		// then check for winners
 		//
+		ArrayList<Player> players=new ArrayList<Player>();
+		players.addAll(BlackJack.getPlayers());
 		playerID++;
-		if (playerID > BlackJack.getPlayers().size()) {
+		
+		if (playerID > players.size()-1) {
 			playerID = 0;
 		}
-		if (standCount == BlackJack.getPlayers().size()) {
+		if (standCount == players.size()-1) {
 			BlackJack.win();
 		}
+		Player current=players.get(playerID);
 	}
 
 	@FXML
