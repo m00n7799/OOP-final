@@ -19,6 +19,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import models.Deck;
+import models.Human;
 import models.Player;
 
 public class Controller implements Initializable {
@@ -139,11 +140,15 @@ public class Controller implements Initializable {
 		secondStage.show();
 	}
 
+	private static ArrayList<Player> players = new ArrayList<Player>();
+	public void setPlayerList() {
+		players.clear();
+		players.addAll(BlackJack.getPlayers());
+	}
 	@FXML
 	public void hit(ActionEvent event) {
 		
-		ArrayList<Player> players = new ArrayList<Player>();
-		players.addAll(BlackJack.getPlayers());
+		setPlayerList();
 		Deck.nextCard(players.get(playerID));
 		if (players.size() == 1) {
 			if (playerID == 0) {
@@ -169,7 +174,8 @@ public class Controller implements Initializable {
 	}
 	// standCount = 0;
 	// passTurn();
-
+	ArrayList<Human> huma=new ArrayList<>();
+	double pool=0;
 	private void passTurn() {
 		// checks if bust
 		// checks if next player bust
@@ -178,9 +184,11 @@ public class Controller implements Initializable {
 		//
 		
 		
-		ArrayList<Player> players = new ArrayList<Player>();
-		players.addAll(BlackJack.getPlayers());
-		
+		setPlayerList();
+		Human h=(Human) players.get(playerID);
+		h.setBalance(h.getBalance()-100);
+		pool+=100;
+		huma.add(h);
 		playerID++;
 
 		
@@ -190,12 +198,22 @@ public class Controller implements Initializable {
 			for (Player player : w){
 				System.out.println(player.getName());
 			}
+			Human wina=(Human) w.get(w.size()-1);
+			for(Human d:huma) {
+				if(d.getName().equals(wina.getName())) {
+					h.setBalance(d.getBalance()+pool);
+				}
+				System.out.println(d.getBalance());
+			}
+			pool=0;
 			standCount=0;
 			playerID=0;
 			setPlayer3CardTotal("");
 			setPlayer2CardTotal("");
 			setPlayer1CardTotal("");
 			BlackJack.startNewRound();
+			huma.clear();
+			setPlayerList();
 			if (players.size() == 1) {
 				
 					setPlayer1CardTotal(Integer.toString(BlackJack.getPlayers().get(0).getHandValue()));
@@ -217,7 +235,7 @@ public class Controller implements Initializable {
 			}
 		}
 	}
-
+	
 	@FXML
 	public void stand(ActionEvent event) {
 		standCount++;
