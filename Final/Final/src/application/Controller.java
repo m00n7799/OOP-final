@@ -2,6 +2,7 @@ package application;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import controller.CardGames;
 import games.BlackJack;
@@ -19,8 +20,13 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import models.Deck;
+import models.Player;
 
-public class Controller implements Initializable, EventHandler<MouseEvent>{
+public class Controller implements Initializable {
+
+	private int standCount = 0;
+	private int playerID = 0;
 
 	@FXML
 	private TextField enterNumberOfPlayers;
@@ -90,9 +96,9 @@ public class Controller implements Initializable, EventHandler<MouseEvent>{
 
 	@FXML
 	private AnchorPane playerOptionsView;
-	
-    @FXML
-    private Label promptText;
+
+	@FXML
+	private Label promptText;
 
 	public void playBlackJack(ActionEvent event) {
 		CardGames.runBlackjack();
@@ -102,8 +108,9 @@ public class Controller implements Initializable, EventHandler<MouseEvent>{
 	public void playHiLo(ActionEvent event) {
 		CardGames.runHiLo();
 	}
-	
-	@FXML void setPromptText(String promt) {
+
+	@FXML
+	void setPromptText(String promt) {
 		promptText.setText(promt);
 	}
 
@@ -262,16 +269,12 @@ public class Controller implements Initializable, EventHandler<MouseEvent>{
 
 				BlackJack.startNewGame(number);
 
-				// BlackJack.setPlayers(number);
-
-				setPlayer1Name(BlackJack.getPlayers().get(0).getName());
+				setPlayer1Name(BlackJack.getPlayers().get(playerID).getName());
 
 				playerOptionsView.setVisible(true);
 				playerOptionsView.setDisable(false);
 
-				// System.out.println(BlackJack.getPlayers().get(0).getHandValue());
-				setPlayer1CardTotal(Integer.toString(BlackJack.getPlayers().get(0).getHandValue()));
-				playBlackJackGame(number);
+				setPlayer1CardTotal(Integer.toString(BlackJack.getPlayers().get(playerID).getHandValue()));
 
 				break;
 
@@ -286,7 +289,7 @@ public class Controller implements Initializable, EventHandler<MouseEvent>{
 				dealerBoard.setDisable(false);
 				dealerBoard.setVisible(true);
 
-				BlackJack.setPlayers(number);
+				BlackJack.startNewGame(number);
 
 				playerOptionsView.setVisible(true);
 				playerOptionsView.setDisable(false);
@@ -312,18 +315,18 @@ public class Controller implements Initializable, EventHandler<MouseEvent>{
 				dealerBoard.setDisable(false);
 				dealerBoard.setVisible(true);
 
-				BlackJack.setPlayers(number);
+				BlackJack.startNewGame(number);
 
 				setPlayer3Name(BlackJack.getPlayers().get(0).getName());
 				setPlayer1Name(BlackJack.getPlayers().get(1).getName());
 				setPlayer2Name(BlackJack.getPlayers().get(2).getName());
 
+				playerOptionsView.setVisible(true);
+				playerOptionsView.setDisable(false);
+
 				setPlayer3CardTotal(Integer.toString(BlackJack.getPlayers().get(0).getHandValue()));
 				setPlayer1CardTotal(Integer.toString(BlackJack.getPlayers().get(1).getHandValue()));
 				setPlayer2CardTotal(Integer.toString(BlackJack.getPlayers().get(2).getHandValue()));
-
-				playerOptionsView.setVisible(true);
-				playerOptionsView.setDisable(false);
 
 				break;
 
@@ -359,70 +362,40 @@ public class Controller implements Initializable, EventHandler<MouseEvent>{
 
 	@FXML
 	public void hit(ActionEvent event) {
-		isDrawing = true;
+
+		Deck.nextCard(BlackJack.getPlayers().get(playerID));
+		if (playerID == 0) {
+			setPlayer3CardTotal(Integer.toString(BlackJack.getPlayers().get(playerID).getHandValue()));
+		}else {
+			setPlayer2CardTotal(Integer.toString(BlackJack.getPlayers().get(playerID).getHandValue()));
+		}
+		standCount = 0;
+		passTurn();
+	}
+
+	private void passTurn() {
+		// checks if bust
+		// checks if next player bust
+		// if standcount = number of all players
+		// then check for winners
+		//
+		playerID++;
+		if (playerID > BlackJack.getPlayers().size()) {
+			playerID = 0;
+		}
+		if (standCount == BlackJack.getPlayers().size()) {
+			BlackJack.win();
+		}
 	}
 
 	@FXML
 	public void stand(ActionEvent event) {
-		isDrawing = false;
+		standCount++;
+		passTurn();
 	}
-
-	public void playBlackJackGame(int numberOfPlayers) {
-
-		boolean isPlaying = true;
-		boolean isWinner = false;
-		int standCount = 0;
-		int playerID = 0;
-		int round = 1;
-		double pot = round * 25;
-
-		while (isPlaying) {
-			
-			while (!isWinner) {
-							
-				if (BlackJack.getPlayers().get(0).getHandValue() < 21) {
-					
-					promptText.setText(BlackJack.getPlayers().get(0).getName() + " Please Click Your Choice and Hit Enter");
-					
-					stand.addEventHandler(MouseEvent.MOUSE_CLICKED, this);
-					hit.addEventHandler(MouseEvent.MOUSE_CLICKED, this);
-					
-					if (isDrawing) {
-						
-						standCount = 0;
-						BlackJack.getDeck().nextCard(BlackJack.getPlayers().get(playerID));
-						setPlayer1CardTotal(Integer.toString(BlackJack.getPlayers().get(0).getHandValue()));
-						playerID++;
-						
-					} else if(!isDrawing){
-						standCount++;
-						if (standCount > BlackJack.getPlayers().size()) {
-							System.out.println("Winner");
-							isWinner = true;
-							isPlaying=false;
-//							BlackJack.win();
-						}
-						playerID++;
-					}
-				} else {
-					standCount++;
-					playerID++;
-				}
-				if (playerID < BlackJack.getPlayers().size()) {
-					playerID = 0;
-				}
-			}
-		}
-	}
-
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
-	}
-
-	@Override
-	public void handle(MouseEvent event) {
-		System.out.println("Event");
 	}
 }

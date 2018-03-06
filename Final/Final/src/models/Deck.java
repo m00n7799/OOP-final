@@ -9,14 +9,14 @@ import javafx.scene.image.Image;
 
 public class Deck {
 
-	ArrayList<Card> freshDeck;
-	ArrayList<Card> shuffledDeck;
+	static ArrayList<Card> freshDeck;
+	static ArrayList<Card> shuffledDeck;
 
 	public Deck() {
 		newDeck();
 	}
 
-	void newDeck() {
+	static void newDeck() {
 
 //		CardSuit.suit();
 		freshDeck = new ArrayList<Card>();
@@ -31,7 +31,7 @@ public class Deck {
 		shuffle();
 	}
 
-	public void shuffle() {
+	public static void shuffle() {
 		Random rand = new Random();
 		int gen;
 		for (int i = 0; i < 52; i++) {
@@ -58,7 +58,7 @@ public class Deck {
 		}
 	}
 
-	public void nextCard(Player p) {
+	public static void nextCard(Player p) {
 		ArrayList<Card> hand = new ArrayList<Card>();
 		shuffledDeck.get(0).Hidden(false);
 		Card card = shuffledDeck.get(0);

@@ -101,8 +101,8 @@ public class BlackJack {
 			pl = new Human("P" + i);
 			P.add(pl);
 		}
-		pl = new Dealer("Dealer");
-		P.add(pl);
+//		pl = new Dealer("Dealer");
+//		P.add(pl);
 	}
 
 	public static ArrayList<Player> getPlayers() {
