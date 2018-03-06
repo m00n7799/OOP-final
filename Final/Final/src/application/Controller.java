@@ -2,12 +2,10 @@ package application;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 import controller.CardGames;
 import games.BlackJack;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -17,16 +15,187 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import models.Deck;
-import models.Player;
 
 public class Controller implements Initializable {
 
 	private int standCount = 0;
 	private int playerID = 0;
+
+	@FXML
+	void playerNumberEntered(KeyEvent event) {
+
+		String input = enterNumberOfPlayers.getText();
+
+		if (!input.equals("") && event.getCode().equals(KeyCode.ENTER)) {
+
+			int number = Integer.parseInt(input);
+
+			switch (number) {
+
+			case 1:
+
+				enterNumberOfPlayers.setDisable(true);
+				enterNumberOfPlayers.setVisible(false);
+				player1Board.setDisable(false);
+				player1Board.setVisible(true);
+				dealerBoard.setDisable(false);
+				dealerBoard.setVisible(true);
+
+				BlackJack.startNewGame(number);
+
+				setPlayer1Name(BlackJack.getPlayers().get(playerID).getName());
+
+				playerOptionsView.setVisible(true);
+				playerOptionsView.setDisable(false);
+
+				setPlayer1CardTotal(Integer.toString(BlackJack.getPlayers().get(playerID).getHandValue()));
+
+				break;
+
+			case 2:
+
+				enterNumberOfPlayers.setDisable(true);
+				enterNumberOfPlayers.setVisible(false);
+				player2Board.setVisible(true);
+				player2Board.setDisable(false);
+				player3Board.setVisible(true);
+				player3Board.setDisable(false);
+				dealerBoard.setDisable(false);
+				dealerBoard.setVisible(true);
+
+				BlackJack.startNewGame(number);
+
+				playerOptionsView.setVisible(true);
+				playerOptionsView.setDisable(false);
+
+				setPlayer3Name(BlackJack.getPlayers().get(0).getName());
+				setPlayer2Name(BlackJack.getPlayers().get(1).getName());
+
+				setPlayer3CardTotal(Integer.toString(BlackJack.getPlayers().get(0).getHandValue()));
+				setPlayer2CardTotal(Integer.toString(BlackJack.getPlayers().get(1).getHandValue()));
+
+				break;
+
+			case 3:
+
+				enterNumberOfPlayers.setDisable(true);
+				enterNumberOfPlayers.setVisible(false);
+				player1Board.setDisable(false);
+				player1Board.setVisible(true);
+				player2Board.setVisible(true);
+				player2Board.setDisable(false);
+				player3Board.setVisible(true);
+				player3Board.setDisable(false);
+				dealerBoard.setDisable(false);
+				dealerBoard.setVisible(true);
+
+				BlackJack.startNewGame(number);
+
+				setPlayer3Name(BlackJack.getPlayers().get(0).getName());
+				setPlayer1Name(BlackJack.getPlayers().get(1).getName());
+				setPlayer2Name(BlackJack.getPlayers().get(2).getName());
+
+				playerOptionsView.setVisible(true);
+				playerOptionsView.setDisable(false);
+
+				setPlayer3CardTotal(Integer.toString(BlackJack.getPlayers().get(0).getHandValue()));
+				setPlayer1CardTotal(Integer.toString(BlackJack.getPlayers().get(1).getHandValue()));
+				setPlayer2CardTotal(Integer.toString(BlackJack.getPlayers().get(2).getHandValue()));
+
+				break;
+
+			default:
+				enterNumberOfPlayers.setText("Not Valid");
+				break;
+			}
+		}
+	}
+
+	boolean isDrawing;
+
+	private void setPlayer2CardTotal(String handValue) {
+		player2CcardTotal.setText(handValue);
+	}
+
+	@FXML
+	public void returnMain(ActionEvent event) {
+
+		AnchorPane root = new AnchorPane();
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(Main.class.getResource("/MainMenu.fxml"));
+		try {
+			root = loader.load();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		Scene scene = new Scene(root);
+		Stage secondStage = Main.getStage();
+		secondStage.setScene(scene);
+		secondStage.show();
+	}
+
+	@FXML
+	public void hit(ActionEvent event) {
+		// ArrayList<Player> players = new ArrayList<Player>();
+		// players.addAll(BlackJack.getPlayers());
+		Deck.nextCard(BlackJack.getPlayers().get(playerID));
+		if (BlackJack.getPlayers().size() == 1) {
+			if (playerID == 0) {
+				setPlayer1CardTotal(Integer.toString(BlackJack.getPlayers().get(playerID).getHandValue()));
+			} else {
+				setPlayer2CardTotal(Integer.toString(BlackJack.getPlayers().get(playerID).getHandValue()));
+			}
+		} else if (BlackJack.getPlayers().size() == 2) {
+			if (playerID == 0) {
+				setPlayer3CardTotal(Integer.toString(BlackJack.getPlayers().get(playerID).getHandValue()));
+			} else {
+				setPlayer2CardTotal(Integer.toString(BlackJack.getPlayers().get(playerID).getHandValue()));
+			}
+		} else if (BlackJack.getPlayers().size() == 3) {
+			if (playerID == 0) {
+				setPlayer3CardTotal(Integer.toString(BlackJack.getPlayers().get(playerID).getHandValue()));
+			} else if (playerID == 2) {
+				setPlayer2CardTotal(Integer.toString(BlackJack.getPlayers().get(playerID).getHandValue()));
+			} else {
+				setPlayer1CardTotal(Integer.toString(BlackJack.getPlayers().get(playerID).getHandValue()));
+			}
+		}
+		standCount = 0;
+		passTurn();
+	}
+
+	private void passTurn() {
+		// checks if bust
+		// checks if next player bust
+		// if standcount = number of all players
+		// then check for winners
+		if (standCount >= BlackJack.getPlayers().size()) {
+			BlackJack.win();
+		} else {
+			playerID++;
+			if (playerID >= BlackJack.getPlayers().size()) {
+				playerID = 0;
+			}
+			if (BlackJack.getPlayers().get(playerID).isBust()) {
+				playerID++;
+				standCount++;
+			}
+		}
+	}
+
+	@FXML
+	public void stand(ActionEvent event) {
+		standCount++;
+		passTurn();
+	}
+
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+
+	}
 
 	@FXML
 	private TextField enterNumberOfPlayers;
@@ -245,181 +414,5 @@ public class Controller implements Initializable {
 
 	public void setPlayer1CardTotal(String hand) {
 		player1CardTotal.setText(hand);
-	}
-
-	@FXML
-	void playerNumberEntered(KeyEvent event) {
-
-		String input = enterNumberOfPlayers.getText();
-
-		if (!input.equals("") && event.getCode().equals(KeyCode.ENTER)) {
-
-			int number = Integer.parseInt(input);
-
-			switch (number) {
-
-			case 1:
-
-				enterNumberOfPlayers.setDisable(true);
-				enterNumberOfPlayers.setVisible(false);
-				player1Board.setDisable(false);
-				player1Board.setVisible(true);
-				dealerBoard.setDisable(false);
-				dealerBoard.setVisible(true);
-
-				BlackJack.startNewGame(number);
-
-				setPlayer1Name(BlackJack.getPlayers().get(playerID).getName());
-
-				playerOptionsView.setVisible(true);
-				playerOptionsView.setDisable(false);
-
-				setPlayer1CardTotal(Integer.toString(BlackJack.getPlayers().get(playerID).getHandValue()));
-
-				break;
-
-			case 2:
-
-				enterNumberOfPlayers.setDisable(true);
-				enterNumberOfPlayers.setVisible(false);
-				player2Board.setVisible(true);
-				player2Board.setDisable(false);
-				player3Board.setVisible(true);
-				player3Board.setDisable(false);
-				dealerBoard.setDisable(false);
-				dealerBoard.setVisible(true);
-
-				BlackJack.startNewGame(number);
-
-				playerOptionsView.setVisible(true);
-				playerOptionsView.setDisable(false);
-
-				setPlayer3Name(BlackJack.getPlayers().get(0).getName());
-				setPlayer2Name(BlackJack.getPlayers().get(1).getName());
-
-				setPlayer3CardTotal(Integer.toString(BlackJack.getPlayers().get(0).getHandValue()));
-				setPlayer2CardTotal(Integer.toString(BlackJack.getPlayers().get(1).getHandValue()));
-
-				break;
-
-			case 3:
-
-				enterNumberOfPlayers.setDisable(true);
-				enterNumberOfPlayers.setVisible(false);
-				player1Board.setDisable(false);
-				player1Board.setVisible(true);
-				player2Board.setVisible(true);
-				player2Board.setDisable(false);
-				player3Board.setVisible(true);
-				player3Board.setDisable(false);
-				dealerBoard.setDisable(false);
-				dealerBoard.setVisible(true);
-
-				BlackJack.startNewGame(number);
-
-				setPlayer3Name(BlackJack.getPlayers().get(0).getName());
-				setPlayer1Name(BlackJack.getPlayers().get(1).getName());
-				setPlayer2Name(BlackJack.getPlayers().get(2).getName());
-
-				playerOptionsView.setVisible(true);
-				playerOptionsView.setDisable(false);
-
-				setPlayer3CardTotal(Integer.toString(BlackJack.getPlayers().get(0).getHandValue()));
-				setPlayer1CardTotal(Integer.toString(BlackJack.getPlayers().get(1).getHandValue()));
-				setPlayer2CardTotal(Integer.toString(BlackJack.getPlayers().get(2).getHandValue()));
-
-				break;
-
-			default:
-				enterNumberOfPlayers.setText("Not Valid");
-				break;
-			}
-		}
-	}
-
-	boolean isDrawing;
-
-	private void setPlayer2CardTotal(String handValue) {
-		player2CcardTotal.setText(handValue);
-	}
-
-	@FXML
-	public void returnMain(ActionEvent event) {
-
-		AnchorPane root = new AnchorPane();
-		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(Main.class.getResource("/MainMenu.fxml"));
-		try {
-			root = loader.load();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		Scene scene = new Scene(root);
-		Stage secondStage = Main.getStage();
-		secondStage.setScene(scene);
-		secondStage.show();
-	}
-
-	@FXML
-	public void hit(ActionEvent event) {
-		ArrayList<Player> players=new ArrayList<Player>();
-		players.addAll(BlackJack.getPlayers());
-		Deck.nextCard(players.get(playerID));
-		if(players.size()==1) {
-		if (playerID == 0) {
-			setPlayer1CardTotal(Integer.toString(BlackJack.getPlayers().get(playerID).getHandValue()));
-		}else {
-			setPlayer2CardTotal(Integer.toString(BlackJack.getPlayers().get(playerID).getHandValue()));
-		}
-		}
-		else if(players.size()==2) {
-			if (playerID == 0) {
-				setPlayer3CardTotal(Integer.toString(BlackJack.getPlayers().get(playerID).getHandValue()));
-			}else {
-				setPlayer2CardTotal(Integer.toString(BlackJack.getPlayers().get(playerID).getHandValue()));
-			}
-			}
-		else if(players.size()==3) {
-			if (playerID == 0) {
-				setPlayer3CardTotal(Integer.toString(BlackJack.getPlayers().get(playerID).getHandValue()));
-			}else if(playerID == 2){
-				setPlayer2CardTotal(Integer.toString(BlackJack.getPlayers().get(playerID).getHandValue()));
-			}
-			else {
-				setPlayer1CardTotal(Integer.toString(BlackJack.getPlayers().get(playerID).getHandValue()));
-			}
-			}
-//		standCount = 0;
-//		passTurn();
-	}
-
-	private void passTurn() {
-		// checks if bust
-		// checks if next player bust
-		// if standcount = number of all players
-		// then check for winners
-		//
-		ArrayList<Player> players=new ArrayList<Player>();
-		players.addAll(BlackJack.getPlayers());
-		playerID++;
-		
-		if (playerID > players.size()-1) {
-			playerID = 0;
-		}
-		if (standCount == players.size()-1) {
-			BlackJack.win();
-		}
-		Player current=players.get(playerID);
-	}
-
-	@FXML
-	public void stand(ActionEvent event) {
-		standCount++;
-		passTurn();
-	}
-
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-
 	}
 }
