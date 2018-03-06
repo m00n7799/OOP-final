@@ -195,7 +195,7 @@ public class Controller implements Initializable {
 			setPlayer3CardTotal("");
 			setPlayer2CardTotal("");
 			setPlayer1CardTotal("");
-			BlackJack.startNewGame(players.size());
+			BlackJack.startNewRound();
 			if (players.size() == 1) {
 				
 					setPlayer1CardTotal(Integer.toString(BlackJack.getPlayers().get(0).getHandValue()));

@@ -94,6 +94,11 @@ public class Player implements Comparable<Player> {
 	public void setWin(boolean win) {
 		this.win = win;
 	}
+	public void resetHand() {
+		hand = new ArrayList<Card>();
+		handValue=0;
+		
+	}
 
 	@Override
 	public int compareTo(Player other) {
@@ -115,4 +120,5 @@ public class Player implements Comparable<Player> {
 		}
 		return ret;
 	}
+
 }
