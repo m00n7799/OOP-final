@@ -2,6 +2,7 @@ package application;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import controller.CardGames;
 import games.BlackJack;
@@ -18,6 +19,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import models.Deck;
+import models.Player;
 
 public class Controller implements Initializable {
 
@@ -139,22 +141,23 @@ public class Controller implements Initializable {
 
 	@FXML
 	public void hit(ActionEvent event) {
-		// ArrayList<Player> players = new ArrayList<Player>();
-		// players.addAll(BlackJack.getPlayers());
-		Deck.nextCard(BlackJack.getPlayers().get(playerID));
-		if (BlackJack.getPlayers().size() == 1) {
+		
+		ArrayList<Player> players = new ArrayList<Player>();
+		players.addAll(BlackJack.getPlayers());
+		Deck.nextCard(players.get(playerID));
+		if (players.size() == 1) {
 			if (playerID == 0) {
 				setPlayer1CardTotal(Integer.toString(BlackJack.getPlayers().get(playerID).getHandValue()));
 			} else {
 				setPlayer2CardTotal(Integer.toString(BlackJack.getPlayers().get(playerID).getHandValue()));
 			}
-		} else if (BlackJack.getPlayers().size() == 2) {
+		} else if (players.size() == 2) {
 			if (playerID == 0) {
 				setPlayer3CardTotal(Integer.toString(BlackJack.getPlayers().get(playerID).getHandValue()));
 			} else {
 				setPlayer2CardTotal(Integer.toString(BlackJack.getPlayers().get(playerID).getHandValue()));
 			}
-		} else if (BlackJack.getPlayers().size() == 3) {
+		} else if (players.size() == 3) {
 			if (playerID == 0) {
 				setPlayer3CardTotal(Integer.toString(BlackJack.getPlayers().get(playerID).getHandValue()));
 			} else if (playerID == 2) {
@@ -163,27 +166,27 @@ public class Controller implements Initializable {
 				setPlayer1CardTotal(Integer.toString(BlackJack.getPlayers().get(playerID).getHandValue()));
 			}
 		}
-		standCount = 0;
-		passTurn();
 	}
+	// standCount = 0;
+	// passTurn();
 
 	private void passTurn() {
 		// checks if bust
 		// checks if next player bust
 		// if standcount = number of all players
 		// then check for winners
-		if (standCount >= BlackJack.getPlayers().size()) {
-			BlackJack.win();
-		} else {
-			playerID++;
-			if (playerID >= BlackJack.getPlayers().size()) {
-				playerID = 0;
-			}
-			if (BlackJack.getPlayers().get(playerID).isBust()) {
-				playerID++;
-				standCount++;
-			}
+		//
+		ArrayList<Player> players = new ArrayList<Player>();
+		players.addAll(BlackJack.getPlayers());
+		playerID++;
+
+		if (playerID > players.size() - 1) {
+			playerID = 0;
 		}
+		if (standCount == players.size() - 1) {
+			BlackJack.win();
+		}
+		Player current = players.get(playerID);
 	}
 
 	@FXML
