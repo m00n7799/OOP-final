@@ -23,7 +23,7 @@ public class BlackJack {
 		deck1.initialDeal(P);
 	}
 
-	public static void win() {
+	public static ArrayList<Player> win() {
 		ArrayList<Player> posWins = new ArrayList<Player>();
 		for (Player p : P) {
 			if (p.getHandValue() > 21) {
@@ -33,6 +33,10 @@ public class BlackJack {
 				posWins.add(p);
 			}
 		}
+		for (Player player : posWins) {
+			System.out.println(player.getName());
+		}
+		ArrayList<Player>winners= new ArrayList<>();
 		int higher = 0;
 		for (Player p : posWins) {
 			for (Player q : posWins) {
@@ -40,6 +44,8 @@ public class BlackJack {
 				if (check == 21 && p.getHand().size() == 2) {
 					// win
 					p.setNat21(true);
+					winners.add(p);
+					return winners;
 				} else {
 					if (p.getName() != q.getName()) {
 						higher = p.compareTo(q);
@@ -72,6 +78,7 @@ public class BlackJack {
 				if (win) {
 					p.setWin(true);
 					tie = false;
+					winners.add(p);
 					break;
 				} else {
 					if (p.getName() != q.getName()) {
@@ -86,12 +93,15 @@ public class BlackJack {
 						if (tie) {
 							p.setWin(true);
 							q.setWin(true);
+							winners.add(q);
+							winners.add(p);
 							break;
 						}
 					}
 				}
 			}
 		}
+		return winners;
 	}
 
 	public static void setPlayers(int numberOfPlayers) {

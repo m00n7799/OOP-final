@@ -176,17 +176,21 @@ public class Controller implements Initializable {
 		// if standcount = number of all players
 		// then check for winners
 		//
+		
+		
 		ArrayList<Player> players = new ArrayList<Player>();
 		players.addAll(BlackJack.getPlayers());
+		
 		playerID++;
 
-		if (playerID > players.size() - 1) {
-			playerID = 0;
+		
+		if (playerID >= players.size()) {
+			System.out.println("Winning?");
+			ArrayList<Player> w =  BlackJack.win();		
+			for (Player player : w){
+				System.out.println(player.getName());
+			}
 		}
-		if (standCount == players.size() - 1) {
-			BlackJack.win();
-		}
-		Player current = players.get(playerID);
 	}
 
 	@FXML

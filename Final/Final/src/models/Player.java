@@ -16,7 +16,7 @@ public class Player implements Comparable<Player> {
 	private boolean win = false;
 
 	public boolean isBust() {
-		if(getHandValue() < 21) {
+		if(getHandValue() <= 21) {
 			return false;
 		}else {
 			return true;
@@ -72,7 +72,11 @@ public class Player implements Comparable<Player> {
 	}
 
 	public void setNat21(boolean nat21) {
-		this.nat21 = nat21;
+		if (hand.size() == 2 && handValue == 21) {
+			nat21 = true;
+		}else {
+			nat21 = false;
+		}
 	}
 
 	public ArrayList<Boolean> getHigher() {
