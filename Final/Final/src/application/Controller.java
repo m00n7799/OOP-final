@@ -190,6 +190,31 @@ public class Controller implements Initializable {
 			for (Player player : w){
 				System.out.println(player.getName());
 			}
+			standCount=0;
+			playerID=0;
+			setPlayer3CardTotal("");
+			setPlayer2CardTotal("");
+			setPlayer1CardTotal("");
+			BlackJack.startNewGame(players.size());
+			if (players.size() == 1) {
+				
+					setPlayer1CardTotal(Integer.toString(BlackJack.getPlayers().get(0).getHandValue()));
+				
+			} else if (players.size() == 2) {
+				
+					setPlayer3CardTotal(Integer.toString(BlackJack.getPlayers().get(2).getHandValue()));
+				
+					setPlayer2CardTotal(Integer.toString(BlackJack.getPlayers().get(1).getHandValue()));
+		
+			} else if (players.size() == 3) {
+				
+					setPlayer3CardTotal(Integer.toString(BlackJack.getPlayers().get(0).getHandValue()));
+				
+					setPlayer2CardTotal(Integer.toString(BlackJack.getPlayers().get(2).getHandValue()));
+				
+					setPlayer1CardTotal(Integer.toString(BlackJack.getPlayers().get(1).getHandValue()));
+				
+			}
 		}
 	}
 
