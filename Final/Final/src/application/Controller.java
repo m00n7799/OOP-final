@@ -20,6 +20,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import models.Deck;
+import models.Human;
 import models.Player;
 
 public class Controller implements Initializable {
@@ -47,6 +48,7 @@ public class Controller implements Initializable {
 				dealerBoard.setVisible(true);
 
 				BlackJack.startNewGame(number);
+				players = BlackJack.getPlayers();
 
 				setPlayer1Name(BlackJack.getPlayers().get(playerID).getName());
 
@@ -54,6 +56,7 @@ public class Controller implements Initializable {
 				playerOptionsView.setDisable(false);
 
 				setPlayer1CardTotal(Integer.toString(BlackJack.getPlayers().get(playerID).getHandValue()));
+				setPlayer1Hand();
 
 				break;
 
@@ -70,6 +73,8 @@ public class Controller implements Initializable {
 
 				BlackJack.startNewGame(number);
 
+				players = BlackJack.getPlayers();
+
 				playerOptionsView.setVisible(true);
 				playerOptionsView.setDisable(false);
 
@@ -78,6 +83,9 @@ public class Controller implements Initializable {
 
 				setPlayer3CardTotal(Integer.toString(BlackJack.getPlayers().get(0).getHandValue()));
 				setPlayer2CardTotal(Integer.toString(BlackJack.getPlayers().get(1).getHandValue()));
+
+				setPlayer3Hand();
+				setPlayer2Hand();
 
 				break;
 
@@ -95,6 +103,8 @@ public class Controller implements Initializable {
 				dealerBoard.setVisible(true);
 
 				BlackJack.startNewGame(number);
+
+				players = BlackJack.getPlayers();
 
 				setPlayer3Name(BlackJack.getPlayers().get(0).getName());
 				setPlayer1Name(BlackJack.getPlayers().get(1).getName());
@@ -139,78 +149,202 @@ public class Controller implements Initializable {
 		secondStage.show();
 	}
 
-    @FXML
-    private ImageView suit1;
-    
+	@FXML
+	private ImageView suit1;
+
+	ArrayList<Player> players = new ArrayList<>();
+
 	@FXML
 	public void hit(ActionEvent event) {
 
-		ArrayList<Player> players = new ArrayList<Player>();
-		players.addAll(BlackJack.getPlayers());
 		Deck.nextCard(players.get(playerID));
 		if (players.size() == 1) {
-			if (playerID == 0) {
-				setPlayer1CardTotal(Integer.toString(BlackJack.getPlayers().get(playerID).getHandValue()));
 
-				p1c1n1.setText(Integer.toString(players.get(playerID).getHand().get(0).getCardValue()));
-				p1c1s1.setText(players.get(playerID).getHand().get(0).getSuit().toString());
-				p1c1n2.setText(Integer.toString(players.get(playerID).getHand().get(0).getCardValue()));
-				p1c1s2.setText(players.get(playerID).getHand().get(0).getSuit().toString());
-				
-				
-				p1c2n1.setText(Integer.toString(players.get(playerID).getHand().get(1).getCardValue()));
-				p1c2s1.setText(players.get(playerID).getHand().get(1).getSuit().toString());
-				p1c2n2.setText(Integer.toString(players.get(playerID).getHand().get(1).getCardValue()));
-				p1c2s2.setText(players.get(playerID).getHand().get(1).getSuit().toString());
-				
-				p1c3n1.setText(Integer.toString(players.get(playerID).getHand().get(2).getCardValue()));
-				p1c3s1.setText(players.get(playerID).getHand().get(2).getSuit().toString());
-				p1c3n2.setText(Integer.toString(players.get(playerID).getHand().get(2).getCardValue()));
-				p1c3s2.setText(players.get(playerID).getHand().get(2).getSuit().toString());
-				
-				p1c4n1.setText(Integer.toString(players.get(playerID).getHand().get(3).getCardValue()));
-				p1c4s1.setText(players.get(playerID).getHand().get(3).getSuit().toString());
-				p1c4n2.setText(Integer.toString(players.get(playerID).getHand().get(3).getCardValue()));
-				p1c4s2.setText(players.get(playerID).getHand().get(3).getSuit().toString());
-				
-				p1c5n1.setText(Integer.toString(players.get(playerID).getHand().get(4).getCardValue()));
-				p1c5s1.setText(players.get(playerID).getHand().get(4).getSuit().toString());
-				p1c5n2.setText(Integer.toString(players.get(playerID).getHand().get(4).getCardValue()));
-				p1c5s2.setText(players.get(playerID).getHand().get(4).getSuit().toString());
+			setPlayer1CardTotal(Integer.toString(players.get(playerID).getHandValue()));
+			setPlayer1Hand();
 
-			} else {
-				setPlayer2CardTotal(Integer.toString(BlackJack.getPlayers().get(playerID).getHandValue()));
-			}
 		} else if (players.size() == 2) {
+
 			if (playerID == 0) {
-				setPlayer3CardTotal(Integer.toString(BlackJack.getPlayers().get(playerID).getHandValue()));
+				setPlayer3CardTotal(Integer.toString(players.get(playerID).getHandValue()));
+				setPlayer3Hand();
+
 			} else {
-				setPlayer2CardTotal(Integer.toString(BlackJack.getPlayers().get(playerID).getHandValue()));
+				setPlayer2CardTotal(Integer.toString(players.get(playerID).getHandValue()));
+				setPlayer2Hand();
 			}
 		} else if (players.size() == 3) {
 			if (playerID == 0) {
-				setPlayer3CardTotal(Integer.toString(BlackJack.getPlayers().get(playerID).getHandValue()));
-			} else if (playerID == 2) {
-				setPlayer2CardTotal(Integer.toString(BlackJack.getPlayers().get(playerID).getHandValue()));
+				setPlayer3CardTotal(Integer.toString(players.get(playerID).getHandValue()));
+				setPlayer3Hand();
+
+			} else if (playerID == 1) {
+				setPlayer1CardTotal(Integer.toString(players.get(playerID).getHandValue()));
+				setPlayer1Hand();
+
 			} else {
-				setPlayer1CardTotal(Integer.toString(BlackJack.getPlayers().get(playerID).getHandValue()));
+				setPlayer2CardTotal(Integer.toString(players.get(playerID).getHandValue()));
+				setPlayer2Hand();
 			}
 		}
 	}
 
+	ArrayList<Human> huma = new ArrayList<>();
+	double pool = 100;
+
 	private void passTurn() {
 
-		ArrayList<Player> players = new ArrayList<Player>();
-		players.addAll(BlackJack.getPlayers());
-
+		Human h = (Human) players.get(playerID);
+		h.setBalance(h.getBalance() - 100);
+		pool += 100;
+		huma.add(h);
 		playerID++;
 
 		if (playerID >= players.size()) {
+
 			System.out.println("Winning?");
+
 			ArrayList<Player> w = BlackJack.win();
+
 			for (Player player : w) {
 				System.out.println(player.getName());
 			}
+			Human wina = new Human("");
+			if (w.size() > 0) {
+				wina = (Human) w.get(w.size() - 1);
+			}
+			for (Human d : huma) {
+				if (d.getName().equals(wina.getName())) {
+					d.setBalance(d.getBalance() + pool);
+				}
+				System.out.println(d.getName() + ": " + d.getBalance());
+			}
+			pool = 100;
+			playerID = 0;
+			setPlayer3CardTotal("");
+			setPlayer2CardTotal("");
+			setPlayer1CardTotal("");
+			BlackJack.startNewRound();
+			huma.clear();
+		}
+		if (players.size() == 1) {
+
+			setPlayer1CardTotal(Integer.toString(BlackJack.getPlayers().get(0).getHandValue()));
+
+		} else if (players.size() == 2) {
+
+			setPlayer3CardTotal(Integer.toString(BlackJack.getPlayers().get(2).getHandValue()));
+
+			setPlayer2CardTotal(Integer.toString(BlackJack.getPlayers().get(1).getHandValue()));
+
+		} else if (players.size() == 3) {
+
+			setPlayer3CardTotal(Integer.toString(BlackJack.getPlayers().get(0).getHandValue()));
+
+			setPlayer2CardTotal(Integer.toString(BlackJack.getPlayers().get(2).getHandValue()));
+
+			setPlayer1CardTotal(Integer.toString(BlackJack.getPlayers().get(1).getHandValue()));
+
+		}
+	}
+
+	public void setPlayer1Hand() {
+
+		p1c1n1.setText(Integer.toString(players.get(playerID).getHand().get(0).getCardValue()));
+		p1c1s1.setText(players.get(playerID).getHand().get(0).getSuit().toString());
+		// p1c1n2.setText(Integer.toString(players.get(playerID).getHand().get(0).getCardValue()));
+		// p1c1s2.setText(players.get(playerID).getHand().get(0).getSuit().toString());
+
+		p1c2n1.setText(Integer.toString(players.get(playerID).getHand().get(1).getCardValue()));
+		p1c2s1.setText(players.get(playerID).getHand().get(1).getSuit().toString());
+		// p1c2n2.setText(Integer.toString(players.get(playerID).getHand().get(1).getCardValue()));
+		// p1c2s2.setText(players.get(playerID).getHand().get(1).getSuit().toString());
+
+		if (players.get(playerID).getHand().size() > 2) {
+
+			p1c3n1.setText(Integer.toString(players.get(playerID).getHand().get(2).getCardValue()));
+			p1c3s1.setText(players.get(playerID).getHand().get(2).getSuit().toString());
+			// p1c3n2.setText(Integer.toString(players.get(playerID).getHand().get(2).getCardValue()));
+			// p1c3s2.setText(players.get(playerID).getHand().get(2).getSuit().toString());
+		}
+		if (players.get(playerID).getHand().size() > 3) {
+			p1c4n1.setText(Integer.toString(players.get(playerID).getHand().get(3).getCardValue()));
+			p1c4s1.setText(players.get(playerID).getHand().get(3).getSuit().toString());
+			// p1c4n2.setText(Integer.toString(players.get(playerID).getHand().get(3).getCardValue()));
+			// p1c4s2.setText(players.get(playerID).getHand().get(3).getSuit().toString());
+		}
+
+		if (players.get(playerID).getHand().size() > 4) {
+			p1c5n1.setText(Integer.toString(players.get(playerID).getHand().get(4).getCardValue()));
+			p1c5s1.setText(players.get(playerID).getHand().get(4).getSuit().toString());
+			// p1c5n2.setText(Integer.toString(players.get(playerID).getHand().get(4).getCardValue()));
+			// p1c5s2.setText(players.get(playerID).getHand().get(4).getSuit().toString());
+		}
+	}
+
+	public void setPlayer3Hand() {
+
+		p3c1n1.setText(Integer.toString(players.get(playerID).getHand().get(0).getCardValue()));
+		p3c1s1.setText(players.get(playerID).getHand().get(0).getSuit().toString());
+		// p3c1n2.setText(Integer.toString(players.get(playerID).getHand().get(0).getCardValue()));
+		// p3c1s2.setText(players.get(playerID).getHand().get(0).getSuit().toString());
+
+		p3c2n1.setText(Integer.toString(players.get(playerID).getHand().get(1).getCardValue()));
+		p3c2s1.setText(players.get(playerID).getHand().get(1).getSuit().toString());
+		// p3c2n2.setText(Integer.toString(players.get(playerID).getHand().get(1).getCardValue()));
+		// p3c2s2.setText(players.get(playerID).getHand().get(1).getSuit().toString());
+
+		if (players.get(playerID).getHand().size() > 2) {
+			p3c3n1.setText(Integer.toString(players.get(playerID).getHand().get(2).getCardValue()));
+			p3c3s1.setText(players.get(playerID).getHand().get(2).getSuit().toString());
+			// p3c3n2.setText(Integer.toString(players.get(playerID).getHand().get(2).getCardValue()));
+			// p3c3s2.setText(players.get(playerID).getHand().get(2).getSuit().toString());
+		}
+
+		if (players.get(playerID).getHand().size() > 3) {
+			p3c4n1.setText(Integer.toString(players.get(playerID).getHand().get(3).getCardValue()));
+			p3c4s1.setText(players.get(playerID).getHand().get(3).getSuit().toString());
+			// p3c4n2.setText(Integer.toString(players.get(playerID).getHand().get(3).getCardValue()));
+			// p3c4s2.setText(players.get(playerID).getHand().get(3).getSuit().toString());
+		}
+
+		if (players.get(playerID).getHand().size() > 4) {
+			p3c5n1.setText(Integer.toString(players.get(playerID).getHand().get(4).getCardValue()));
+			p3c5s1.setText(players.get(playerID).getHand().get(4).getSuit().toString());
+			// p3c5n2.setText(Integer.toString(players.get(playerID).getHand().get(4).getCardValue()));
+			// p3c5s2.setText(players.get(playerID).getHand().get(4).getSuit().toString());
+		}
+	}
+
+	public void setPlayer2Hand() {
+		p2c1n1.setText(Integer.toString(players.get(playerID).getHand().get(0).getCardValue()));
+		p2c1s1.setText(players.get(playerID).getHand().get(0).getSuit().toString());
+		// p2c1n2.setText(Integer.toString(players.get(playerID).getHand().get(0).getCardValue()));
+		// p2c1s2.setText(players.get(playerID).getHand().get(0).getSuit().toString());
+
+		p2c2n1.setText(Integer.toString(players.get(playerID).getHand().get(1).getCardValue()));
+		p2c2s1.setText(players.get(playerID).getHand().get(1).getSuit().toString());
+		// p2c2n2.setText(Integer.toString(players.get(playerID).getHand().get(1).getCardValue()));
+		// p2c2s2.setText(players.get(playerID).getHand().get(1).getSuit().toString());
+
+		if (players.get(playerID).getHand().size() > 2) {
+			p2c3n1.setText(Integer.toString(players.get(playerID).getHand().get(2).getCardValue()));
+			p2c3s1.setText(players.get(playerID).getHand().get(2).getSuit().toString());
+			// p2c3n2.setText(Integer.toString(players.get(playerID).getHand().get(2).getCardValue()));
+			// p2c3s2.setText(players.get(playerID).getHand().get(2).getSuit().toString());
+		}
+		if (players.get(playerID).getHand().size() > 3) {
+			p2c4n1.setText(Integer.toString(players.get(playerID).getHand().get(3).getCardValue()));
+			p2c4s1.setText(players.get(playerID).getHand().get(3).getSuit().toString());
+			// p2c4n2.setText(Integer.toString(players.get(playerID).getHand().get(3).getCardValue()));
+			// p2c4s2.setText(players.get(playerID).getHand().get(3).getSuit().toString());
+		}
+
+		if (players.get(playerID).getHand().size() > 4) {
+			p2c5n1.setText(Integer.toString(players.get(playerID).getHand().get(4).getCardValue()));
+			p2c5s1.setText(players.get(playerID).getHand().get(4).getSuit().toString());
+			// p2c5n2.setText(Integer.toString(players.get(playerID).getHand().get(4).getCardValue()));
+			// p2c5s2.setText(players.get(playerID).getHand().get(4).getSuit().toString());
 		}
 	}
 
@@ -235,25 +369,25 @@ public class Controller implements Initializable {
 
 	@FXML
 	private Label p1c2s1;
-	
+
 	@FXML
 	private Label p1c3n1;
 
 	@FXML
 	private Label p1c3s1;
-	
+
 	@FXML
 	private Label p1c4n1;
 
 	@FXML
 	private Label p1c4s1;
-	
+
 	@FXML
 	private Label p1c5n1;
 
 	@FXML
 	private Label p1c5s1;
-	
+
 	@FXML
 	private Label p1c1n2;
 
@@ -265,25 +399,25 @@ public class Controller implements Initializable {
 
 	@FXML
 	private Label p1c2s2;
-	
+
 	@FXML
 	private Label p1c3n2;
 
 	@FXML
 	private Label p1c3s2;
-	
+
 	@FXML
 	private Label p1c4n2;
 
 	@FXML
 	private Label p1c4s2;
-	
+
 	@FXML
 	private Label p1c5n2;
 
 	@FXML
 	private Label p1c5s2;
-	
+
 	@FXML
 	private Label p2c1n1;
 
@@ -295,25 +429,25 @@ public class Controller implements Initializable {
 
 	@FXML
 	private Label p2c2s1;
-	
+
 	@FXML
 	private Label p2c3n1;
 
 	@FXML
 	private Label p2c3s1;
-	
+
 	@FXML
 	private Label p2c4n1;
 
 	@FXML
 	private Label p2c4s1;
-	
+
 	@FXML
 	private Label p2c5n1;
 
 	@FXML
 	private Label p2c5s1;
-	
+
 	@FXML
 	private Label p2c1n2;
 
@@ -325,25 +459,25 @@ public class Controller implements Initializable {
 
 	@FXML
 	private Label p2c2s2;
-	
+
 	@FXML
 	private Label p2c3n2;
 
 	@FXML
 	private Label p2c3s2;
-	
+
 	@FXML
 	private Label p2c4n2;
 
 	@FXML
 	private Label p2c4s2;
-	
+
 	@FXML
 	private Label p2c5n2;
 
 	@FXML
 	private Label p2c5s2;
-	
+
 	@FXML
 	private Label p3c1n1;
 
@@ -355,25 +489,25 @@ public class Controller implements Initializable {
 
 	@FXML
 	private Label p3c2s1;
-	
+
 	@FXML
 	private Label p3c3n1;
 
 	@FXML
 	private Label p3c3s1;
-	
+
 	@FXML
 	private Label p3c4n1;
 
 	@FXML
 	private Label p3c4s1;
-	
+
 	@FXML
 	private Label p3c5n1;
 
 	@FXML
 	private Label p3c5s1;
-	
+
 	@FXML
 	private Label p3c1n2;
 
@@ -385,25 +519,25 @@ public class Controller implements Initializable {
 
 	@FXML
 	private Label p3c2s2;
-	
+
 	@FXML
 	private Label p3c3n2;
 
 	@FXML
 	private Label p3c3s2;
-	
+
 	@FXML
 	private Label p3c4n2;
 
 	@FXML
 	private Label p3c4s2;
-	
+
 	@FXML
 	private Label p3c5n2;
 
 	@FXML
 	private Label p3c5s2;
-	
+
 	@FXML
 	private TextField enterNumberOfPlayers;
 

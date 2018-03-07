@@ -1,6 +1,8 @@
 package games;
 
 import java.util.ArrayList;
+
+import models.Card;
 import models.Dealer;
 import models.Deck;
 import models.Human;
@@ -76,7 +78,7 @@ public class BlackJack {
 					p.setWin(true);
 					tie = false;
 					winners.add(p);
-					break;
+					return winners;
 				} else {
 					if (p.getName() != q.getName()) {
 						for (int i = 0; i < bool.size();) {
@@ -118,5 +120,15 @@ public class BlackJack {
 
 	public static Deck getDeck() {
 		return deck1;
+	}
+
+	public static void startNewRound() {
+		ArrayList<Card> newH=new ArrayList<>();
+		for(Player p:P) {
+			p.resetHand();
+		}
+		deck1 = new Deck();
+		deck1.initialDeal(P);
+		
 	}
 }

@@ -3,8 +3,7 @@ package models;
 public class Human extends Player {
 	String name;
 	private double balance = 1500.00;
-	private double currentBalance = 0;
-
+	
 	public Human( String name) {
 		super(name);
 	}
@@ -23,11 +22,5 @@ public class Human extends Player {
 		this.balance = balance;
 		
 	}
-	public double getCurrentBalance() {
-		return currentBalance;
-	}
-	public void setCurrentBalance(double currentBalance) {
-		this.currentBalance = balance + currentBalance;
-		
-	}
+	
 }
