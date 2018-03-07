@@ -14,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
@@ -23,7 +24,6 @@ import models.Player;
 
 public class Controller implements Initializable {
 
-	private int standCount = 0;
 	private int playerID = 0;
 
 	@FXML
@@ -139,15 +139,45 @@ public class Controller implements Initializable {
 		secondStage.show();
 	}
 
+    @FXML
+    private ImageView suit1;
+    
 	@FXML
 	public void hit(ActionEvent event) {
-		
+
 		ArrayList<Player> players = new ArrayList<Player>();
 		players.addAll(BlackJack.getPlayers());
 		Deck.nextCard(players.get(playerID));
 		if (players.size() == 1) {
 			if (playerID == 0) {
 				setPlayer1CardTotal(Integer.toString(BlackJack.getPlayers().get(playerID).getHandValue()));
+
+				p1c1n1.setText(Integer.toString(players.get(playerID).getHand().get(0).getCardValue()));
+				p1c1s1.setText(players.get(playerID).getHand().get(0).getSuit().toString());
+				p1c1n2.setText(Integer.toString(players.get(playerID).getHand().get(0).getCardValue()));
+				p1c1s2.setText(players.get(playerID).getHand().get(0).getSuit().toString());
+				
+				
+				p1c2n1.setText(Integer.toString(players.get(playerID).getHand().get(1).getCardValue()));
+				p1c2s1.setText(players.get(playerID).getHand().get(1).getSuit().toString());
+				p1c2n2.setText(Integer.toString(players.get(playerID).getHand().get(1).getCardValue()));
+				p1c2s2.setText(players.get(playerID).getHand().get(1).getSuit().toString());
+				
+				p1c3n1.setText(Integer.toString(players.get(playerID).getHand().get(2).getCardValue()));
+				p1c3s1.setText(players.get(playerID).getHand().get(2).getSuit().toString());
+				p1c3n2.setText(Integer.toString(players.get(playerID).getHand().get(2).getCardValue()));
+				p1c3s2.setText(players.get(playerID).getHand().get(2).getSuit().toString());
+				
+				p1c4n1.setText(Integer.toString(players.get(playerID).getHand().get(3).getCardValue()));
+				p1c4s1.setText(players.get(playerID).getHand().get(3).getSuit().toString());
+				p1c4n2.setText(Integer.toString(players.get(playerID).getHand().get(3).getCardValue()));
+				p1c4s2.setText(players.get(playerID).getHand().get(3).getSuit().toString());
+				
+				p1c5n1.setText(Integer.toString(players.get(playerID).getHand().get(4).getCardValue()));
+				p1c5s1.setText(players.get(playerID).getHand().get(4).getSuit().toString());
+				p1c5n2.setText(Integer.toString(players.get(playerID).getHand().get(4).getCardValue()));
+				p1c5s2.setText(players.get(playerID).getHand().get(4).getSuit().toString());
+
 			} else {
 				setPlayer2CardTotal(Integer.toString(BlackJack.getPlayers().get(playerID).getHandValue()));
 			}
@@ -167,27 +197,18 @@ public class Controller implements Initializable {
 			}
 		}
 	}
-	// standCount = 0;
-	// passTurn();
 
 	private void passTurn() {
-		// checks if bust
-		// checks if next player bust
-		// if standcount = number of all players
-		// then check for winners
-		//
-		
-		
+
 		ArrayList<Player> players = new ArrayList<Player>();
 		players.addAll(BlackJack.getPlayers());
-		
+
 		playerID++;
 
-		
 		if (playerID >= players.size()) {
 			System.out.println("Winning?");
-			ArrayList<Player> w =  BlackJack.win();		
-			for (Player player : w){
+			ArrayList<Player> w = BlackJack.win();
+			for (Player player : w) {
 				System.out.println(player.getName());
 			}
 		}
@@ -195,7 +216,6 @@ public class Controller implements Initializable {
 
 	@FXML
 	public void stand(ActionEvent event) {
-		standCount++;
 		passTurn();
 	}
 
@@ -204,6 +224,186 @@ public class Controller implements Initializable {
 
 	}
 
+	@FXML
+	private Label p1c1n1;
+
+	@FXML
+	private Label p1c1s1;
+
+	@FXML
+	private Label p1c2n1;
+
+	@FXML
+	private Label p1c2s1;
+	
+	@FXML
+	private Label p1c3n1;
+
+	@FXML
+	private Label p1c3s1;
+	
+	@FXML
+	private Label p1c4n1;
+
+	@FXML
+	private Label p1c4s1;
+	
+	@FXML
+	private Label p1c5n1;
+
+	@FXML
+	private Label p1c5s1;
+	
+	@FXML
+	private Label p1c1n2;
+
+	@FXML
+	private Label p1c1s2;
+
+	@FXML
+	private Label p1c2n2;
+
+	@FXML
+	private Label p1c2s2;
+	
+	@FXML
+	private Label p1c3n2;
+
+	@FXML
+	private Label p1c3s2;
+	
+	@FXML
+	private Label p1c4n2;
+
+	@FXML
+	private Label p1c4s2;
+	
+	@FXML
+	private Label p1c5n2;
+
+	@FXML
+	private Label p1c5s2;
+	
+	@FXML
+	private Label p2c1n1;
+
+	@FXML
+	private Label p2c1s1;
+
+	@FXML
+	private Label p2c2n1;
+
+	@FXML
+	private Label p2c2s1;
+	
+	@FXML
+	private Label p2c3n1;
+
+	@FXML
+	private Label p2c3s1;
+	
+	@FXML
+	private Label p2c4n1;
+
+	@FXML
+	private Label p2c4s1;
+	
+	@FXML
+	private Label p2c5n1;
+
+	@FXML
+	private Label p2c5s1;
+	
+	@FXML
+	private Label p2c1n2;
+
+	@FXML
+	private Label p2c1s2;
+
+	@FXML
+	private Label p2c2n2;
+
+	@FXML
+	private Label p2c2s2;
+	
+	@FXML
+	private Label p2c3n2;
+
+	@FXML
+	private Label p2c3s2;
+	
+	@FXML
+	private Label p2c4n2;
+
+	@FXML
+	private Label p2c4s2;
+	
+	@FXML
+	private Label p2c5n2;
+
+	@FXML
+	private Label p2c5s2;
+	
+	@FXML
+	private Label p3c1n1;
+
+	@FXML
+	private Label p3c1s1;
+
+	@FXML
+	private Label p3c2n1;
+
+	@FXML
+	private Label p3c2s1;
+	
+	@FXML
+	private Label p3c3n1;
+
+	@FXML
+	private Label p3c3s1;
+	
+	@FXML
+	private Label p3c4n1;
+
+	@FXML
+	private Label p3c4s1;
+	
+	@FXML
+	private Label p3c5n1;
+
+	@FXML
+	private Label p3c5s1;
+	
+	@FXML
+	private Label p3c1n2;
+
+	@FXML
+	private Label p3c1s2;
+
+	@FXML
+	private Label p3c2n2;
+
+	@FXML
+	private Label p3c2s2;
+	
+	@FXML
+	private Label p3c3n2;
+
+	@FXML
+	private Label p3c3s2;
+	
+	@FXML
+	private Label p3c4n2;
+
+	@FXML
+	private Label p3c4s2;
+	
+	@FXML
+	private Label p3c5n2;
+
+	@FXML
+	private Label p3c5s2;
+	
 	@FXML
 	private TextField enterNumberOfPlayers;
 
@@ -283,11 +483,6 @@ public class Controller implements Initializable {
 	@FXML
 	public void playHiLo(ActionEvent event) {
 		CardGames.runHiLo();
-	}
-
-	@FXML
-	void setPromptText(String promt) {
-		promptText.setText(promt);
 	}
 
 	@FXML

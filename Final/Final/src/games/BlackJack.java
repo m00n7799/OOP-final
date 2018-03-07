@@ -26,15 +26,12 @@ public class BlackJack {
 	public static ArrayList<Player> win() {
 		ArrayList<Player> posWins = new ArrayList<Player>();
 		for (Player p : P) {
-			if (p.getHandValue() > 21) {
+			if (p.getHandValue() > 21){
 				p.setBust(true);
 			}
 			if (!p.isBust()) {
 				posWins.add(p);
 			}
-		}
-		for (Player player : posWins) {
-			System.out.println(player.getName());
 		}
 		ArrayList<Player>winners= new ArrayList<>();
 		int higher = 0;

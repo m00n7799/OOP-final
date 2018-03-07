@@ -3,6 +3,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -68,18 +69,19 @@
             <Label fx:id="player1CardTotal" layoutX="4.0" layoutY="96.0" text="Card Total" />
             <AnchorPane fx:id="player1Card1" layoutX="7.0" layoutY="139.0" prefHeight="66.0" prefWidth="48.0">
                <children>
-                  <Label layoutX="22.0" text="Num" />
-                  <Label text="Suit" />
-                  <Label layoutX="-3.0" layoutY="53.0" rotate="180.0" text="Num" />
-                  <Label layoutX="21.0" layoutY="53.0" prefHeight="17.0" prefWidth="26.0" rotate="180.0" text="Suit" />
+                  <Label fx:id="p1c1n1" layoutX="22.0" text="Num" />
+                  <Label fx:id="p1c1s1" text="Suit" wrapText="true" />
+                  <Label fx:id="p1c1n2" layoutX="-3.0" layoutY="53.0" rotate="180.0" text="Num" />
+                  <Label fx:id="p1c1s2" layoutX="21.0" layoutY="53.0" prefHeight="17.0" prefWidth="26.0" rotate="180.0" text="Suit" wrapText="true" />
+                  <ImageView fx:id="suit1" fitHeight="25.0" fitWidth="23.0" layoutX="12.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </AnchorPane>
             <AnchorPane fx:id="player1Card2" layoutX="59.0" layoutY="139.0" prefHeight="66.0" prefWidth="48.0">
                <children>
-                  <Label layoutX="22.0" text="Num" />
-                  <Label text="Suit" />
-                  <Label layoutX="-3.0" layoutY="53.0" rotate="180.0" text="Num" />
-                  <Label layoutX="21.0" layoutY="53.0" prefHeight="17.0" prefWidth="26.0" rotate="180.0" text="Suit" />
+                  <Label fx:id="p1c2n1" layoutX="22.0" text="Num" />
+                  <Label fx:id="p1c2s1" text="Suit" />
+                  <Label fx:id="p1c2n1" layoutX="-3.0" layoutY="53.0" rotate="180.0" text="Num" />
+                  <Label fx:id="p1c2s1" layoutX="21.0" layoutY="53.0" prefHeight="17.0" prefWidth="26.0" rotate="180.0" text="Suit" />
                </children>
             </AnchorPane>
             <AnchorPane fx:id="Player1Card3" layoutX="114.0" layoutY="139.0" prefHeight="66.0" prefWidth="48.0">
