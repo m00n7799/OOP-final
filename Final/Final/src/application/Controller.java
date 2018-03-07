@@ -85,7 +85,9 @@ public class Controller implements Initializable {
 				setPlayer2CardTotal(Integer.toString(BlackJack.getPlayers().get(1).getHandValue()));
 
 				setPlayer3Hand();
+				playerID++;
 				setPlayer2Hand();
+				playerID = 0;
 
 				break;
 
@@ -112,6 +114,13 @@ public class Controller implements Initializable {
 
 				playerOptionsView.setVisible(true);
 				playerOptionsView.setDisable(false);
+				
+				setPlayer3Hand();
+				playerID++;
+				setPlayer1Hand();
+				playerID++;
+				setPlayer2Hand();
+				playerID = 0;
 
 				setPlayer3CardTotal(Integer.toString(BlackJack.getPlayers().get(0).getHandValue()));
 				setPlayer1CardTotal(Integer.toString(BlackJack.getPlayers().get(1).getHandValue()));
@@ -187,6 +196,9 @@ public class Controller implements Initializable {
 				setPlayer2Hand();
 			}
 		}
+		if(players.get(playerID).isBust() || players.get(playerID).getHand().size() == 5) {
+			passTurn();
+		}
 	}
 
 	ArrayList<Human> huma = new ArrayList<>();
@@ -207,7 +219,7 @@ public class Controller implements Initializable {
 			ArrayList<Player> w = BlackJack.win();
 
 			for (Player player : w) {
-				System.out.println(player.getName());
+				System.out.println("Winner:"+player.getName());
 			}
 			ArrayList<Human> wina = new ArrayList<>();
 			if (w.size() == 1) {
@@ -239,21 +251,19 @@ public class Controller implements Initializable {
 		}
 		if (players.size() == 1) {
 
-			setPlayer1CardTotal(Integer.toString(BlackJack.getPlayers().get(0).getHandValue()));
+			setPlayer1CardTotal(Integer.toString(players.get(0).getHandValue()));
 
 		} else if (players.size() == 2) {
 
-			setPlayer3CardTotal(Integer.toString(BlackJack.getPlayers().get(2).getHandValue()));
+			setPlayer3CardTotal(Integer.toString(players.get(2).getHandValue()));
 
-			setPlayer2CardTotal(Integer.toString(BlackJack.getPlayers().get(1).getHandValue()));
+			setPlayer2CardTotal(Integer.toString(players.get(1).getHandValue()));
 
 		} else if (players.size() == 3) {
 
-			setPlayer3CardTotal(Integer.toString(BlackJack.getPlayers().get(0).getHandValue()));
-
-			setPlayer2CardTotal(Integer.toString(BlackJack.getPlayers().get(2).getHandValue()));
-
-			setPlayer1CardTotal(Integer.toString(BlackJack.getPlayers().get(1).getHandValue()));
+			setPlayer3CardTotal(Integer.toString(players.get(0).getHandValue()));
+			setPlayer1CardTotal(Integer.toString(players.get(1).getHandValue()));
+			setPlayer2CardTotal(Integer.toString(players.get(2).getHandValue()));
 
 		}
 	}
