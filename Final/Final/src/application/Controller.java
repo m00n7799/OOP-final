@@ -175,7 +175,7 @@ public class Controller implements Initializable {
 	// standCount = 0;
 	// passTurn();
 	ArrayList<Human> huma=new ArrayList<>();
-	double pool=0;
+	double pool=100;
 	private void passTurn() {
 		// checks if bust
 		// checks if next player bust
@@ -198,14 +198,17 @@ public class Controller implements Initializable {
 			for (Player player : w){
 				System.out.println(player.getName());
 			}
-			Human wina=(Human) w.get(w.size()-1);
+			Human wina=new Human("");
+			if(w.size()>0) {
+			wina=(Human) w.get(w.size()-1);
+			}
 			for(Human d:huma) {
 				if(d.getName().equals(wina.getName())) {
-					h.setBalance(d.getBalance()+pool);
+					d.setBalance(d.getBalance()+pool);
 				}
-				System.out.println(d.getBalance());
+				System.out.println(d.getName()+": "+d.getBalance());
 			}
-			pool=0;
+			pool=100;
 			standCount=0;
 			playerID=0;
 			setPlayer3CardTotal("");

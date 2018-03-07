@@ -81,7 +81,7 @@ public class BlackJack {
 					p.setWin(true);
 					tie = false;
 					winners.add(p);
-					break;
+					return winners;
 				} else {
 					if (p.getName() != q.getName()) {
 						for (int i = 0; i < bool.size();) {
