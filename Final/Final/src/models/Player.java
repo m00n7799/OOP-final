@@ -16,15 +16,16 @@ public class Player implements Comparable<Player> {
 	private boolean win = false;
 
 	public boolean isBust() {
-		if(getHandValue() <= 21) {
-			return false;
-		}else {
-			return true;
-		}
+		return bust;
+		
 	}
 
 	public void setBust(boolean bust) {
-		this.bust = bust;
+		if(getHandValue() <= 21) {
+			bust= false;
+		}else {
+			bust= true;
+		}
 	}
 
 	private ArrayList<Card> hand = new ArrayList<Card>();
@@ -110,6 +111,8 @@ public class Player implements Comparable<Player> {
 				ret = 1;
 			} else if (hand2 > hand1) {
 				ret = -1;
+			}else {
+				ret = 0;
 			}
 		} else if (this.isBust() && !other.isBust()) {
 			ret = -1;

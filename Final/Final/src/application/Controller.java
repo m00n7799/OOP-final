@@ -203,7 +203,7 @@ public class Controller implements Initializable {
 		if (playerID >= players.size()) {
 
 			System.out.println("Winning?");
-
+			playerID = 0;
 			ArrayList<Player> w = BlackJack.win();
 
 			for (Player player : w) {
@@ -220,7 +220,7 @@ public class Controller implements Initializable {
 				System.out.println(d.getName() + ": " + d.getBalance());
 			}
 			pool = 100;
-			playerID = 0;
+			
 			setPlayer3CardTotal("");
 			setPlayer2CardTotal("");
 			setPlayer1CardTotal("");

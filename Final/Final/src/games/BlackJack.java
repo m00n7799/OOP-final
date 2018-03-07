@@ -127,8 +127,12 @@ public class BlackJack {
 		for(Player p:P) {
 			p.resetHand();
 		}
-		deck1 = new Deck();
+		
+		try {
 		deck1.initialDeal(P);
+		}catch(NullPointerException ex) {
+			deck1 = new Deck();
+		}
 		
 	}
 }
