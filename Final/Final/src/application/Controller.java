@@ -209,14 +209,24 @@ public class Controller implements Initializable {
 			for (Player player : w) {
 				System.out.println(player.getName());
 			}
-			Human wina = new Human("");
-			if (w.size() > 0) {
-				wina = (Human) w.get(w.size() - 1);
+			ArrayList<Human> wina = new ArrayList<>();
+			if (w.size() == 1) {
+				wina.add((Human) w.get(0));
+			}else if(w.size() == 2){
+				wina.add((Human) w.get(0));
+				wina.add((Human) w.get(1));
+			}else if(w.size() == 3){
+				wina.add((Human) w.get(0));
+				wina.add((Human) w.get(1));
+				wina.add((Human) w.get(2));
 			}
 			for (Human d : huma) {
-				if (d.getName().equals(wina.getName())) {
-					d.setBalance(d.getBalance() + pool);
+				for(Human win:wina) {
+					if (d.getName().equals(win.getName())) {
+						d.setBalance(d.getBalance() + (pool/w.size()));
+					}
 				}
+
 				System.out.println(d.getName() + ": " + d.getBalance());
 			}
 			pool = 100;

@@ -81,13 +81,8 @@ public class BlackJack {
 					return winners;
 				} else {
 					if (p.getName() != q.getName()) {
-						for (int i = 0; i < bool.size();) {
-							for (Boolean b : bool) {
-								if (b != bool2.get(i)) {
-									tie = false;
-								}
-								i++;
-							}
+						if(p.getHandValue()!=q.getHandValue()) {
+							tie=false;
 						}
 						if (tie) {
 							p.setWin(true);
