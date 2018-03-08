@@ -16,6 +16,10 @@ public class Deck {
 		newDeck();
 	}
 
+	static ArrayList<Card> getCard() {
+		return freshDeck;
+	}
+	
 	static void newDeck() {
 
 //		CardSuit.suit();

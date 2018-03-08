@@ -96,8 +96,7 @@ public class Player implements Comparable<Player> {
 	}
 	public void resetHand() {
 		hand = new ArrayList<Card>();
-		handValue=0;
-		
+		handValue=0;		
 	}
 
 	@Override
