@@ -22,7 +22,7 @@ public class Deck {
 
 	static void newDeck() {
 
-		// CardSuit.suit();
+		// CardSuit.suit
 		freshDeck = new ArrayList<Card>();
 		shuffledDeck = new ArrayList<Card>();
 		Card c = new Card(null, null);
