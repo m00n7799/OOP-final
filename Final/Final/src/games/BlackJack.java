@@ -10,7 +10,7 @@ import models.Player;
 
 public class BlackJack {
 
-	static ArrayList<Player> P = new ArrayList<Player>();
+	static ArrayList<Human> P = new ArrayList<>();
 
 	static Deck deck1 = new Deck();
 
@@ -28,15 +28,12 @@ public class BlackJack {
 	public static ArrayList<Player> win() {
 		ArrayList<Player> posWins = new ArrayList<Player>();
 		for (Player p : P) {
-			if (p.getHandValue() > 21) {
+			if (p.getHandValue() > 21){
 				p.setBust(true);
 			}
 			if (!p.isBust()) {
 				posWins.add(p);
 			}
-		}
-		for (Player player : posWins) {
-			System.out.println(player.getName());
 		}
 		ArrayList<Player>winners= new ArrayList<>();
 		int higher = 0;
@@ -84,13 +81,8 @@ public class BlackJack {
 					return winners;
 				} else {
 					if (p.getName() != q.getName()) {
-						for (int i = 0; i < bool.size();) {
-							for (Boolean b : bool) {
-								if (b != bool2.get(i)) {
-									tie = false;
-								}
-								i++;
-							}
+						if(p.getHandValue()!=q.getHandValue()) {
+							tie=false;
 						}
 						if (tie) {
 							p.setWin(true);
@@ -108,16 +100,14 @@ public class BlackJack {
 
 	public static void setPlayers(int numberOfPlayers) {
 		P.clear();
-		Player pl;
+		Human pl;
 		for (int i = 1; i <= numberOfPlayers; i++) {
 			pl = new Human("P" + i);
 			P.add(pl);
 		}
-//		pl = new Dealer("Dealer");
-//		P.add(pl);
 	}
 
-	public static ArrayList<Player> getPlayers() {
+	public static ArrayList<Human> getPlayers() {
 		return P;
 	}
 
@@ -130,8 +120,12 @@ public class BlackJack {
 		for(Player p:P) {
 			p.resetHand();
 		}
-		deck1 = new Deck();
+		
+		try {
 		deck1.initialDeal(P);
+		}catch(NullPointerException ex) {
+			deck1 = new Deck();
+		}
 		
 	}
 }

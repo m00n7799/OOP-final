@@ -20,7 +20,7 @@ public class Player implements Comparable<Player> {
 			return false;
 		}else {
 			return true;
-		}
+		}		
 	}
 
 	public void setBust(boolean bust) {
@@ -110,6 +110,8 @@ public class Player implements Comparable<Player> {
 				ret = 1;
 			} else if (hand2 > hand1) {
 				ret = -1;
+			}else {
+				ret = 0;
 			}
 		} else if (this.isBust() && !other.isBust()) {
 			ret = -1;

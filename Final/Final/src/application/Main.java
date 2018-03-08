@@ -19,6 +19,7 @@ public class Main extends Application{
 		AnchorPane root = new AnchorPane();
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(Main.class.getResource("/MainMenu.fxml"));
+		
 		try {
 			root = loader.load();
 		} catch (IOException e) {

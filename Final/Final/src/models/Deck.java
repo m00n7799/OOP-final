@@ -44,23 +44,31 @@ public class Deck {
 		}
 	}
 
-	public void initialDeal(ArrayList<Player> players) {
-		for (Player player : players) {
+	public void initialDeal(ArrayList<Human> p) {
+		for (Player player : p) {
 
 			ArrayList<Card> hand = new ArrayList<Card>();
-			shuffledDeck.get(0).Hidden(false);
+//			shuffledDeck.get(0).Hidden(false);
+			try {
 			hand.add(shuffledDeck.get(0));
 			shuffledDeck.remove(0);
-			shuffledDeck.get(0).Hidden(false);
-			hand.add(shuffledDeck.get(0));
-			shuffledDeck.remove(0);
+			}catch(IndexOutOfBoundsException ex) {
+				newDeck();
+			}
+//			shuffledDeck.get(0).Hidden(false);
+			try {
+				hand.add(shuffledDeck.get(0));
+				shuffledDeck.remove(0);
+				}catch(IndexOutOfBoundsException ex) {
+					newDeck();
+				}
 			player.setHand(hand);
 		}
 	}
 
 	public static void nextCard(Player p) {
 		ArrayList<Card> hand = new ArrayList<Card>();
-		shuffledDeck.get(0).Hidden(false);
+//		shuffledDeck.get(0).Hidden(false);
 		Card card = shuffledDeck.get(0);
 		try {
 			shuffledDeck.remove(0);
