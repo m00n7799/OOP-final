@@ -527,18 +527,9 @@ public class Controller implements Initializable {
 	@FXML
 	private Label p2c3n1;
 
-<<<<<<< HEAD
 	@FXML
 	private Label p2c3s1;
 
-=======
-
-
-
-	private Label p2c3s1;
-
-
->>>>>>> 6e99e8546dccc77aa82d482019ff412659d194fd
 	@FXML
 	private Label p2c4n1;
 
