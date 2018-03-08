@@ -125,7 +125,10 @@ public class BlackJack {
 		deck1.initialDeal(P);
 		}catch(NullPointerException ex) {
 			deck1 = new Deck();
+			deck1.initialDeal(P);
+		}catch(IndexOutOfBoundsException e) {
+			deck1 = new Deck();
+			deck1.initialDeal(P);
 		}
-		
 	}
 }
