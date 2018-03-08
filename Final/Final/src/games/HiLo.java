@@ -6,13 +6,10 @@ public class HiLo {
 	static int anti = 1500;
 	
 	public void game(boolean bool) {
-		
 			if(bool == true) {
 				anti += 100;
 				win();
-				
 			}else {
-				
 				if(bool==false) {
 					anti-= 100;
 					lose();
