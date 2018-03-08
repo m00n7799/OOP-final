@@ -57,6 +57,7 @@ public class Controller implements Initializable {
 
 				setPlayer1CardTotal(Integer.toString(BlackJack.getPlayers().get(playerID).getHandValue()));
 				setPlayer1Hand();
+				promptText.setText(players.get(playerID).getName() + " Hit Or Stand?");
 
 				break;
 
@@ -88,6 +89,7 @@ public class Controller implements Initializable {
 				playerID++;
 				setPlayer2Hand();
 				playerID = 0;
+				promptText.setText(players.get(playerID).getName() + " Hit Or Stand?");
 
 				break;
 
@@ -114,7 +116,7 @@ public class Controller implements Initializable {
 
 				playerOptionsView.setVisible(true);
 				playerOptionsView.setDisable(false);
-				
+
 				setPlayer3Hand();
 				playerID++;
 				setPlayer1Hand();
@@ -125,6 +127,8 @@ public class Controller implements Initializable {
 				setPlayer3CardTotal(Integer.toString(BlackJack.getPlayers().get(0).getHandValue()));
 				setPlayer1CardTotal(Integer.toString(BlackJack.getPlayers().get(1).getHandValue()));
 				setPlayer2CardTotal(Integer.toString(BlackJack.getPlayers().get(2).getHandValue()));
+
+				promptText.setText(players.get(playerID).getName() + " Hit Or Stand?");
 
 				break;
 
@@ -158,9 +162,6 @@ public class Controller implements Initializable {
 		secondStage.show();
 	}
 
-	@FXML
-	private ImageView suit1;
-
 	ArrayList<Player> players = new ArrayList<>();
 
 	@FXML
@@ -171,6 +172,7 @@ public class Controller implements Initializable {
 
 			setPlayer1CardTotal(Integer.toString(players.get(playerID).getHandValue()));
 			setPlayer1Hand();
+			p3Balance.setText("1500");
 
 		} else if (players.size() == 2) {
 
@@ -196,7 +198,19 @@ public class Controller implements Initializable {
 				setPlayer2Hand();
 			}
 		}
-		if(players.get(playerID).isBust() || players.get(playerID).getHand().size() == 5) {
+		if (players.get(playerID).isBust()) {
+			if ((playerID+1) >= players.size()) {
+				promptText.setText("Who is the Winner");
+			} else {
+				promptText.setText(players.get(playerID).getName() + " Has Bust, " + players.get(playerID + 1).getName() + " is Up");
+			}
+			passTurn();
+		} else if (players.get(playerID).getHand().size() == 5) {
+			if ((playerID+1) >= players.size()) {
+				promptText.setText("Who is the winner");
+			} else {
+				promptText.setText(players.get(playerID).getName() + " reached 5 Card Limit " + players.get(playerID + 1).getName() + " is Up");
+			}
 			passTurn();
 		}
 	}
@@ -214,57 +228,56 @@ public class Controller implements Initializable {
 
 		if (playerID >= players.size()) {
 
-			System.out.println("Winning?");
 			playerID = 0;
 			ArrayList<Player> w = BlackJack.win();
 
 			for (Player player : w) {
-				System.out.println("Winner:"+player.getName());
+				promptText.setText("Winner: " + player.getName());
 			}
+
 			ArrayList<Human> wina = new ArrayList<>();
 			if (w.size() == 1) {
 				wina.add((Human) w.get(0));
-			}else if(w.size() == 2){
+			} else if (w.size() == 2) {
 				wina.add((Human) w.get(0));
 				wina.add((Human) w.get(1));
-			}else if(w.size() == 3){
+			} else if (w.size() == 3) {
 				wina.add((Human) w.get(0));
 				wina.add((Human) w.get(1));
 				wina.add((Human) w.get(2));
 			}
 			for (Human d : huma) {
-				for(Human win:wina) {
+				for (Human win : wina) {
 					if (d.getName().equals(win.getName())) {
-						d.setBalance(d.getBalance() + (pool/w.size()));
+						d.setBalance(d.getBalance() + (pool / w.size()));
 					}
 				}
-
 				System.out.println(d.getName() + ": " + d.getBalance());
 			}
 			pool = 100;
-			
+
 			setPlayer3CardTotal("");
 			setPlayer2CardTotal("");
 			setPlayer1CardTotal("");
 			BlackJack.startNewRound();
 			huma.clear();
-		}
-		if (players.size() == 1) {
+			if (players.size() == 1) {
 
-			setPlayer1CardTotal(Integer.toString(players.get(0).getHandValue()));
+				setPlayer1CardTotal(Integer.toString(players.get(0).getHandValue()));
 
-		} else if (players.size() == 2) {
+			} else if (players.size() == 2) {
 
-			setPlayer3CardTotal(Integer.toString(players.get(2).getHandValue()));
+				setPlayer3CardTotal(Integer.toString(players.get(2).getHandValue()));
 
-			setPlayer2CardTotal(Integer.toString(players.get(1).getHandValue()));
+				setPlayer2CardTotal(Integer.toString(players.get(1).getHandValue()));
 
-		} else if (players.size() == 3) {
+			} else if (players.size() == 3) {
 
-			setPlayer3CardTotal(Integer.toString(players.get(0).getHandValue()));
-			setPlayer1CardTotal(Integer.toString(players.get(1).getHandValue()));
-			setPlayer2CardTotal(Integer.toString(players.get(2).getHandValue()));
+				setPlayer3CardTotal(Integer.toString(players.get(0).getHandValue()));
+				setPlayer1CardTotal(Integer.toString(players.get(1).getHandValue()));
+				setPlayer2CardTotal(Integer.toString(players.get(2).getHandValue()));
 
+			}
 		}
 	}
 
@@ -370,6 +383,7 @@ public class Controller implements Initializable {
 
 	@FXML
 	public void stand(ActionEvent event) {
+		promptText.setText(players.get(playerID).getName() + " Passes turn");
 		passTurn();
 	}
 
@@ -377,6 +391,14 @@ public class Controller implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
 	}
+	@FXML
+	private Label p3Balance;
+	
+	@FXML
+	private Label p2Balance;;
+	
+	@FXML
+	private Label p1Balance;
 
 	@FXML
 	private Label p1c1n1;
