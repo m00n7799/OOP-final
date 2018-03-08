@@ -28,9 +28,10 @@ public class CardGames {
 	}
 
 	public static void runHiLo() {
+		
 		AnchorPane root = new AnchorPane();
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(Main.class.getResource("/Hilo.fxml"));
+		loader.setLocation(Main.class.getResource("/HiLo.fxml"));
 		try {
 			root = loader.load();
 		} catch (IOException e) {

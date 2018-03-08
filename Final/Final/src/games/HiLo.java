@@ -1,15 +1,13 @@
 package games;
 
-import models.Deck;
-
 public class HiLo {
-	boolean isHigher = false;
-	boolean isLower = false;
-	boolean contuine = false;
+	boolean contuine = true;
 	int anti = 1500;
-	static Deck deck = new Deck();
-	public void game() {
-		for(int i =0; i < deck.toString().length(); i++) {
+	
+	
+	public void game(boolean bool) {
+		
+			
 //			play a card and display it
 //			let the player choose if it is higher or
 //			lower then the next card
@@ -17,23 +15,16 @@ public class HiLo {
 			//make sure to ask every time after a card if
 			//they'd like to quit
 			
-			if(isHigher == true) {
-				anti += deck.toString().charAt(i);
-				win();
-			}else if(isLower==true) {
-				anti += deck.toString().charAt(i);
+			if(bool == true) {
+				anti += 100;
 				win();
 			}else {
-				if(isHigher==false) {
-					anti-= deck.toString().charAt(i);
-					lose();
-				}else if(isLower==false) {
-					anti-= deck.toString().charAt(i);
+				if(bool==false) {
+					anti-= 100;
 					lose();
 				}
 			}
 		}
-	}
 	public void lose() {
 		if(anti==-50) {
 			//lose
@@ -48,4 +39,6 @@ public class HiLo {
 			
 		}
 	}
+
+
 }

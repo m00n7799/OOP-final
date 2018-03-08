@@ -326,11 +326,11 @@ public class Controller implements Initializable {
 		CardGames.runBlackjack();
 	}
 
+
 	@FXML
 	public void playHiLo(ActionEvent event) {
 		CardGames.runHiLo();
 	}
-
 	@FXML
 	void setPromptText(String promt) {
 		promptText.setText(promt);
