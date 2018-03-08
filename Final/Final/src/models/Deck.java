@@ -44,8 +44,8 @@ public class Deck {
 		}
 	}
 
-	public void initialDeal(ArrayList<Player> players) {
-		for (Player player : players) {
+	public void initialDeal(ArrayList<Human> p) {
+		for (Player player : p) {
 
 			ArrayList<Card> hand = new ArrayList<Card>();
 //			shuffledDeck.get(0).Hidden(false);

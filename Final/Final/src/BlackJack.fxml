@@ -20,7 +20,7 @@
       <AnchorPane fx:id="player3Board" disable="true" layoutY="125.0" prefHeight="50.0" prefWidth="280.0" visible="false">
          <children>
             <Label fx:id="player3Name" layoutX="122.0" layoutY="96.0" prefHeight="17.0" prefWidth="40.0" text="Player" />
-            <Label fx:id="p3Balnce" layoutX="212.0" layoutY="96.0" text="Label" />
+            <Label fx:id="p3Balance" layoutX="212.0" layoutY="96.0" text="Label" />
             <Label fx:id="player3CardTotal" layoutX="4.0" layoutY="96.0" text="Card Total" />
             <AnchorPane fx:id="player3Card1" layoutX="7.0" layoutY="139.0" prefHeight="66.0" prefWidth="48.0">
                <children>
@@ -56,6 +56,7 @@
       </AnchorPane>
       <AnchorPane fx:id="player1Board" disable="true" layoutX="310.0" layoutY="280.0" prefHeight="50.0" prefWidth="280.0" visible="false">
          <children>
+            <Label fx:id="p1Balance" layoutX="213.0" layoutY="100.0" text="Label" />
             <Label fx:id="player1Name" layoutX="122.0" layoutY="96.0" prefHeight="17.0" prefWidth="40.0" text="Player" />
             <Label fx:id="player1CardTotal" layoutX="4.0" layoutY="96.0" text="Card Total" />
             <AnchorPane fx:id="player1Card1" layoutX="11.0" layoutY="139.0" prefHeight="66.0" prefWidth="48.0">
@@ -89,13 +90,13 @@
                   <Label fx:id="p1c5s1" layoutX="13.0" layoutY="5.0" text="Suit" />
                </children>
             </AnchorPane>
-            <Label fx:id="p1Balance" layoutX="213.0" layoutY="100.0" text="Label" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="player2Board" disable="true" layoutX="604.0" layoutY="125.0" prefHeight="50.0" prefWidth="280.0" visible="false">
          <children>
+            <Label fx:id="p2Balance" layoutX="206.0" layoutY="97.0" text="Label" />
             <Label fx:id="player2Name" layoutX="122.0" layoutY="96.0" prefHeight="17.0" prefWidth="40.0" text="Player" />
-            <Label fx:id="player2CcardTotal" layoutX="4.0" layoutY="96.0" text="Card Total" />
+            <Label fx:id="player2CardTotal" layoutX="4.0" layoutY="96.0" text="Card Total" />
             <AnchorPane fx:id="player2Card1" layoutX="7.0" layoutY="139.0" prefHeight="66.0" prefWidth="48.0">
                <children>
                   <Label fx:id="p2c1n1" layoutX="11.0" layoutY="43.0" text="Num" />
@@ -126,7 +127,6 @@
                   <Label fx:id="p2c5s1" layoutX="12.0" text="Suit" />
                </children>
             </AnchorPane>
-            <Label fx:id="p2Balance" layoutX="206.0" layoutY="97.0" text="Label" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="dealerBoard" disable="true" layoutX="310.0" layoutY="14.0" prefHeight="50.0" prefWidth="280.0" visible="false">

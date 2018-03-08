@@ -10,7 +10,7 @@ import models.Player;
 
 public class BlackJack {
 
-	static ArrayList<Player> P = new ArrayList<Player>();
+	static ArrayList<Human> P = new ArrayList<>();
 
 	static Deck deck1 = new Deck();
 
@@ -100,16 +100,14 @@ public class BlackJack {
 
 	public static void setPlayers(int numberOfPlayers) {
 		P.clear();
-		Player pl;
+		Human pl;
 		for (int i = 1; i <= numberOfPlayers; i++) {
 			pl = new Human("P" + i);
 			P.add(pl);
 		}
-//		pl = new Dealer("Dealer");
-//		P.add(pl);
 	}
 
-	public static ArrayList<Player> getPlayers() {
+	public static ArrayList<Human> getPlayers() {
 		return P;
 	}
 
