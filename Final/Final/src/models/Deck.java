@@ -16,6 +16,7 @@ public class Deck {
 	}
 
 	static public ArrayList<Card> getCard() {
+
 		return shuffledDeck;
 	}
 

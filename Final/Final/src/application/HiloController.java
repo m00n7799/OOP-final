@@ -7,9 +7,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import models.Deck;
-
 import java.io.IOException;
-
 import games.HiLo;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,12 +18,16 @@ public class HiloController {
 	HiLo hl = new HiLo();
 	Deck deck = new Deck();
 
-	boolean bool = false;
+	boolean isHigher;
 
 	int count = 0;
+	
 	@FXML
 	private Button Lower;
-
+	
+	@FXML
+    private Button start;
+	
 	@FXML
 	private Button Higher;
 
@@ -39,22 +41,7 @@ public class HiloController {
 
 	@FXML
 	private Label Card;
-
-	@FXML
-	void CardIsHigher(ActionEvent event) {
-		count++;
-		Card.setText(Integer.toString(deck.getCard().get(count).getCardValue()));
-	}
-
-	@FXML
-	void CardIsLower(ActionEvent event) {
-		count++;
-		Card.setText(Integer.toString(deck.getCard().get(count).getCardValue()));
-	}
-
-	public void check() {
-
-	}
+	
 
 	@FXML
 	void gotomainMenu(ActionEvent event) {
@@ -64,7 +51,7 @@ public class HiloController {
 
 		try {
 			root = loader.load();
-		} catch (IOException e) {
+		} catch (IOException e){
 			e.printStackTrace();
 		}
 
@@ -72,5 +59,42 @@ public class HiloController {
 		Stage secondStage = Main.getStage();
 		secondStage.setScene(scene);
 		secondStage.show();
+	}
+
+	@FXML
+	void CardIsHigher(ActionEvent event) {
+		count++;
+		isHigher = true;
+		Card.setText(Integer.toString(Deck.getCard().get(count).getCardValue()));
+		check();
+	}
+
+	@FXML
+	void CardIsLower(ActionEvent event) {
+		
+		isHigher = false;
+		count++;
+		Card.setText(Integer.toString(Deck.getCard().get(count).getCardValue()));
+		check();
+		
+	}
+	 @FXML
+	    void StartGame(ActionEvent event) {
+		 Card.setText(Integer.toString(Deck.getCard().get(0).getCardValue()));
+	    }
+
+	public void check() {
+		
+		if(Deck.getCard().get(count).getCardValue() > Deck.getCard().get(count - 1).getCardValue() && isHigher) {
+			System.out.println("Winner");
+		}else if(Deck.getCard().get(count).getCardValue() < Deck.getCard().get(count - 1).getCardValue() && isHigher){
+			System.out.println("Loser");
+		}else if(Deck.getCard().get(count).getCardValue() > Deck.getCard().get(count - 1).getCardValue() && !isHigher) {
+			System.out.println("Loser");
+		}else if(Deck.getCard().get(count).getCardValue() < Deck.getCard().get(count - 1).getCardValue() && !isHigher) {
+			System.out.println("winner");
+		}else {
+			System.out.println("tie");
+		}
 	}
 }

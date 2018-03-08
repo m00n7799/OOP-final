@@ -5,12 +5,13 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#Enter" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.HiloController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.HiloController">
    <children>
       <Button fx:id="Exit" layoutX="319.0" layoutY="485.0" mnemonicParsing="false" onAction="#gotomainMenu" text="Return To Main Menu" />
       <Button fx:id="Higher" layoutX="89.0" layoutY="50.0" mnemonicParsing="false" onAction="#CardIsHigher" text="Higher" />
       <Button fx:id="Lower" layoutX="600.0" layoutY="50.0" mnemonicParsing="false" onAction="#CardIsLower" text="Lower" />
       <Label layoutX="365.0" layoutY="60.0" text="HiLo!" />
       <Label fx:id="Card" layoutX="365.0" layoutY="278.0" text="text" />
+      <Button fx:id="start" layoutX="335.0" layoutY="105.0" mnemonicParsing="false" onAction="#StartGame" text="Start" />
    </children>
 </AnchorPane>
