@@ -2,5 +2,9 @@
 #mainPane {
 	
 	-fx-background-image: url("./PokerPlayingDogs.jpg");
-	 
+	 -fx-background-size: cover;
+}
+
+#hiLo{
+	-fx-background-image: url("./Kh.jpg");
 }
