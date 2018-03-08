@@ -16,8 +16,8 @@ public class Deck {
 		newDeck();
 	}
 
-	static ArrayList<Card> getCard() {
-		return freshDeck;
+	static public ArrayList<Card> getCard() {
+		return shuffledDeck;
 	}
 	
 	static void newDeck() {

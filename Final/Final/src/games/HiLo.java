@@ -1,17 +1,13 @@
 package games;
 
 public class HiLo {
-	boolean contuine = true;
-	int anti = 1500;
-	
+	static boolean contuine = true;
+	static int anti = 1500;
 	
 	public void game(boolean bool) {
-		
-			
+
 //			play a card and display it
-//			let the player choose if it is higher or
-//			lower then the next card
-//			
+
 			//make sure to ask every time after a card if
 			//they'd like to quit
 			

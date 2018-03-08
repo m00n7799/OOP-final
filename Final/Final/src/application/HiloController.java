@@ -17,6 +17,7 @@ public class HiloController {
 	HiLo hl = new HiLo();
 	static Deck deck = new Deck();
 	boolean bool = false;
+	int count = 0;
 		@FXML
 	    private Button Lower;
 
@@ -28,8 +29,11 @@ public class HiloController {
 
 	    @FXML
 	    private Label Card;
-	   
 	    @FXML
+	    void Enter(ActionEvent event) {
+	    	Card.setText(Integer.toString(Deck.getCard().get(0).getCardValue()));
+	    }
+		@FXML
 	    void gotomainMenu(ActionEvent event) {
 
 	    		AnchorPane root = new AnchorPane();
@@ -48,15 +52,17 @@ public class HiloController {
 
 	    @FXML
 	    void CardIsHigher(ActionEvent event) {
-	    	
+	    	count++;
+	    	Card.setText(Integer.toString(Deck.getCard().get(count).getCardValue()));
 	    }
 
 	    @FXML
 	    void CardIsLower(ActionEvent event) {
-	    	
+	    	count++;
+	    	Card.setText(Integer.toString(Deck.getCard().get(count).getCardValue()));
 	    }
 	    public void check() {
-	    	
+	    
 	    }
 
 	}
