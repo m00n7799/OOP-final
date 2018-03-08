@@ -16,11 +16,9 @@ public class Deck {
 		newDeck();
 	}
 
-<<<<<<< HEAD
-	public ArrayList<Card> getCard() {
-=======
+
 	static public ArrayList<Card> getCard() {
->>>>>>> 6e99e8546dccc77aa82d482019ff412659d194fd
+
 		return shuffledDeck;
 	}
 	
