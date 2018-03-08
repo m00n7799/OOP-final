@@ -1,10 +1,14 @@
 /* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
 #mainPane {
 	
-	-fx-background-image: url("./PokerPlayingDogs.jpg");
-	 -fx-background-size: cover;
+	 -fx-background-color:darkcyan ;
+	 
 }
 
-#hiLo{
+#hL{
 	-fx-background-image: url("./Kh.jpg");
+}
+#Jack {
+
+	
 }
