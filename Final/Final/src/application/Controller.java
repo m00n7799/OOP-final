@@ -527,16 +527,9 @@ public class Controller implements Initializable {
 	@FXML
 	private Label p2c3n1;
 
-
 	@FXML
-<<<<<<< HEAD
-	public void playHiLo(ActionEvent event) {
-		CardGames.runHiLo();
-	}
-=======
 	private Label p2c3s1;
 
->>>>>>> 8cd76c279baeb2e6e11af6f0df9eefe03cdeb47d
 	@FXML
 	private Label p2c4n1;
 
