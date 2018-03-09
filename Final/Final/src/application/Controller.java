@@ -466,7 +466,7 @@ public class Controller implements Initializable {
 				p1Balance.setText(Double.toString(players.get(1).getBalance()));
 
 				player2CardTotal.setText(Integer.toString(players.get(2).getHandValue()));
-				setPlayer2Hand(2);x
+				setPlayer2Hand(2);
 				p2Balance.setText(Double.toString(players.get(2).getBalance()));
 			}
 		}
