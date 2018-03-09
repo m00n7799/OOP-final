@@ -66,19 +66,6 @@ public class Deck {
 				hand.add(shuffledDeck.get(0));
 				shuffledDeck.remove(0);
 			}
-			// shuffledDeck.get(0).Hidden(false);
-			try {
-				hand.add(shuffledDeck.get(0));
-				shuffledDeck.remove(0);
-			} catch (IndexOutOfBoundsException ex) {
-				newDeck();
-				hand.add(shuffledDeck.get(0));
-				shuffledDeck.remove(0);
-			}catch (NullPointerException e) {
-				newDeck();
-				hand.add(shuffledDeck.get(0));
-				shuffledDeck.remove(0);
-			}
 			player.setHand(hand);
 		}
 	}

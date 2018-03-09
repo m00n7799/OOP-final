@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import controller.CardGames;
 import games.BlackJack;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -277,17 +276,15 @@ public class Controller implements Initializable {
 				setPlayer1Hand(0);
 				p1Balance.setText(Double.toString(players.get(0).getBalance()));
 
-
 			} else if (players.size() == 2) {
 
 				player3CardTotal.setText(Integer.toString(players.get(0).getHandValue()));
 				setPlayer3Hand();
 				p3Balance.setText(Double.toString(players.get(0).getBalance()));
-				
+
 				player2CardTotal.setText(Integer.toString(players.get(1).getHandValue()));
 				setPlayer2Hand(1);
 				p2Balance.setText(Double.toString(players.get(1).getBalance()));
-
 
 			} else if (players.size() == 3) {
 
@@ -454,11 +451,6 @@ public class Controller implements Initializable {
 	public void stand(ActionEvent event) {
 		promptText.setText(players.get(playerID).getName() + " Passes turn");
 		passTurn();
-	}
-
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-
 	}
 
 	@FXML
@@ -722,17 +714,13 @@ public class Controller implements Initializable {
 	@FXML
 	private Label promptText;
 
-	public void playBlackJack(ActionEvent event) {
-		CardGames.runBlackjack();
-	}
-
 	@FXML
-	public void playHiLo(ActionEvent event) {
-		CardGames.runHiLo();
-	}
-
-	@FXML
-	public void exit(ActionEvent event) {
+	void exit(ActionEvent event) {
 		System.exit(0);
+	}
+
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+
 	}
 }
