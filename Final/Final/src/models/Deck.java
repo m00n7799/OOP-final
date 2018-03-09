@@ -28,8 +28,8 @@ public class Deck {
 		Card c = new Card(null, null);
 		for (Suit suit : Suit.values()) {// CardSuit.suits
 			for (Rank rank : Rank.values()) {
-				freshDeck.add(c = new Card(suit, rank));
 				c.setCardValue(rank);
+				freshDeck.add(c = new Card(suit, rank));
 			}
 		}
 		shuffle();
@@ -58,13 +58,9 @@ public class Deck {
 				shuffledDeck.remove(0);
 			} catch (IndexOutOfBoundsException ex) {
 				newDeck();
-				hand.add(shuffledDeck.get(0));
-				shuffledDeck.remove(0);
 			}
 			catch (NullPointerException e) {
 				newDeck();
-				hand.add(shuffledDeck.get(0));
-				shuffledDeck.remove(0);
 			}
 			player.setHand(hand);
 		}
@@ -73,9 +69,14 @@ public class Deck {
 	public static void nextCard(Player p) {
 		ArrayList<Card> hand = new ArrayList<Card>();
 		// shuffledDeck.get(0).Hidden(false);
+<<<<<<< HEAD
 		Card card = null;
 		try {
 			card=shuffledDeck.get(0);
+=======
+		Card card = shuffledDeck.get(0);
+		try {
+>>>>>>> parent of 730719b... Nono
 			shuffledDeck.remove(0);
 			hand.add(card);
 			p.setHand(hand);
@@ -84,11 +85,14 @@ public class Deck {
 			card = shuffledDeck.get(0);
 			hand.add(card);
 			p.setHand(hand);
+<<<<<<< HEAD
 		}catch (IndexOutOfBoundsException e) {
 			newDeck();
 			card = shuffledDeck.get(0);
 			hand.add(card);
 			p.setHand(hand);
+=======
+>>>>>>> parent of 730719b... Nono
 		}
 	}
 

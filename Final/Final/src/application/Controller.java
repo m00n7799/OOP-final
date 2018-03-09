@@ -443,15 +443,17 @@ public class Controller implements Initializable {
 				setPlayer1Hand(0);
 				p1Balance.setText(Double.toString(players.get(0).getBalance()));
 
+
 			} else if (players.size() == 2) {
 
 				player3CardTotal.setText(Integer.toString(players.get(0).getHandValue()));
 				setPlayer3Hand();
 				p3Balance.setText(Double.toString(players.get(0).getBalance()));
-
+				
 				player2CardTotal.setText(Integer.toString(players.get(1).getHandValue()));
 				setPlayer2Hand(1);
 				p2Balance.setText(Double.toString(players.get(1).getBalance()));
+
 
 			} else if (players.size() == 3) {
 
@@ -464,7 +466,7 @@ public class Controller implements Initializable {
 				p1Balance.setText(Double.toString(players.get(1).getBalance()));
 
 				player2CardTotal.setText(Integer.toString(players.get(2).getHandValue()));
-				setPlayer2Hand(2);
+				setPlayer2Hand(2);x
 				p2Balance.setText(Double.toString(players.get(2).getBalance()));
 			}
 		}
