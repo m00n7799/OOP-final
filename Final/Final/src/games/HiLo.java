@@ -3,7 +3,7 @@ package games;
 public class HiLo {
 	
 	static boolean contuine = true;
-	static int anti = 1500;
+	static public int anti = 1500;
 	
 	public void game(boolean bool) {
 		
@@ -20,8 +20,8 @@ public class HiLo {
 		}
 
 	public void lose() {
-		if (anti == -50) {
-			// lose
+		if (anti == -100) {
+			
 		}
 	}
 
