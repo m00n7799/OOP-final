@@ -213,7 +213,7 @@ public class Controller implements Initializable {
 		}
 		if (players.get(playerID).isBust()) {
 			if ((playerID + 1) >= players.size()) {
-				promptText.setText("Who is the Winner");
+				promptText.setText("Who is the Winner? The House");
 			} else {
 				promptText.setText(players.get(playerID).getName() + " Has Bust, " + players.get(playerID + 1).getName()
 						+ " is Up");
@@ -245,6 +245,7 @@ public class Controller implements Initializable {
 
 			playerID = 0;
 			ArrayList<Player> w = BlackJack.win();
+			System.out.println(w.size());
 
 			for (Player player : w) {
 				promptText.setText("Winner: " + player.getName());

@@ -156,7 +156,7 @@
 
          </children>
       </AnchorPane>
-      <Label fx:id="promptText" alignment="CENTER" layoutX="150.0" layoutY="57.0" prefHeight="25.0" prefWidth="600.0" text="Welcome To A Game of BlackJack" textAlignment="CENTER" textFill="#899e77">
+      <Label fx:id="promptText" alignment="CENTER" layoutX="150.0" layoutY="57.0" prefHeight="25.0" prefWidth="600.0" text="Welcome To A Game of BlackJack EnterNumber of Players (1-3)" textAlignment="CENTER" textFill="#899e77">
          <font>
             <Font size="18.0" />
          </font>

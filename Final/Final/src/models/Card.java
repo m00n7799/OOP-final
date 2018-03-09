@@ -87,7 +87,7 @@ public void setCardValue(Rank value) {
 public String toString() {
 	String cardval="";
 	if(!hidden) {
-		cardval=getValue()+"\nof\n "+getSuit();
+		cardval=getValue()+"\nof\n"+getSuit();
 	}
 	return cardval;
 }
