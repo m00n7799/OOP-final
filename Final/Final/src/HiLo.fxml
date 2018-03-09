@@ -16,5 +16,6 @@
       <Button fx:id="start" layoutX="263.0" layoutY="115.0" mnemonicParsing="false" onAction="#StartGame" text="Start" />
       <Label layoutX="284.0" layoutY="249.0" text="Last Card" />
       <Label fx:id="LastCard" layoutX="284.0" layoutY="294.0" text="lastCard" />
+      <Label fx:id="money" layoutX="492.0" layoutY="125.0" text="money" />
    </children>
 </AnchorPane>

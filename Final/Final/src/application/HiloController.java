@@ -40,6 +40,9 @@ public class HiloController {
 	@FXML
 	private Label Card;
 	
+    @FXML
+    private Label money;
+	
 
 	@FXML
 	void gotomainMenu(ActionEvent event) {
@@ -61,11 +64,13 @@ public class HiloController {
 
 	@FXML
 	void CardIsHigher(ActionEvent event) {
+		
 		count++;
 		isHigher = true;
 		LastCard.setText(Integer.toString(Deck.getCard().get(count-1).getCardValue()));
 		Card.setText(Integer.toString(Deck.getCard().get(count).getCardValue()));
 		hl.game(check());
+		money.setText(Integer.toString(HiLo.anti));
 	}
 
 	@FXML
@@ -76,11 +81,12 @@ public class HiloController {
 		LastCard.setText(Integer.toString(Deck.getCard().get(count-1).getCardValue()));
 		Card.setText(Integer.toString(Deck.getCard().get(count).getCardValue()));
 		hl.game(check());
-		
+		money.setText(Integer.toString(HiLo.anti));
 		
 	}
 	 @FXML
 	    void StartGame(ActionEvent event) {
+		 money.setText(Integer.toString(HiLo.anti));
 		 Card.setText(Integer.toString(Deck.getCard().get(0).getCardValue()));
 	    }
 
