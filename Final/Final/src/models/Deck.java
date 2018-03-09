@@ -43,6 +43,8 @@ public class Deck {
 			try {
 				shuffledDeck.add(freshDeck.remove(gen));
 			} catch (NullPointerException ex) {
+				new Deck();
+				shuffledDeck.add(freshDeck.remove(gen));
 				break;
 			}
 		}
