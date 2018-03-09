@@ -40,12 +40,14 @@ public class Controller implements Initializable {
 
 			case 1:
 
+				clearAll();
+
 				enterNumberOfPlayers.setDisable(true);
 				enterNumberOfPlayers.setVisible(false);
 				player1Board.setDisable(false);
 				player1Board.setVisible(true);
-				dealerBoard.setDisable(false);
-				dealerBoard.setVisible(true);
+//				dealerBoard.setDisable(false);
+//				dealerBoard.setVisible(true);
 
 				BlackJack.startNewGame(number);
 				players = BlackJack.getPlayers();
@@ -56,14 +58,16 @@ public class Controller implements Initializable {
 				playerOptionsView.setDisable(false);
 
 				player1CardTotal.setText(Integer.toString(players.get(playerID).getHandValue()));
-				setPlayer1Hand();
-				
+				setPlayer1Hand(0);
+
 				p1Balance.setText(Double.toString(players.get(playerID).getBalance()));
 				promptText.setText(players.get(playerID).getName() + " Hit Or Stand?");
 
 				break;
 
 			case 2:
+				
+				clearAll();
 
 				enterNumberOfPlayers.setDisable(true);
 				enterNumberOfPlayers.setVisible(false);
@@ -71,8 +75,8 @@ public class Controller implements Initializable {
 				player2Board.setDisable(false);
 				player3Board.setVisible(true);
 				player3Board.setDisable(false);
-				dealerBoard.setDisable(false);
-				dealerBoard.setVisible(true);
+//				dealerBoard.setDisable(false);
+//				dealerBoard.setVisible(true);
 
 				BlackJack.startNewGame(number);
 
@@ -83,22 +87,24 @@ public class Controller implements Initializable {
 
 				player3Name.setText(players.get(0).getName());
 				player2Name.setText(players.get(1).getName());
-                
+
 				player3CardTotal.setText(Integer.toString(players.get(0).getHandValue()));
 				player2CardTotal.setText(Integer.toString(players.get(1).getHandValue()));
-				
+
 				p3Balance.setText(Double.toString(players.get(0).getBalance()));
 				p2Balance.setText(Double.toString(players.get(1).getBalance()));
 
 				setPlayer3Hand();
 				playerID++;
-				setPlayer2Hand();
+				setPlayer2Hand(1);
 				playerID = 0;
 				promptText.setText(players.get(playerID).getName() + " Hit Or Stand?");
 
 				break;
 
 			case 3:
+
+				clearAll();
 
 				enterNumberOfPlayers.setDisable(true);
 				enterNumberOfPlayers.setVisible(false);
@@ -108,8 +114,8 @@ public class Controller implements Initializable {
 				player2Board.setDisable(false);
 				player3Board.setVisible(true);
 				player3Board.setDisable(false);
-				dealerBoard.setDisable(false);
-				dealerBoard.setVisible(true);
+//				dealerBoard.setDisable(false);
+//				dealerBoard.setVisible(true);
 
 				BlackJack.startNewGame(number);
 
@@ -118,25 +124,22 @@ public class Controller implements Initializable {
 				player3Name.setText(players.get(0).getName());
 				player1Name.setText(players.get(1).getName());
 				player2Name.setText(players.get(2).getName());
-                          
+
 				playerOptionsView.setVisible(true);
 				playerOptionsView.setDisable(false);
 
 				setPlayer3Hand();
-				playerID++;
-				setPlayer1Hand();
-				playerID++;
-				setPlayer2Hand();
-				playerID = 0;
-				
+				setPlayer1Hand(1);
+				setPlayer2Hand(2);
+
 				p3Balance.setText(Double.toString(players.get(playerID).getBalance()));
-				p1Balance.setText(Double.toString(players.get(playerID+1).getBalance()));
-				p2Balance.setText(Double.toString(players.get(playerID+2).getBalance()));
+				p1Balance.setText(Double.toString(players.get(playerID + 1).getBalance()));
+				p2Balance.setText(Double.toString(players.get(playerID + 2).getBalance()));
 
 				player3CardTotal.setText(Integer.toString(players.get(playerID).getHandValue()));
-				player1CardTotal.setText(Integer.toString(players.get(playerID+1).getHandValue()));
-				player2CardTotal.setText(Integer.toString(players.get(playerID+2).getHandValue()));
-                               
+				player1CardTotal.setText(Integer.toString(players.get(playerID + 1).getHandValue()));
+				player2CardTotal.setText(Integer.toString(players.get(playerID + 2).getHandValue()));
+
 				promptText.setText(players.get(playerID).getName() + " Hit Or Stand?");
 
 				break;
@@ -176,7 +179,7 @@ public class Controller implements Initializable {
 		if (players.size() == 1) {
 
 			player1CardTotal.setText(Integer.toString(players.get(playerID).getHandValue()));
-			setPlayer1Hand();
+			setPlayer1Hand(0);
 			p1Balance.setText(Double.toString(players.get(playerID).getBalance()));
 
 		} else if (players.size() == 2) {
@@ -188,7 +191,7 @@ public class Controller implements Initializable {
 
 			} else {
 				player2CardTotal.setText(Integer.toString(players.get(playerID).getHandValue()));
-				setPlayer2Hand();
+				setPlayer2Hand(1);
 				p2Balance.setText(Double.toString(players.get(playerID).getBalance()));
 			}
 		} else if (players.size() == 3) {
@@ -199,27 +202,29 @@ public class Controller implements Initializable {
 
 			} else if (playerID == 1) {
 				player1CardTotal.setText(Integer.toString(players.get(playerID).getHandValue()));
-				setPlayer1Hand();
+				setPlayer1Hand(1);
 				p1Balance.setText(Double.toString(players.get(playerID).getBalance()));
 
 			} else {
 				player2CardTotal.setText(Integer.toString(players.get(playerID).getHandValue()));
-				setPlayer2Hand();
+				setPlayer2Hand(2);
 				p2Balance.setText(Double.toString(players.get(playerID).getBalance()));
 			}
 		}
 		if (players.get(playerID).isBust()) {
-			if ((playerID+1) >= players.size()) {
+			if ((playerID + 1) >= players.size()) {
 				promptText.setText("Who is the Winner");
 			} else {
-				promptText.setText(players.get(playerID).getName() + " Has Bust, " + players.get(playerID + 1).getName() + " is Up");
+				promptText.setText(players.get(playerID).getName() + " Has Bust, " + players.get(playerID + 1).getName()
+						+ " is Up");
 			}
 			passTurn();
 		} else if (players.get(playerID).getHand().size() == 5) {
-			if ((playerID+1) >= players.size()) {
+			if ((playerID + 1) >= players.size()) {
 				promptText.setText("Who is the winner");
 			} else {
-				promptText.setText(players.get(playerID).getName() + " reached 5 Card Limit " + players.get(playerID + 1).getName() + " is Up");
+				promptText.setText(players.get(playerID).getName() + " reached 5 Card Limit "
+						+ players.get(playerID + 1).getName() + " is Up");
 			}
 			passTurn();
 		}
@@ -266,16 +271,16 @@ public class Controller implements Initializable {
 			pool = 100;
 
 			clearAll();
-			
+
 			BlackJack.startNewRound();
-			
+
 			huma.clear();
-			
+
 			if (players.size() == 1) {
 
 				player1CardTotal.setText(Integer.toString(players.get(0).getHandValue()));
 
-				setPlayer1Hand();
+				setPlayer1Hand(0);
 				p1Balance.setText(Double.toString(players.get(0).getBalance()));
 
 			} else if (players.size() == 2) {
@@ -287,90 +292,50 @@ public class Controller implements Initializable {
 				player2CardTotal.setText(Integer.toString(players.get(1).getHandValue()));
 				setPlayer2Hand(1);
 				p2Balance.setText(Double.toString(players.get(1).getBalance()));
-
-
-			} else if (players.size() == 2) {
-
-				player3CardTotal.setText(Integer.toString(players.get(2).getHandValue()));
-				player2CardTotal.setText(Integer.toString(players.get(1).getHandValue()));
+				
+				setPlayer3Hand();
+				setPlayer2Hand(1);
 
 			} else if (players.size() == 3) {
 
 				player3CardTotal.setText(Integer.toString(players.get(0).getHandValue()));
 				player1CardTotal.setText(Integer.toString(players.get(1).getHandValue()));
 				player2CardTotal.setText(Integer.toString(players.get(2).getHandValue()));
+				setPlayer3Hand();
+				setPlayer1Hand(1);
+				setPlayer2Hand(2);
 			}
 		}
 	}
 
-	public void setPlayer1Hand() {
-
+	public void setPlayer1Hand(int i) {
 
 		p1c1s1.setText(players.get(playerID).getHand().get(0).toString());
-//		p1c1s1.setText(players.get(ID).getHand().get(0).getSuit().toString());
-		// p1c1n2.setText(Integer.toString(players.get(playerID).getHand().get(0).getCardValue()));
-		// p1c1s2.setText(players.get(playerID).getHand().get(0).getSuit().toString());
-
 		p1c2s1.setText(players.get(playerID).getHand().get(1).toString());
-//		p1c2s1.setText(players.get(ID).getHand().get(1).getSuit().toString());
-
-		p1c1n1.setText(Integer.toString(players.get(playerID).getHand().get(0).getCardValue()));
-		p1c1s1.setText(players.get(playerID).getHand().get(0).getSuit().toString());
-		// p1c1n2.setText(Integer.toString(players.get(playerID).getHand().get(0).getCardValue()));
-		// p1c1s2.setText(players.get(playerID).getHand().get(0).getSuit().toString());
-
-		p1c2n1.setText(Integer.toString(players.get(playerID).getHand().get(1).getCardValue()));
-		p1c2s1.setText(players.get(playerID).getHand().get(1).getSuit().toString());
-
-		// p1c2n2.setText(Integer.toString(players.get(playerID).getHand().get(1).getCardValue()));
-		// p1c2s2.setText(players.get(playerID).getHand().get(1).getSuit().toString());
 
 		if (players.get(playerID).getHand().size() > 2) {
 
 			p1c3s1.setText(players.get(playerID).getHand().get(2).toString());
-//			p1c3s1.setText(players.get(ID).getHand().get(2).getSuit().toString());
-			// p1c3n2.setText(Integer.toString(players.get(playerID).getHand().get(2).getCardValue()));
-			// p1c3s2.setText(players.get(playerID).getHand().get(2).getSuit().toString());
 		}
 		if (players.get(playerID).getHand().size() > 3) {
+
 			p1c4s1.setText(players.get(playerID).getHand().get(3).toString());
-//			p1c4s1.setText(players.get(ID).getHand().get(3).getSuit().toString());
-
-			p1c3n1.setText(Integer.toString(players.get(playerID).getHand().get(2).getCardValue()));
-			p1c3s1.setText(players.get(playerID).getHand().get(2).getSuit().toString());
-			// p1c3n2.setText(Integer.toString(players.get(playerID).getHand().get(2).getCardValue()));
-			// p1c3s2.setText(players.get(playerID).getHand().get(2).getSuit().toString());
 		}
-		if (players.get(playerID).getHand().size() > 3) {
-			p1c4n1.setText(Integer.toString(players.get(playerID).getHand().get(3).getCardValue()));
-			p1c4s1.setText(players.get(playerID).getHand().get(3).getSuit().toString());
-
-		}
-
-
 		if (players.get(playerID).getHand().size() > 4) {
 			p1c5s1.setText(players.get(playerID).getHand().get(4).toString());
-//			p1c5s1.setText(players.get(ID).getHand().get(4).getSuit().toString());
-		}
-		if (players.get(playerID).getHand().size() > 4) {
-			p1c5n1.setText(Integer.toString(players.get(playerID).getHand().get(4).getCardValue()));
-			p1c5s1.setText(players.get(playerID).getHand().get(4).getSuit().toString());
-
-			// p1c5n2.setText(Integer.toString(players.get(playerID).getHand().get(4).getCardValue()));
-			// p1c5s2.setText(players.get(playerID).getHand().get(4).getSuit().toString());
 		}
 	}
 
 	private void clearAll() {
-		
+
 		player3CardTotal.setText("");
 		player2CardTotal.setText("");
 		player1CardTotal.setText("");
-		
+
 		p3Balance.setText("");
 		p2Balance.setText("");
 		p1Balance.setText("");
-		
+
 		p1c1s1.setText("");
 		p1c2s1.setText("");
 		p1c3s1.setText("");
@@ -387,146 +352,40 @@ public class Controller implements Initializable {
 		p3c4s1.setText("");
 		p3c5s1.setText("");
 
-	
-		p1c1n1.setText("");
-		p1c2n1.setText("");
-		p1c3n1.setText("");
-		p1c4n1.setText("");
-		p1c5n1.setText("");
-		p2c1n1.setText("");
-		p2c2n1.setText("");
-		p2c3n1.setText("");
-		p2c4n1.setText("");
-		p2c5n1.setText("");
-		p2c1n1.setText("");
-		p3c2n1.setText("");
-		p3c3n1.setText("");
-		p3c4n1.setText("");
-		p3c5n1.setText("");
-
-
 	}
+
 	public void setPlayer3Hand() {
 
-
 		p3c1s1.setText(players.get(0).getHand().get(0).toString());
-//		p3c1s1.setText(players.get(0).getHand().get(0).getSuit().toString());
-		// p3c1n2.setText(Integer.toString(players.get(playerID).getHand().get(0).getCardValue()));
-		// p3c1s2.setText(players.get(playerID).getHand().get(0).getSuit().toString());
-
 		p3c2s1.setText(players.get(0).getHand().get(1).toString());
-//		p3c2s1.setText(players.get(0).getHand().get(1).getSuit().toString());
-		// p3c2n2.setText(Integer.toString(players.get(playerID).getHand().get(1).getCardValue()));
-		// p3c2s2.setText(players.get(playerID).getHand().get(1).getSuit().toString());
 
 		if (players.get(0).getHand().size() > 2) {
-			p3c3s1.setText(players.get(0).getHand().get(2).toString());
-//			p3c3s1.setText(players.get(0).getHand().get(2).getSuit().toString());
-		p3c1n1.setText(Integer.toString(players.get(playerID).getHand().get(0).getCardValue()));
-		p3c1s1.setText(players.get(playerID).getHand().get(0).getSuit().toString());
-		// p3c1n2.setText(Integer.toString(players.get(playerID).getHand().get(0).getCardValue()));
-		// p3c1s2.setText(players.get(playerID).getHand().get(0).getSuit().toString());
+			p3c3s1.setText(players.get(playerID).getHand().get(2).toString());
 
-		p3c2n1.setText(Integer.toString(players.get(playerID).getHand().get(1).getCardValue()));
-		p3c2s1.setText(players.get(playerID).getHand().get(1).getSuit().toString());
-		// p3c2n2.setText(Integer.toString(players.get(playerID).getHand().get(1).getCardValue()));
-		// p3c2s2.setText(players.get(playerID).getHand().get(1).getSuit().toString());
 		}
-		if (players.get(playerID).getHand().size() > 2) {
-			p3c3n1.setText(Integer.toString(players.get(playerID).getHand().get(2).getCardValue()));
-			p3c3s1.setText(players.get(playerID).getHand().get(2).getSuit().toString());
-
-			// p3c3n2.setText(Integer.toString(players.get(playerID).getHand().get(2).getCardValue()));
-			// p3c3s2.setText(players.get(playerID).getHand().get(2).getSuit().toString());
-		}
-
 		if (players.get(0).getHand().size() > 3) {
 			p3c4s1.setText(players.get(0).getHand().get(3).toString());
-//			p3c4s1.setText(players.get(0).getHand().get(3).getSuit().toString());
-		}
-		if (players.get(playerID).getHand().size() > 3) {
-			p3c4n1.setText(Integer.toString(players.get(playerID).getHand().get(3).getCardValue()));
-			p3c4s1.setText(players.get(playerID).getHand().get(3).getSuit().toString());
-
-			// p3c4n2.setText(Integer.toString(players.get(playerID).getHand().get(3).getCardValue()));
-			// p3c4s2.setText(players.get(playerID).getHand().get(3).getSuit().toString());
-		}
-
-
-		if (players.get(0).getHand().size() > 4) {
-			p3c5s1.setText(players.get(0).getHand().get(4).toString());
-//			p3c5s1.setText(players.get(0).getHand().get(4).getSuit().toString());
 		}
 		if (players.get(playerID).getHand().size() > 4) {
-			p3c5n1.setText(Integer.toString(players.get(playerID).getHand().get(4).getCardValue()));
-			p3c5s1.setText(players.get(playerID).getHand().get(4).getSuit().toString());
-
-			// p3c5n2.setText(Integer.toString(players.get(playerID).getHand().get(4).getCardValue()));
-			// p3c5s2.setText(players.get(playerID).getHand().get(4).getSuit().toString());
+			p3c5s1.setText(players.get(playerID).getHand().get(4).toString());
 		}
 	}
 
 	public void setPlayer2Hand(int ID) {
+		
 		p2c1s1.setText(players.get(ID).getHand().get(0).toString());
-//		p2c1s1.setText(players.get(ID).getHand().get(0).getSuit().toString());
-		// p2c1n2.setText(Integer.toString(players.get(ID).getHand().get(0).getCardValue()));
-		// p2c1s2.setText(players.get(ID).getHand().get(0).getSuit().toString());
-
 		p2c2s1.setText(players.get(ID).getHand().get(1).toString());
-//		p2c2s1.setText(players.get(ID).getHand().get(1).getSuit().toString());
-		// p2c2n2.setText(Integer.toString(players.get(ID).getHand().get(1).getCardValue()));
-		// p2c2s2.setText(players.get(ID).getHand().get(1).getSuit().toString());
 
 		if (players.get(ID).getHand().size() > 2) {
 			p2c3s1.setText(players.get(ID).getHand().get(2).toString());
-//			p2c3s1.setText(players.get(ID).getHand().get(2).getSuit().toString());
-			// p2c3n2.setText(Integer.toString(players.get(ID).getHand().get(2).getCardValue()));
-			// p2c3s2.setText(players.get(ID).getHand().get(2).getSuit().toString());
 		}
+		
 		if (players.get(ID).getHand().size() > 3) {
 			p2c4s1.setText(players.get(ID).getHand().get(3).toString());
-//			p2c4s1.setText(players.get(ID).getHand().get(3).getSuit().toString());
-			// p2c4n2.setText(Integer.toString(players.get(ID).getHand().get(3).getCardValue()));
-			// p2c4s2.setText(players.get(ID).getHand().get(3).getSuit().toString());
 		}
 
 		if (players.get(ID).getHand().size() > 4) {
 			p2c5s1.setText(players.get(ID).getHand().get(4).toString());
-//			p2c5s1.setText(players.get(ID).getHand().get(4).getSuit().toString());
-			// p2c5n2.setText(Integer.toString(players.get(ID).getHand().get(4).getCardValue()));
-			// p2c5s2.setText(players.get(ID).getHand().get(4).getSuit().toString());
-		}
-}
-	public void setPlayer2Hand() {
-		p2c1n1.setText(Integer.toString(players.get(playerID).getHand().get(0).getCardValue()));
-		p2c1s1.setText(players.get(playerID).getHand().get(0).getSuit().toString());
-		// p2c1n2.setText(Integer.toString(players.get(playerID).getHand().get(0).getCardValue()));
-		// p2c1s2.setText(players.get(playerID).getHand().get(0).getSuit().toString());
-
-		p2c2n1.setText(Integer.toString(players.get(playerID).getHand().get(1).getCardValue()));
-		p2c2s1.setText(players.get(playerID).getHand().get(1).getSuit().toString());
-		// p2c2n2.setText(Integer.toString(players.get(playerID).getHand().get(1).getCardValue()));
-		// p2c2s2.setText(players.get(playerID).getHand().get(1).getSuit().toString());
-
-		if (players.get(playerID).getHand().size() > 2) {
-			p2c3n1.setText(Integer.toString(players.get(playerID).getHand().get(2).getCardValue()));
-			p2c3s1.setText(players.get(playerID).getHand().get(2).getSuit().toString());
-			// p2c3n2.setText(Integer.toString(players.get(playerID).getHand().get(2).getCardValue()));
-			// p2c3s2.setText(players.get(playerID).getHand().get(2).getSuit().toString());
-		}
-		if (players.get(playerID).getHand().size() > 3) {
-			p2c4n1.setText(Integer.toString(players.get(playerID).getHand().get(3).getCardValue()));
-			p2c4s1.setText(players.get(playerID).getHand().get(3).getSuit().toString());
-			// p2c4n2.setText(Integer.toString(players.get(playerID).getHand().get(3).getCardValue()));
-			// p2c4s2.setText(players.get(playerID).getHand().get(3).getSuit().toString());
-		}
-
-		if (players.get(playerID).getHand().size() > 4) {
-			p2c5n1.setText(Integer.toString(players.get(playerID).getHand().get(4).getCardValue()));
-			p2c5s1.setText(players.get(playerID).getHand().get(4).getSuit().toString());
-			// p2c5n2.setText(Integer.toString(players.get(playerID).getHand().get(4).getCardValue()));
-			// p2c5s2.setText(players.get(playerID).getHand().get(4).getSuit().toString());
-
 		}
 	}
 
@@ -540,12 +399,13 @@ public class Controller implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
 	}
+
 	@FXML
 	private Label p3Balance;
-	
+
 	@FXML
 	private Label p2Balance;;
-	
+
 	@FXML
 	private Label p1Balance;
 
