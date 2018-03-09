@@ -23,7 +23,181 @@ import models.Player;
 
 public class Controller implements Initializable {
 
+	ArrayList<Human> players = new ArrayList<>();
 	private int playerID = 0;
+	ArrayList<Human> huma = new ArrayList<>();
+	double pool = 100;
+
+	@FXML
+	private Label p3Balance;
+
+	@FXML
+	private Label p2Balance;;
+
+	@FXML
+	private Label p1Balance;
+
+	@FXML
+	private Label p1c1n1;
+
+	@FXML
+	private Label p1c1s1;
+
+	@FXML
+	private Label p1c2n1;
+
+	@FXML
+	private Label p1c2s1;
+
+	@FXML
+	private Label p1c3n1;
+
+	@FXML
+	private Label p1c3s1;
+
+	@FXML
+	private Label p1c4n1;
+
+	@FXML
+	private Label p1c4s1;
+
+	@FXML
+	private Label p1c5n1;
+
+	@FXML
+	private Label p1c5s1;
+
+	@FXML
+	private Label p2c1n1;
+
+	@FXML
+	private Label p2c1s1;
+
+	@FXML
+	private Label p2c2n1;
+
+	@FXML
+	private Label p2c2s1;
+
+	@FXML
+	private Label p2c3n1;
+
+	@FXML
+	private Label p2c3s1;
+
+	@FXML
+	private Label p2c4n1;
+
+	@FXML
+	private Label p2c4s1;
+
+	@FXML
+	private Label p2c5n1;
+
+	@FXML
+	private Label p2c5s1;
+
+	@FXML
+	private Label p3c1n1;
+
+	@FXML
+	private Label p3c1s1;
+
+	@FXML
+	private Label p3c2n1;
+
+	@FXML
+	private Label p3c2s1;
+
+	@FXML
+	private Label p3c3n1;
+
+	@FXML
+	private Label p3c3s1;
+
+	@FXML
+	private Label p3c4n1;
+
+	@FXML
+	private Label p3c4s1;
+
+	@FXML
+	private Label p3c5n1;
+
+	@FXML
+	private Label p3c5s1;
+
+	@FXML
+	private TextField enterNumberOfPlayers;
+
+	@FXML
+	private AnchorPane player3Board;
+
+	@FXML
+	private Label player3Name;
+
+	@FXML
+	private Label player3CardTotal;
+
+	@FXML
+	private AnchorPane player3Card1;
+
+	@FXML
+	private AnchorPane player3Card2;
+
+	@FXML
+	private AnchorPane player3Card3;
+
+	@FXML
+	private AnchorPane player3Card4;
+
+	@FXML
+	private AnchorPane player3Card5;
+
+	@FXML
+	private AnchorPane player1Board;
+
+	@FXML
+	private Label player1Name;
+
+	@FXML
+	private Label player1CardTotal;
+
+	@FXML
+	private AnchorPane player2Board;
+
+	@FXML
+	private Label player2Name;
+
+	@FXML
+	private Label player2CardTotal;
+
+	@FXML
+	private AnchorPane dealerBoard;
+
+	@FXML
+	private Label DealCardTotal;
+
+	@FXML
+	private Label dNum1;
+
+	@FXML
+	private Label dSuit1;
+
+	@FXML
+	private Label pot;
+
+	@FXML
+	private Button stand;
+
+	@FXML
+	private Button hit;
+
+	@FXML
+	private AnchorPane playerOptionsView;
+
+	@FXML
+	private Label promptText;
 
 	@FXML
 	void playerNumberEntered(KeyEvent event) {
@@ -144,8 +318,6 @@ public class Controller implements Initializable {
 		}
 	}
 
-	boolean isDrawing;
-
 	@FXML
 	public void returnMain(ActionEvent event) {
 
@@ -162,8 +334,6 @@ public class Controller implements Initializable {
 		secondStage.setScene(scene);
 		secondStage.show();
 	}
-
-	ArrayList<Human> players = new ArrayList<>();
 
 	@FXML
 	public void hit(ActionEvent event) {
@@ -222,9 +392,6 @@ public class Controller implements Initializable {
 			passTurn();
 		}
 	}
-
-	ArrayList<Human> huma = new ArrayList<>();
-	double pool = 100;
 
 	private void passTurn() {
 
@@ -454,273 +621,14 @@ public class Controller implements Initializable {
 	}
 
 	@FXML
-	private Label p3Balance;
-
-	@FXML
-	private Label p2Balance;;
-
-	@FXML
-	private Label p1Balance;
-
-	@FXML
-	private Label p1c1n1;
-
-	@FXML
-	private Label p1c1s1;
-
-	@FXML
-	private Label p1c2n1;
-
-	@FXML
-	private Label p1c2s1;
-
-	@FXML
-	private Label p1c3n1;
-
-	@FXML
-	private Label p1c3s1;
-
-	@FXML
-	private Label p1c4n1;
-
-	@FXML
-	private Label p1c4s1;
-
-	@FXML
-	private Label p1c5n1;
-
-	@FXML
-	private Label p1c5s1;
-
-	@FXML
-	private Label p1c1n2;
-
-	@FXML
-	private Label p1c1s2;
-
-	@FXML
-	private Label p1c2n2;
-
-	@FXML
-	private Label p1c2s2;
-
-	@FXML
-	private Label p1c3n2;
-
-	@FXML
-	private Label p1c3s2;
-
-	@FXML
-	private Label p1c4n2;
-
-	@FXML
-	private Label p1c4s2;
-
-	@FXML
-	private Label p1c5n2;
-
-	@FXML
-	private Label p1c5s2;
-
-	@FXML
-	private Label p2c1n1;
-
-	@FXML
-	private Label p2c1s1;
-
-	@FXML
-	private Label p2c2n1;
-
-	@FXML
-	private Label p2c2s1;
-
-	@FXML
-	private Label p2c3n1;
-
-	@FXML
-	private Label p2c3s1;
-
-	@FXML
-	private Label p2c4n1;
-
-	@FXML
-	private Label p2c4s1;
-
-	@FXML
-	private Label p2c5n1;
-
-	@FXML
-	private Label p2c5s1;
-
-	@FXML
-	private Label p2c1n2;
-
-	@FXML
-	private Label p2c1s2;
-
-	@FXML
-	private Label p2c2n2;
-
-	@FXML
-	private Label p2c2s2;
-
-	@FXML
-	private Label p2c3n2;
-
-	@FXML
-	private Label p2c3s2;
-
-	@FXML
-	private Label p2c4n2;
-
-	@FXML
-	private Label p2c4s2;
-
-	@FXML
-	private Label p2c5n2;
-
-	@FXML
-	private Label p2c5s2;
-
-	@FXML
-	private Label p3c1n1;
-
-	@FXML
-	private Label p3c1s1;
-
-	@FXML
-	private Label p3c2n1;
-
-	@FXML
-	private Label p3c2s1;
-
-	@FXML
-	private Label p3c3n1;
-
-	@FXML
-	private Label p3c3s1;
-
-	@FXML
-	private Label p3c4n1;
-
-	@FXML
-	private Label p3c4s1;
-
-	@FXML
-	private Label p3c5n1;
-
-	@FXML
-	private Label p3c5s1;
-
-	@FXML
-	private Label p3c1n2;
-
-	@FXML
-	private Label p3c1s2;
-
-	@FXML
-	private Label p3c2n2;
-
-	@FXML
-	private Label p3c2s2;
-
-	@FXML
-	private Label p3c3n2;
-
-	@FXML
-	private Label p3c3s2;
-
-	@FXML
-	private Label p3c4n2;
-
-	@FXML
-	private Label p3c4s2;
-
-	@FXML
-	private Label p3c5n2;
-
-	@FXML
-	private Label p3c5s2;
-
-	@FXML
-	private TextField enterNumberOfPlayers;
-
-	@FXML
-	private AnchorPane player3Board;
-
-	@FXML
-	private Label player3Name;
-
-	@FXML
-	private Label player3CardTotal;
-
-	@FXML
-	private AnchorPane player3Card1;
-
-	@FXML
-	private AnchorPane player3Card2;
-
-	@FXML
-	private AnchorPane player3Card3;
-
-	@FXML
-	private AnchorPane player3Card4;
-
-	@FXML
-	private AnchorPane player3Card5;
-
-	@FXML
-	private AnchorPane player1Board;
-
-	@FXML
-	private Label player1Name;
-
-	@FXML
-	private Label player1CardTotal;
-
-	@FXML
-	private AnchorPane player2Board;
-
-	@FXML
-	private Label player2Name;
-
-	@FXML
-	private Label player2CardTotal;
-
-	@FXML
-	private AnchorPane dealerBoard;
-
-	@FXML
-	private Label DealCardTotal;
-
-	@FXML
-	private Label dNum1;
-
-	@FXML
-	private Label dSuit1;
-
-	@FXML
-	private Label pot;
-
-	@FXML
-	private Button stand;
-
-	@FXML
-	private Button hit;
-
-	@FXML
-	private AnchorPane playerOptionsView;
-
-	@FXML
-	private Label promptText;
-
-	@FXML
-	void exit(ActionEvent event) {
+	public void exit(ActionEvent event) {
 		System.exit(0);
 	}
 
 	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
+	public void initialize(URL location, ResourceBundle resources) {
+		// TODO Auto-generated method stub
 
 	}
+
 }
