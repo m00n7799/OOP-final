@@ -44,11 +44,14 @@ public class HiloController implements Initializable{
 	@FXML
 	private Label promptText;
 	
+<<<<<<< HEAD
     @FXML
     private Label lastCardPrompt;
     
     @FXML
     private Label isThisPrompt;
+=======
+>>>>>>> parent of a1a50eb... Added to HiLo GUI
 
 	@FXML
 	void gotomainMenu(ActionEvent event) {
@@ -70,17 +73,26 @@ public class HiloController implements Initializable{
 
 	@FXML
 	void CardIsHigher(ActionEvent event) {
+<<<<<<< HEAD
 
+=======
+>>>>>>> parent of a1a50eb... Added to HiLo GUI
 		count++;
 		if (count > 52) {
 			count = 1;
 		}
 		isHigher = true;
+<<<<<<< HEAD
 		LastCard.setText(deck.getCard().get(count - 1).toString());
 		Card.setText(deck.getCard().get(count).toString());
 		check();
 		HiLo.game(isWinner);
 		money.setText(Integer.toString(HiLo.anti));
+=======
+		LastCard.setText(Integer.toString(Deck.getCard().get(count-1).getCardValue()));
+		Card.setText(Integer.toString(Deck.getCard().get(count).getCardValue()));
+		hl.game(check());
+>>>>>>> parent of a1a50eb... Added to HiLo GUI
 	}
 
 	@FXML
@@ -88,6 +100,7 @@ public class HiloController implements Initializable{
 
 		isHigher = false;
 		count++;
+<<<<<<< HEAD
 		if (count > 52) {
 			count = 1;
 		}
@@ -113,6 +126,12 @@ public class HiloController implements Initializable{
 		
 		Card.setVisible(true);
 		Card.setDisable(false);
+=======
+		LastCard.setText(Integer.toString(Deck.getCard().get(count-1).getCardValue()));
+		Card.setText(Integer.toString(Deck.getCard().get(count).getCardValue()));
+		hl.game(check());
+		
+>>>>>>> parent of a1a50eb... Added to HiLo GUI
 		
 		promptText.setVisible(true);
 		promptText.setDisable(false);
@@ -134,6 +153,7 @@ public class HiloController implements Initializable{
 		money.setText(Integer.toString(HiLo.anti));
 		Card.setText(deck.getCard().get(0).toString());
 	}
+<<<<<<< HEAD
 
 	public void check() {
 		
@@ -153,6 +173,24 @@ public class HiloController implements Initializable{
 		} else {
 			promptText.setText("Even, House Wins");
 			isWinner = false;
+=======
+	 @FXML
+	    void StartGame(ActionEvent event) {
+		 Card.setText(Integer.toString(Deck.getCard().get(0).getCardValue()));
+	    }
+
+	public boolean check() {
+		if(Deck.getCard().get(count).getCardValue() > Deck.getCard().get(count - 1).getCardValue() && isHigher) {
+			return true;
+		}else if(Deck.getCard().get(count).getCardValue() < Deck.getCard().get(count - 1).getCardValue() && isHigher){
+			return false;
+		}else if(Deck.getCard().get(count).getCardValue() > Deck.getCard().get(count - 1).getCardValue() && !isHigher) {
+			return false;
+		}else if(Deck.getCard().get(count).getCardValue() < Deck.getCard().get(count - 1).getCardValue() && !isHigher) {
+			return true;
+		}else {
+			return false;
+>>>>>>> parent of a1a50eb... Added to HiLo GUI
 		}
 	}
 

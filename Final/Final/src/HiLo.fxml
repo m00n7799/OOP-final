@@ -7,6 +7,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="286.0" prefWidth="548.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.HiloController">
    <children>
+<<<<<<< HEAD
       <Button fx:id="Exit" layoutX="218.0" layoutY="246.0" mnemonicParsing="false" onAction="#gotomainMenu" text="Return To Main Menu" />
       <Button fx:id="Higher" disable="true" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#CardIsHigher" prefWidth="100.0" text="Higher" visible="false" />
       <Button fx:id="Lower" disable="true" layoutX="434.0" layoutY="14.0" mnemonicParsing="false" onAction="#CardIsLower" prefWidth="100.0" text="Lower" visible="false" />
@@ -21,5 +22,15 @@
       <Label fx:id="money" disable="true" layoutX="466.0" layoutY="116.0" text="money" visible="false" />
       <Label fx:id="isThisPrompt" disable="true" layoutX="252.0" layoutY="116.0" text="Is This Card:" textAlignment="CENTER" visible="false" />
       <Label fx:id="promptText" alignment="CENTER" disable="true" layoutX="237.0" layoutY="221.0" text="This Is Prmpt Text" textAlignment="CENTER" visible="false" />
+=======
+      <Button fx:id="Exit" layoutX="319.0" layoutY="485.0" mnemonicParsing="false" onAction="#gotomainMenu" text="Return To Main Menu" />
+      <Button fx:id="Higher" layoutX="89.0" layoutY="50.0" mnemonicParsing="false" onAction="#CardIsHigher" text="Higher" />
+      <Button fx:id="Lower" layoutX="600.0" layoutY="50.0" mnemonicParsing="false" onAction="#CardIsLower" text="Lower" />
+      <Label layoutX="365.0" layoutY="60.0" text="HiLo!" />
+      <Label fx:id="Card" layoutX="442.0" layoutY="278.0" text="text" />
+      <Button fx:id="start" layoutX="263.0" layoutY="115.0" mnemonicParsing="false" onAction="#StartGame" text="Start" />
+      <Label layoutX="284.0" layoutY="249.0" text="Last Card" />
+      <Label fx:id="LastCard" layoutX="284.0" layoutY="294.0" text="lastCard" />
+>>>>>>> parent of a1a50eb... Added to HiLo GUI
    </children>
 </AnchorPane>
