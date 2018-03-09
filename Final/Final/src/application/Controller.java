@@ -302,9 +302,15 @@ public class Controller implements Initializable {
 				player3CardTotal.setText(Integer.toString(players.get(0).getHandValue()));
 				player1CardTotal.setText(Integer.toString(players.get(1).getHandValue()));
 				player2CardTotal.setText(Integer.toString(players.get(2).getHandValue()));
+				
 				setPlayer3Hand();
 				setPlayer1Hand(1);
 				setPlayer2Hand(2);
+				
+				p3Balance.setText(Double.toString(players.get(0).getBalance()));
+				p1Balance.setText(Double.toString(players.get(1).getBalance()));
+				p2Balance.setText(Double.toString(players.get(2).getBalance()));
+
 			}
 		}
 	}
