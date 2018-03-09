@@ -20,8 +20,8 @@ public class HiLo {
 		}
 
 	public void lose() {
-		if (anti == -50) {
-			// lose
+		if (anti == -100) {
+			
 		}
 	}
 
