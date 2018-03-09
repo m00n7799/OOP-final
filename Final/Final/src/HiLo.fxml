@@ -31,6 +31,9 @@
       <Button fx:id="start" layoutX="263.0" layoutY="115.0" mnemonicParsing="false" onAction="#StartGame" text="Start" />
       <Label layoutX="284.0" layoutY="249.0" text="Last Card" />
       <Label fx:id="LastCard" layoutX="284.0" layoutY="294.0" text="lastCard" />
+<<<<<<< HEAD
+>>>>>>> parent of a1a50eb... Added to HiLo GUI
+=======
 >>>>>>> parent of a1a50eb... Added to HiLo GUI
    </children>
 </AnchorPane>

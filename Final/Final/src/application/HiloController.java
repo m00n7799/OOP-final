@@ -45,11 +45,14 @@ public class HiloController implements Initializable{
 	private Label promptText;
 	
 <<<<<<< HEAD
+<<<<<<< HEAD
     @FXML
     private Label lastCardPrompt;
     
     @FXML
     private Label isThisPrompt;
+=======
+>>>>>>> parent of a1a50eb... Added to HiLo GUI
 =======
 >>>>>>> parent of a1a50eb... Added to HiLo GUI
 
@@ -74,7 +77,10 @@ public class HiloController implements Initializable{
 	@FXML
 	void CardIsHigher(ActionEvent event) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+>>>>>>> parent of a1a50eb... Added to HiLo GUI
 =======
 >>>>>>> parent of a1a50eb... Added to HiLo GUI
 		count++;
@@ -92,6 +98,9 @@ public class HiloController implements Initializable{
 		LastCard.setText(Integer.toString(Deck.getCard().get(count-1).getCardValue()));
 		Card.setText(Integer.toString(Deck.getCard().get(count).getCardValue()));
 		hl.game(check());
+<<<<<<< HEAD
+>>>>>>> parent of a1a50eb... Added to HiLo GUI
+=======
 >>>>>>> parent of a1a50eb... Added to HiLo GUI
 	}
 
@@ -130,6 +139,10 @@ public class HiloController implements Initializable{
 		LastCard.setText(Integer.toString(Deck.getCard().get(count-1).getCardValue()));
 		Card.setText(Integer.toString(Deck.getCard().get(count).getCardValue()));
 		hl.game(check());
+<<<<<<< HEAD
+=======
+		
+>>>>>>> parent of a1a50eb... Added to HiLo GUI
 		
 >>>>>>> parent of a1a50eb... Added to HiLo GUI
 		
