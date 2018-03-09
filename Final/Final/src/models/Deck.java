@@ -70,9 +70,14 @@ public class Deck {
 		ArrayList<Card> hand = new ArrayList<Card>();
 		// shuffledDeck.get(0).Hidden(false);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		Card card = null;
 		try {
 			card=shuffledDeck.get(0);
+=======
+		Card card = shuffledDeck.get(0);
+		try {
+>>>>>>> parent of 730719b... Nono
 =======
 		Card card = shuffledDeck.get(0);
 		try {
@@ -86,11 +91,14 @@ public class Deck {
 			hand.add(card);
 			p.setHand(hand);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		}catch (IndexOutOfBoundsException e) {
 			newDeck();
 			card = shuffledDeck.get(0);
 			hand.add(card);
 			p.setHand(hand);
+=======
+>>>>>>> parent of 730719b... Nono
 =======
 >>>>>>> parent of 730719b... Nono
 		}
