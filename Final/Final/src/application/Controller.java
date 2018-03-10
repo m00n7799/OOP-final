@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-
 import controller.CardGames;
 import games.BlackJack;
 import javafx.event.ActionEvent;
@@ -46,8 +45,8 @@ public class Controller implements Initializable {
 				enterNumberOfPlayers.setVisible(false);
 				player1Board.setDisable(false);
 				player1Board.setVisible(true);
-//				dealerBoard.setDisable(false);
-//				dealerBoard.setVisible(true);
+				// dealerBoard.setDisable(false);
+				// dealerBoard.setVisible(true);
 
 				BlackJack.startNewGame(number);
 				players = BlackJack.getPlayers();
@@ -66,7 +65,7 @@ public class Controller implements Initializable {
 				break;
 
 			case 2:
-				
+
 				clearAll();
 
 				enterNumberOfPlayers.setDisable(true);
@@ -75,8 +74,8 @@ public class Controller implements Initializable {
 				player2Board.setDisable(false);
 				player3Board.setVisible(true);
 				player3Board.setDisable(false);
-//				dealerBoard.setDisable(false);
-//				dealerBoard.setVisible(true);
+				// dealerBoard.setDisable(false);
+				// dealerBoard.setVisible(true);
 
 				BlackJack.startNewGame(number);
 
@@ -114,8 +113,8 @@ public class Controller implements Initializable {
 				player2Board.setDisable(false);
 				player3Board.setVisible(true);
 				player3Board.setDisable(false);
-//				dealerBoard.setDisable(false);
-//				dealerBoard.setVisible(true);
+				// dealerBoard.setDisable(false);
+				// dealerBoard.setVisible(true);
 
 				BlackJack.startNewGame(number);
 
@@ -174,10 +173,11 @@ public class Controller implements Initializable {
 
 	@FXML
 	public void hit(ActionEvent event) {
+		players.get(playerID).setHandValue();
 
 		Deck.nextCard(players.get(playerID));
+		players.get(playerID).setHandValue();
 		if (players.size() == 1) {
-
 			player1CardTotal.setText(Integer.toString(players.get(playerID).getHandValue()));
 			setPlayer1Hand(0);
 			p1Balance.setText(Double.toString(players.get(playerID).getBalance()));
@@ -246,7 +246,6 @@ public class Controller implements Initializable {
 			playerID = 0;
 			ArrayList<Player> w = BlackJack.win();
 
-
 			for (Player player : w) {
 				promptText.setText("Winner: " + player.getName());
 			}
@@ -293,7 +292,7 @@ public class Controller implements Initializable {
 				player2CardTotal.setText(Integer.toString(players.get(1).getHandValue()));
 				setPlayer2Hand(1);
 				p2Balance.setText(Double.toString(players.get(1).getBalance()));
-				
+
 				setPlayer3Hand();
 				setPlayer2Hand(1);
 
@@ -302,11 +301,11 @@ public class Controller implements Initializable {
 				player3CardTotal.setText(Integer.toString(players.get(0).getHandValue()));
 				player1CardTotal.setText(Integer.toString(players.get(1).getHandValue()));
 				player2CardTotal.setText(Integer.toString(players.get(2).getHandValue()));
-				
+
 				setPlayer3Hand();
 				setPlayer1Hand(1);
 				setPlayer2Hand(2);
-				
+
 				p3Balance.setText(Double.toString(players.get(0).getBalance()));
 				p1Balance.setText(Double.toString(players.get(1).getBalance()));
 				p2Balance.setText(Double.toString(players.get(2).getBalance()));
@@ -379,14 +378,14 @@ public class Controller implements Initializable {
 	}
 
 	public void setPlayer2Hand(int ID) {
-		
+
 		p2c1s1.setText(players.get(ID).getHand().get(0).toString());
 		p2c2s1.setText(players.get(ID).getHand().get(1).toString());
 
 		if (players.get(ID).getHand().size() > 2) {
 			p2c3s1.setText(players.get(ID).getHand().get(2).toString());
 		}
-		
+
 		if (players.get(ID).getHand().size() > 3) {
 			p2c4s1.setText(players.get(ID).getHand().get(3).toString());
 		}

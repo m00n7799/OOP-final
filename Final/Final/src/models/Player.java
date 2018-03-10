@@ -52,10 +52,15 @@ public class Player implements Comparable<Player> {
 		for (int i = 0; i < hand.size(); i++) {
 			handValue += hand.get(i).getCardValue();
 		}
-		if (hand.contains(Rank.ACE) && handValue > 11) {
+		for(Card c:hand) {
+			if(handValue>21) {
+			if(c.getValue()==Rank.ACE) {
 			handValue -= 10;
+			}
+			}
 		}
-	}
+		}
+	
 
 	public void setHand(ArrayList<Card> hand2) {
 		for (int i = 0; i < hand2.size(); i++) {
