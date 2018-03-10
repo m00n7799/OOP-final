@@ -63,25 +63,36 @@ public class HiloController {
 	void CardIsHigher(ActionEvent event) {
 
 		count++;
+		if(count>51) {
+			LastCard.setText("You're out of cards");
+			Card.setText("You're out of cards");
+		}
+		else {
 		isHigher = true;
 		check();
 		LastCard.setText(Deck.getCard().get(count - 1).toString());
 		Card.setText(Deck.getCard().get(count).toString());
 		HiLo.game(isWinner);
 		money.setText(Integer.toString(HiLo.anti));
+		}
 	}
 
 	@FXML
 	void CardIsLower(ActionEvent event) {
 
-		isHigher = false;
 		count++;
+		if(count>51) {
+			LastCard.setText("You're out of cards");
+			Card.setText("You're out of cards");
+		}
+		else {
+			isHigher = false;
 		check();
 		LastCard.setText(Deck.getCard().get(count - 1).toString());
 		Card.setText(Deck.getCard().get(count).toString());
 		HiLo.game(isWinner);
 		money.setText(Integer.toString(HiLo.anti));
-
+		}
 	}
 
 	@FXML
