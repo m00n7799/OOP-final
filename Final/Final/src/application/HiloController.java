@@ -86,6 +86,7 @@ public class HiloController {
 
 	@FXML
 	void StartGame(ActionEvent event) {
+		HiLo.anti = 0;
 		money.setText(Integer.toString(HiLo.anti));
 		Card.setText(Deck.getCard().get(0).toString());
 	}

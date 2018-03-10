@@ -245,10 +245,7 @@ public class Controller implements Initializable {
 
 			playerID = 0;
 			ArrayList<Player> w = BlackJack.win();
-<<<<<<< HEAD
-=======
-			
->>>>>>> acbac23cf8da8abbb71e0cd97b47ad34f32e3de6
+
 
 			for (Player player : w) {
 				promptText.setText("Winner: " + player.getName());

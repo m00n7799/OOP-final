@@ -2,7 +2,7 @@ package games;
 
 public class HiLo {
 	
-	static public int anti = 1500;
+	static public int anti = 0;
 
 	public static void game(boolean bool) {
 
