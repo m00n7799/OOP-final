@@ -316,19 +316,19 @@ public class Controller implements Initializable {
 
 	public void setPlayer1Hand(int i) {
 
-		p1c1s1.setText(players.get(playerID).getHand().get(0).toString());
-		p1c2s1.setText(players.get(playerID).getHand().get(1).toString());
+		p1c1s1.setText(players.get(i).getHand().get(0).toString());
+		p1c2s1.setText(players.get(i).getHand().get(1).toString());
 
-		if (players.get(playerID).getHand().size() > 2) {
+		if (players.get(i).getHand().size() > 2) {
 
-			p1c3s1.setText(players.get(playerID).getHand().get(2).toString());
+			p1c3s1.setText(players.get(i).getHand().get(2).toString());
 		}
-		if (players.get(playerID).getHand().size() > 3) {
+		if (players.get(i).getHand().size() > 3) {
 
-			p1c4s1.setText(players.get(playerID).getHand().get(3).toString());
+			p1c4s1.setText(players.get(i).getHand().get(3).toString());
 		}
-		if (players.get(playerID).getHand().size() > 4) {
-			p1c5s1.setText(players.get(playerID).getHand().get(4).toString());
+		if (players.get(i).getHand().size() > 4) {
+			p1c5s1.setText(players.get(i).getHand().get(4).toString());
 		}
 	}
 
