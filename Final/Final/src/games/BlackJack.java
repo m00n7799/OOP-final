@@ -66,7 +66,6 @@ public class BlackJack {
 			boolean tie = true;
 			for (Human q : posWinners) {
 				ArrayList<Boolean> bool = p.getHigher();
-				ArrayList<Boolean> bool2 = q.getHigher();
 				for (Boolean b : bool) {
 					if (!b) {
 						win = false;
@@ -85,9 +84,7 @@ public class BlackJack {
 						if (tie) {
 							p.setWin(true);
 							q.setWin(true);
-							winners.add(q);
 							winners.add(p);
-							break;
 						}
 					}
 				}

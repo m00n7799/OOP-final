@@ -44,7 +44,7 @@ public class Controller implements Initializable {
 
 				enterNumberOfPlayers.setDisable(true);
 				enterNumberOfPlayers.setVisible(false);
-				
+
 				player1Board.setDisable(false);
 				player1Board.setVisible(true);
 				// dealerBoard.setDisable(false);
@@ -101,7 +101,7 @@ public class Controller implements Initializable {
 				enterNumberOfPlayers.setVisible(false);
 				// dealerBoard.setDisable(false);
 				// dealerBoard.setVisible(true);
-				
+
 				player3Board.setVisible(true);
 				player3Board.setDisable(false);
 				player1Board.setDisable(false);
@@ -223,14 +223,12 @@ public class Controller implements Initializable {
 
 		if (players.get(playerID).isBust()) {
 			if (!((playerID + 1) >= players.size())) {
-				promptText.setText(players.get(playerID).getName() + " Has Bust, " + players.get(playerID + 1).getName()
-						+ " is Up");
+				promptText.setText(players.get(playerID).getName() + " Has Bust, " + players.get(playerID + 1).getName()+ " is Up");
 			}
 			passTurn();
 		} else if (players.get(playerID).getHand().size() == 5) {
 			if (!((playerID + 1) >= players.size())) {
-				promptText.setText(players.get(playerID).getName() + " reached 5 Card Limit "
-						+ players.get(playerID + 1).getName() + " is Up");
+				promptText.setText(players.get(playerID).getName() + " reached 5 Card Limit "+ players.get(playerID + 1).getName() + " is Up");
 			}
 			passTurn();
 		}
@@ -240,10 +238,12 @@ public class Controller implements Initializable {
 	private void newRound(ActionEvent event) {
 
 		playerID = 0;
+		startNewRound.setVisible(false);
+		startNewRound.setDisable(true);
+
 		BlackJack.startNewRound();
 
-		hit.setDisable(false);
-		stand.setDisable(false);
+		playerOptionsView.setDisable(false);
 
 		if (players.size() == 1) {
 
@@ -319,6 +319,8 @@ public class Controller implements Initializable {
 		p3c3s1.setText("");
 		p3c4s1.setText("");
 		p3c5s1.setText("");
+		
+		pot.setText("");
 
 	}
 
@@ -375,13 +377,33 @@ public class Controller implements Initializable {
 	}
 
 	private void pay() {
+
 		players.get(playerID).setBalance(players.get(playerID).getBalance() - 100);
 		pool += 100;
-		pot.setText(Double.toString(pool));
+
+		if (players.size() == 1) {
+			setPlayer1(playerID);
+		} else if (players.size() == 2) {
+
+			if (playerID == 0) {
+				setPlayer3();
+			} else {
+				setPlayer2(playerID);
+			}
+		} else if (players.size() == 3) {
+			if (playerID == 0) {
+				setPlayer3();
+			} else if (playerID == 1) {
+				setPlayer1(playerID);
+			} else {
+				setPlayer2(playerID);
+			}
+		}
+		pot.setText("Winnings: " + Double.toString(pool));
 	}
 
 	private void givePayOut() {
-		
+
 		ArrayList<Human> winners = BlackJack.win();
 
 		System.out.println(winners.size());
@@ -391,28 +413,12 @@ public class Controller implements Initializable {
 			for (int i = 0; i < winners.size(); i++) {
 				text += winners.get(i).getName() + " ";
 			}
-		}else {
+		} else {
 			text += "House";
 		}
 
 		promptText.setText(text);
 
-//		ArrayList<Human> wina = new ArrayList<>();
-//		if (winners.size() == 1) {
-//			
-//			wina.add(winners.get(0));
-//
-//		} else if (winners.size() == 2) {
-//
-//			wina.add(winners.get(0));
-//			wina.add(winners.get(1));
-//
-//		} else if (winners.size() == 3) {
-//
-//			wina.add(winners.get(0));
-//			wina.add(winners.get(1));
-//			wina.add(winners.get(2));
-//		}
 		for (Human player : players) {
 			for (Human winner : winners) {
 				if (player.getName().equals(winner.getName())) {
@@ -420,6 +426,23 @@ public class Controller implements Initializable {
 				}
 			}
 		}
+
+		if (players.size() == 1) {
+			setPlayer1(playerID);
+
+		} else if (players.size() == 2) {
+
+			setPlayer3();
+			setPlayer2(1);
+
+		} else if (players.size() == 3) {
+			setPlayer3();
+			setPlayer1(1);
+			setPlayer2(2);
+		}
+
+		startNewRound.setVisible(true);
+		startNewRound.setDisable(false);
 	}
 
 	@FXML
@@ -462,36 +485,6 @@ public class Controller implements Initializable {
 	private Label p1c5s1;
 
 	@FXML
-	private Label p1c1n2;
-
-	@FXML
-	private Label p1c1s2;
-
-	@FXML
-	private Label p1c2n2;
-
-	@FXML
-	private Label p1c2s2;
-
-	@FXML
-	private Label p1c3n2;
-
-	@FXML
-	private Label p1c3s2;
-
-	@FXML
-	private Label p1c4n2;
-
-	@FXML
-	private Label p1c4s2;
-
-	@FXML
-	private Label p1c5n2;
-
-	@FXML
-	private Label p1c5s2;
-
-	@FXML
 	private Label p2c1n1;
 
 	@FXML
@@ -520,36 +513,6 @@ public class Controller implements Initializable {
 
 	@FXML
 	private Label p2c5s1;
-
-	@FXML
-	private Label p2c1n2;
-
-	@FXML
-	private Label p2c1s2;
-
-	@FXML
-	private Label p2c2n2;
-
-	@FXML
-	private Label p2c2s2;
-
-	@FXML
-	private Label p2c3n2;
-
-	@FXML
-	private Label p2c3s2;
-
-	@FXML
-	private Label p2c4n2;
-
-	@FXML
-	private Label p2c4s2;
-
-	@FXML
-	private Label p2c5n2;
-
-	@FXML
-	private Label p2c5s2;
 
 	@FXML
 	private Label p3c1n1;
@@ -586,30 +549,6 @@ public class Controller implements Initializable {
 
 	@FXML
 	private Label p3c1s2;
-
-	@FXML
-	private Label p3c2n2;
-
-	@FXML
-	private Label p3c2s2;
-
-	@FXML
-	private Label p3c3n2;
-
-	@FXML
-	private Label p3c3s2;
-
-	@FXML
-	private Label p3c4n2;
-
-	@FXML
-	private Label p3c4s2;
-
-	@FXML
-	private Label p3c5n2;
-
-	@FXML
-	private Label p3c5s2;
 
 	@FXML
 	private TextField enterNumberOfPlayers;
@@ -682,9 +621,12 @@ public class Controller implements Initializable {
 
 	@FXML
 	private Label promptText;
-	
-    @FXML
-    private Button doubleDown;
+
+	@FXML
+	private Button doubleDown;
+
+	@FXML
+	private Button startNewRound;
 
 	public void playBlackJack(ActionEvent event) {
 		CardGames.runBlackjack();
