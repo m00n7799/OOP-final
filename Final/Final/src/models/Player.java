@@ -10,21 +10,15 @@ public class Player implements Comparable<Player> {
 	private String name;
 	private int handValue;
 	double myBet;
-	private boolean bust = false;
-	private boolean nat21 = false;
 	private ArrayList<Boolean> higher = new ArrayList<Boolean>();
 	private boolean win = false;
 
 	public boolean isBust() {
-		if(getHandValue() <= 21) {
+		if (getHandValue() <= 21) {
 			return false;
-		}else {
+		} else {
 			return true;
-		}		
-	}
-
-	public void setBust(boolean bust) {
-		this.bust = bust;
+		}
 	}
 
 	private ArrayList<Card> hand = new ArrayList<Card>();
@@ -49,18 +43,19 @@ public class Player implements Comparable<Player> {
 	public void setHandValue() {
 
 		handValue = 0;
+		
 		for (int i = 0; i < hand.size(); i++) {
 			handValue += hand.get(i).getCardValue();
 		}
-		for(Card c:hand) {
-			if(handValue>21) {
-			if(c.getValue()==Rank.ACE) {
-			handValue -= 10;
-			}
+		
+		for (Card c : hand) {
+			if (handValue > 21) {
+				if (c.getRank().equals(Rank.ACE)) {
+					handValue -= 10;
+				}
 			}
 		}
-		}
-	
+	}
 
 	public void setHand(ArrayList<Card> hand2) {
 		for (int i = 0; i < hand2.size(); i++) {
@@ -73,14 +68,10 @@ public class Player implements Comparable<Player> {
 	}
 
 	public boolean isNat21() {
-		return nat21;
-	}
-
-	public void setNat21(boolean nat21) {
 		if (hand.size() == 2 && handValue == 21) {
-			nat21 = true;
-		}else {
-			nat21 = false;
+			return true;
+		} else {
+			return false;
 		}
 	}
 
@@ -99,9 +90,10 @@ public class Player implements Comparable<Player> {
 	public void setWin(boolean win) {
 		this.win = win;
 	}
+
 	public void resetHand() {
 		hand = new ArrayList<Card>();
-		handValue=0;		
+		handValue = 0;
 	}
 
 	@Override
@@ -114,7 +106,7 @@ public class Player implements Comparable<Player> {
 				ret = 1;
 			} else if (hand2 > hand1) {
 				ret = -1;
-			}else {
+			} else {
 				ret = 0;
 			}
 		} else if (this.isBust() && !other.isBust()) {

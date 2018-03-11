@@ -20,10 +20,11 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import models.Deck;
 import models.Human;
-import models.Player;
 
 public class Controller implements Initializable {
 
+	private ArrayList<Human> players = new ArrayList<>();
+	private double pool = 0;
 	private int playerID = 0;
 
 	@FXML
@@ -43,6 +44,7 @@ public class Controller implements Initializable {
 
 				enterNumberOfPlayers.setDisable(true);
 				enterNumberOfPlayers.setVisible(false);
+				
 				player1Board.setDisable(false);
 				player1Board.setVisible(true);
 				// dealerBoard.setDisable(false);
@@ -56,10 +58,8 @@ public class Controller implements Initializable {
 				playerOptionsView.setVisible(true);
 				playerOptionsView.setDisable(false);
 
-				player1CardTotal.setText(Integer.toString(players.get(playerID).getHandValue()));
-				setPlayer1Hand(0);
+				setPlayer1(0);
 
-				p1Balance.setText(Double.toString(players.get(playerID).getBalance()));
 				promptText.setText(players.get(playerID).getName() + " Hit Or Stand?");
 
 				break;
@@ -87,16 +87,8 @@ public class Controller implements Initializable {
 				player3Name.setText(players.get(0).getName());
 				player2Name.setText(players.get(1).getName());
 
-				player3CardTotal.setText(Integer.toString(players.get(0).getHandValue()));
-				player2CardTotal.setText(Integer.toString(players.get(1).getHandValue()));
-
-				p3Balance.setText(Double.toString(players.get(0).getBalance()));
-				p2Balance.setText(Double.toString(players.get(1).getBalance()));
-
-				setPlayer3Hand();
-				playerID++;
-				setPlayer2Hand(1);
-				playerID = 0;
+				setPlayer3();
+				setPlayer2(1);
 				promptText.setText(players.get(playerID).getName() + " Hit Or Stand?");
 
 				break;
@@ -107,14 +99,15 @@ public class Controller implements Initializable {
 
 				enterNumberOfPlayers.setDisable(true);
 				enterNumberOfPlayers.setVisible(false);
+				// dealerBoard.setDisable(false);
+				// dealerBoard.setVisible(true);
+				
+				player3Board.setVisible(true);
+				player3Board.setDisable(false);
 				player1Board.setDisable(false);
 				player1Board.setVisible(true);
 				player2Board.setVisible(true);
 				player2Board.setDisable(false);
-				player3Board.setVisible(true);
-				player3Board.setDisable(false);
-				// dealerBoard.setDisable(false);
-				// dealerBoard.setVisible(true);
 
 				BlackJack.startNewGame(number);
 
@@ -127,17 +120,9 @@ public class Controller implements Initializable {
 				playerOptionsView.setVisible(true);
 				playerOptionsView.setDisable(false);
 
-				setPlayer3Hand();
-				setPlayer1Hand(1);
-				setPlayer2Hand(2);
-
-				p3Balance.setText(Double.toString(players.get(playerID).getBalance()));
-				p1Balance.setText(Double.toString(players.get(playerID + 1).getBalance()));
-				p2Balance.setText(Double.toString(players.get(playerID + 2).getBalance()));
-
-				player3CardTotal.setText(Integer.toString(players.get(playerID).getHandValue()));
-				player1CardTotal.setText(Integer.toString(players.get(playerID + 1).getHandValue()));
-				player2CardTotal.setText(Integer.toString(players.get(playerID + 2).getHandValue()));
+				setPlayer3();
+				setPlayer1(1);
+				setPlayer2(2);
 
 				promptText.setText(players.get(playerID).getName() + " Hit Or Stand?");
 
@@ -150,10 +135,8 @@ public class Controller implements Initializable {
 		}
 	}
 
-	boolean isDrawing;
-
 	@FXML
-	public void returnMain(ActionEvent event) {
+	private void returnMain(ActionEvent event) {
 
 		AnchorPane root = new AnchorPane();
 		FXMLLoader loader = new FXMLLoader();
@@ -169,48 +152,31 @@ public class Controller implements Initializable {
 		secondStage.show();
 	}
 
-	ArrayList<Human> players = new ArrayList<>();
-
 	@FXML
-	public void hit(ActionEvent event) {
-		players.get(playerID).setHandValue();
+	private void doubleDown(ActionEvent event) {
 
-		Deck.nextCard(players.get(playerID));
-		players.get(playerID).setHandValue();
+		Deck.nextCard(players.get(playerID), true);
+
 		if (players.size() == 1) {
-			player1CardTotal.setText(Integer.toString(players.get(playerID).getHandValue()));
-			setPlayer1Hand(0);
-			p1Balance.setText(Double.toString(players.get(playerID).getBalance()));
+			setPlayer1(playerID);
 
 		} else if (players.size() == 2) {
 
 			if (playerID == 0) {
-				player3CardTotal.setText(Integer.toString(players.get(playerID).getHandValue()));
-				setPlayer3Hand();
-				p3Balance.setText(Double.toString(players.get(playerID).getBalance()));
-
+				setPlayer3();
 			} else {
-				player2CardTotal.setText(Integer.toString(players.get(playerID).getHandValue()));
-				setPlayer2Hand(1);
-				p2Balance.setText(Double.toString(players.get(playerID).getBalance()));
+				setPlayer2(playerID);
 			}
 		} else if (players.size() == 3) {
 			if (playerID == 0) {
-				player3CardTotal.setText(Integer.toString(players.get(playerID).getHandValue()));
-				setPlayer3Hand();
-				p3Balance.setText(Double.toString(players.get(playerID).getBalance()));
-
+				setPlayer3();
 			} else if (playerID == 1) {
-				player1CardTotal.setText(Integer.toString(players.get(playerID).getHandValue()));
-				setPlayer1Hand(1);
-				p1Balance.setText(Double.toString(players.get(playerID).getBalance()));
-
+				setPlayer1(playerID);
 			} else {
-				player2CardTotal.setText(Integer.toString(players.get(playerID).getHandValue()));
-				setPlayer2Hand(2);
-				p2Balance.setText(Double.toString(players.get(playerID).getBalance()));
+				setPlayer2(playerID);
 			}
 		}
+
 		if (players.get(playerID).isBust()) {
 			if ((playerID + 1) >= players.size()) {
 				promptText.setText("Who is the Winner? The House");
@@ -230,91 +196,87 @@ public class Controller implements Initializable {
 		}
 	}
 
-	ArrayList<Human> huma = new ArrayList<>();
-	double pool = 100;
+	@FXML
+	private void hit(ActionEvent event) {
 
-	private void passTurn() {
+		Deck.nextCard(players.get(playerID), false);
 
-		Human h = (Human) players.get(playerID);
-		h.setBalance(h.getBalance() - 100);
-		pool += 100;
-		huma.add(h);
-		playerID++;
+		if (players.size() == 1) {
+			setPlayer1(playerID);
 
-		if (playerID >= players.size()) {
+		} else if (players.size() == 2) {
 
-			playerID = 0;
-			ArrayList<Player> w = BlackJack.win();
-
-			for (Player player : w) {
-				promptText.setText("Winner: " + player.getName());
+			if (playerID == 0) {
+				setPlayer3();
+			} else {
+				setPlayer2(playerID);
 			}
-
-			ArrayList<Human> wina = new ArrayList<>();
-			if (w.size() == 1) {
-				wina.add((Human) w.get(0));
-			} else if (w.size() == 2) {
-				wina.add((Human) w.get(0));
-				wina.add((Human) w.get(1));
-			} else if (w.size() == 3) {
-				wina.add((Human) w.get(0));
-				wina.add((Human) w.get(1));
-				wina.add((Human) w.get(2));
+		} else if (players.size() == 3) {
+			if (playerID == 0) {
+				setPlayer3();
+			} else if (playerID == 1) {
+				setPlayer1(playerID);
+			} else {
+				setPlayer2(playerID);
 			}
-			for (Human d : huma) {
-				for (Human win : wina) {
-					if (d.getName().equals(win.getName())) {
-						d.setBalance(d.getBalance() + (pool / w.size()));
-					}
-				}
+		}
+
+		if (players.get(playerID).isBust()) {
+			if (!((playerID + 1) >= players.size())) {
+				promptText.setText(players.get(playerID).getName() + " Has Bust, " + players.get(playerID + 1).getName()
+						+ " is Up");
 			}
-			pool = 100;
-
-			clearAll();
-
-			BlackJack.startNewRound();
-
-			huma.clear();
-
-			if (players.size() == 1) {
-
-				player1CardTotal.setText(Integer.toString(players.get(0).getHandValue()));
-
-				setPlayer1Hand(0);
-				p1Balance.setText(Double.toString(players.get(0).getBalance()));
-
-			} else if (players.size() == 2) {
-
-				player3CardTotal.setText(Integer.toString(players.get(0).getHandValue()));
-				setPlayer3Hand();
-				p3Balance.setText(Double.toString(players.get(0).getBalance()));
-
-				player2CardTotal.setText(Integer.toString(players.get(1).getHandValue()));
-				setPlayer2Hand(1);
-				p2Balance.setText(Double.toString(players.get(1).getBalance()));
-
-				setPlayer3Hand();
-				setPlayer2Hand(1);
-
-			} else if (players.size() == 3) {
-
-				player3CardTotal.setText(Integer.toString(players.get(0).getHandValue()));
-				player1CardTotal.setText(Integer.toString(players.get(1).getHandValue()));
-				player2CardTotal.setText(Integer.toString(players.get(2).getHandValue()));
-
-				setPlayer3Hand();
-				setPlayer1Hand(1);
-				setPlayer2Hand(2);
-
-				p3Balance.setText(Double.toString(players.get(0).getBalance()));
-				p1Balance.setText(Double.toString(players.get(1).getBalance()));
-				p2Balance.setText(Double.toString(players.get(2).getBalance()));
-
+			passTurn();
+		} else if (players.get(playerID).getHand().size() == 5) {
+			if (!((playerID + 1) >= players.size())) {
+				promptText.setText(players.get(playerID).getName() + " reached 5 Card Limit "
+						+ players.get(playerID + 1).getName() + " is Up");
 			}
+			passTurn();
 		}
 	}
 
-	public void setPlayer1Hand(int i) {
+	@FXML
+	private void newRound(ActionEvent event) {
+
+		playerID = 0;
+		BlackJack.startNewRound();
+
+		hit.setDisable(false);
+		stand.setDisable(false);
+
+		if (players.size() == 1) {
+
+			setPlayer1(0);
+
+		} else if (players.size() == 2) {
+
+			setPlayer3();
+			setPlayer2(1);
+
+		} else if (players.size() == 3) {
+
+			setPlayer3();
+			setPlayer1(1);
+			setPlayer2(2);
+		}
+	}
+
+	private void passTurn() {
+
+		pay();
+		playerID++;
+
+		if (playerID >= players.size()) {
+			givePayOut();
+			playerOptionsView.setDisable(true);
+		}
+	}
+
+	private void setPlayer1(int i) {
+
+		player1CardTotal.setText(Integer.toString(players.get(i).getHandValue()));
+		p1Balance.setText(Double.toString(players.get(i).getBalance()));
 
 		p1c1s1.setText(players.get(i).getHand().get(0).toString());
 		p1c2s1.setText(players.get(i).getHand().get(1).toString());
@@ -360,24 +322,30 @@ public class Controller implements Initializable {
 
 	}
 
-	public void setPlayer3Hand() {
+	private void setPlayer3() {
+
+		p3Balance.setText(Double.toString(players.get(0).getBalance()));
+		player3CardTotal.setText(Integer.toString(players.get(0).getHandValue()));
 
 		p3c1s1.setText(players.get(0).getHand().get(0).toString());
 		p3c2s1.setText(players.get(0).getHand().get(1).toString());
 
 		if (players.get(0).getHand().size() > 2) {
-			p3c3s1.setText(players.get(playerID).getHand().get(2).toString());
+			p3c3s1.setText(players.get(0).getHand().get(2).toString());
 
 		}
 		if (players.get(0).getHand().size() > 3) {
 			p3c4s1.setText(players.get(0).getHand().get(3).toString());
 		}
-		if (players.get(playerID).getHand().size() > 4) {
-			p3c5s1.setText(players.get(playerID).getHand().get(4).toString());
+		if (players.get(0).getHand().size() > 4) {
+			p3c5s1.setText(players.get(0).getHand().get(4).toString());
 		}
 	}
 
-	public void setPlayer2Hand(int ID) {
+	private void setPlayer2(int ID) {
+
+		player2CardTotal.setText(Integer.toString(players.get(ID).getHandValue()));
+		p2Balance.setText(Double.toString(players.get(ID).getBalance()));
 
 		p2c1s1.setText(players.get(ID).getHand().get(0).toString());
 		p2c2s1.setText(players.get(ID).getHand().get(1).toString());
@@ -396,7 +364,7 @@ public class Controller implements Initializable {
 	}
 
 	@FXML
-	public void stand(ActionEvent event) {
+	private void stand(ActionEvent event) {
 		promptText.setText(players.get(playerID).getName() + " Passes turn");
 		passTurn();
 	}
@@ -404,6 +372,54 @@ public class Controller implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
+	}
+
+	private void pay() {
+		players.get(playerID).setBalance(players.get(playerID).getBalance() - 100);
+		pool += 100;
+		pot.setText(Double.toString(pool));
+	}
+
+	private void givePayOut() {
+		
+		ArrayList<Human> winners = BlackJack.win();
+
+		System.out.println(winners.size());
+		String text = "Winners: ";
+
+		if (!winners.isEmpty()) {
+			for (int i = 0; i < winners.size(); i++) {
+				text += winners.get(i).getName() + " ";
+			}
+		}else {
+			text += "House";
+		}
+
+		promptText.setText(text);
+
+//		ArrayList<Human> wina = new ArrayList<>();
+//		if (winners.size() == 1) {
+//			
+//			wina.add(winners.get(0));
+//
+//		} else if (winners.size() == 2) {
+//
+//			wina.add(winners.get(0));
+//			wina.add(winners.get(1));
+//
+//		} else if (winners.size() == 3) {
+//
+//			wina.add(winners.get(0));
+//			wina.add(winners.get(1));
+//			wina.add(winners.get(2));
+//		}
+		for (Human player : players) {
+			for (Human winner : winners) {
+				if (player.getName().equals(winner.getName())) {
+					winner.setBalance(winner.getBalance() + (pool / winners.size()));
+				}
+			}
+		}
 	}
 
 	@FXML
@@ -666,6 +682,9 @@ public class Controller implements Initializable {
 
 	@FXML
 	private Label promptText;
+	
+    @FXML
+    private Button doubleDown;
 
 	public void playBlackJack(ActionEvent event) {
 		CardGames.runBlackjack();
@@ -677,7 +696,7 @@ public class Controller implements Initializable {
 	}
 
 	@FXML
-	public void exit(ActionEvent event) {
+	private void exit(ActionEvent event) {
 		System.exit(0);
 	}
 }

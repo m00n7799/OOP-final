@@ -11,6 +11,11 @@
 
 
    <children>
+      <Label fx:id="promptText" alignment="CENTER" layoutX="150.0" layoutY="71.0" prefHeight="25.0" prefWidth="600.0" text="Welcome To A Game of BlackJack EnterNumber of Players (1-3)" textAlignment="CENTER" textFill="#899e77">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
       <TextField fx:id="enterNumberOfPlayers" layoutX="336.0" layoutY="304.0" onKeyPressed="#playerNumberEntered" prefHeight="53.0" prefWidth="228.0" promptText="Enter 1-3 Players" />
       <Button layoutX="784.0" layoutY="32.0" mnemonicParsing="false" onAction="#returnMain" prefHeight="25.0" prefWidth="100.0" text="Return To Main" />
       <Button layoutX="14.0" layoutY="32.0" mnemonicParsing="false" onAction="#exit" prefHeight="17.0" prefWidth="100.0" text="Exit Game" />
@@ -150,16 +155,12 @@
       <AnchorPane fx:id="playerOptionsView" disable="true" layoutX="300.0" layoutY="198.0" prefHeight="200.0" prefWidth="300.0" visible="false">
          <children>
             <Label fx:id="pot" layoutX="125.0" layoutY="136.0" text="PotTotal" />
-            <Button fx:id="stand" layoutX="186.0" layoutY="68.0" mnemonicParsing="false" onAction="#stand" prefWidth="100.0" text="Stand" />
+            <Button fx:id="stand" layoutX="186.0" layoutY="68.0" mnemonicParsing="false" onAction="#stand" prefHeight="25.0" prefWidth="100.0" text="Stand" />
             
-            <Button fx:id="hit" layoutX="14.0" layoutY="68.0" mnemonicParsing="false" onAction="#hit" prefWidth="100.0" text="Hit" />
+            <Button fx:id="hit" layoutX="14.0" layoutY="68.0" mnemonicParsing="false" onAction="#hit" prefHeight="25.0" prefWidth="100.0" text="Hit" />
+            <Button fx:id="doubleDown" layoutX="97.0" layoutY="24.0" mnemonicParsing="false" onAction="#doubleDown" prefHeight="25.0" prefWidth="100.0" text="Double Down" />
 
          </children>
       </AnchorPane>
-      <Label fx:id="promptText" alignment="CENTER" layoutX="150.0" layoutY="57.0" prefHeight="25.0" prefWidth="600.0" text="Welcome To A Game of BlackJack EnterNumber of Players (1-3)" textAlignment="CENTER" textFill="#899e77">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
    </children>
 </AnchorPane>

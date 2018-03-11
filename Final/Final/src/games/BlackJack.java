@@ -1,12 +1,8 @@
 package games;
 
 import java.util.ArrayList;
-
-import models.Card;
-import models.Dealer;
 import models.Deck;
 import models.Human;
-import models.Player;
 
 public class BlackJack {
 
@@ -25,48 +21,50 @@ public class BlackJack {
 		deck1.initialDeal(P);
 	}
 
-	public static ArrayList<Player> win() {
-		ArrayList<Player> posWins = new ArrayList<Player>();
-		for (Player p : P) {
-			if (p.getHandValue() > 21){
-				p.setBust(true);
-			}
+	public static ArrayList<Human> win() {
+
+		ArrayList<Human> posWinners = new ArrayList<>();
+		ArrayList<Human> winners = new ArrayList<>();
+
+		for (Human p : P) {
 			if (!p.isBust()) {
-				posWins.add(p);
+				posWinners.add(p);
 			}
 		}
-		ArrayList<Player>winners= new ArrayList<>();
-		int higher = 0;
-		for (Player p : posWins) {
-			for (Player q : posWins) {
-				check = p.getHandValue();
-				if (check == 21 && p.getHand().size() == 2) {
-					// win
-					p.setNat21(true);
-					winners.add(p);
-					return winners;
-				} else {
-					if (p.getName() != q.getName()) {
-						higher = p.compareTo(q);
-						if (higher == 1) {
-							p.setHigher(true);
-							q.setHigher(false);
-						} else if (higher == -1) {
-							q.setHigher(true);
-							p.setHigher(false);
-						} else {
-							p.setHigher(false);
-							q.setHigher(false);
-						}
-					}
 
+		for (Human player : posWinners) {
+			if (player.isNat21()) {
+				winners.add(player);
+			}
+		}
+
+		if (!winners.isEmpty()) {
+			return winners;			
+		}
+		
+		int higher = 0;
+		for (Human p : posWinners) {
+			for (Human q : posWinners) {
+				check = p.getHandValue();
+				if (p.getName() != q.getName()) {
+					higher = p.compareTo(q);
+					if (higher == 1) {
+						p.setHigher(true);
+						q.setHigher(false);
+					} else if (higher == -1) {
+						q.setHigher(true);
+						p.setHigher(false);
+					} else {
+						p.setHigher(false);
+						q.setHigher(false);
+					}
 				}
 			}
 		}
-		for (Player p : posWins) {
+		for (Human p : posWinners) {
 			boolean win = true;
 			boolean tie = true;
-			for (Player q : posWins) {
+			for (Human q : posWinners) {
 				ArrayList<Boolean> bool = p.getHigher();
 				ArrayList<Boolean> bool2 = q.getHigher();
 				for (Boolean b : bool) {
@@ -81,8 +79,8 @@ public class BlackJack {
 					return winners;
 				} else {
 					if (p.getName() != q.getName()) {
-						if(p.getHandValue()!=q.getHandValue()) {
-							tie=false;
+						if (p.getHandValue() != q.getHandValue()) {
+							tie = false;
 						}
 						if (tie) {
 							p.setWin(true);
@@ -116,17 +114,17 @@ public class BlackJack {
 	}
 
 	public static void startNewRound() {
-		ArrayList<Card> newH=new ArrayList<>();
-		for(Player p:P) {
+
+		for (Human p : P) {
 			p.resetHand();
 		}
-		
+
 		try {
-		deck1.initialDeal(P);
-		}catch(NullPointerException ex) {
+			deck1.initialDeal(P);
+		} catch (NullPointerException ex) {
 			deck1 = new Deck();
 			deck1.initialDeal(P);
-		}catch(IndexOutOfBoundsException e) {
+		} catch (IndexOutOfBoundsException e) {
 			deck1 = new Deck();
 			deck1.initialDeal(P);
 		}

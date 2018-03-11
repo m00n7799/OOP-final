@@ -85,23 +85,33 @@ public class Deck {
 		}
 	}
 
-	public static void nextCard(Player p) {
+	public static void nextCard(Player p, boolean isDouble) {
 		ArrayList<Card> hand = new ArrayList<Card>();
 		// shuffledDeck.get(0).Hidden(false);
 		Card card = null;
+		
 		try {
 			card=shuffledDeck.get(0);
+			if(isDouble) {
+				card.setDoubled(true);
+			}
 			shuffledDeck.remove(0);
 			hand.add(card);
 			p.setHand(hand);
 		} catch (NullPointerException ex) {
 			newDeck();
 			card = shuffledDeck.get(0);
+			if(isDouble) {
+				card.setDoubled(true);
+			}
 			hand.add(card);
 			p.setHand(hand);
 		}catch (IndexOutOfBoundsException e) {
 			newDeck();
 			card = shuffledDeck.get(0);
+			if(isDouble) {
+				card.setDoubled(true);
+			}
 			hand.add(card);
 			p.setHand(hand);
 		}
