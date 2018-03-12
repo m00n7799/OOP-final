@@ -1,6 +1,11 @@
 package application;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 import games.HiLo;
 import javafx.event.ActionEvent;
@@ -19,7 +24,7 @@ public class HiloController {
 	boolean isHigher;
 	boolean isWinner;
 	int count = 0;
-
+	
 	@FXML
 	private Button Lower;
 
@@ -40,6 +45,12 @@ public class HiloController {
 
 	@FXML
 	private Label money;
+	
+    @FXML
+    private Button save;
+
+    @FXML
+    private Button Load;
 
 	@FXML
 	void gotomainMenu(ActionEvent event) {
@@ -97,7 +108,7 @@ public class HiloController {
 
 	@FXML
 	void StartGame(ActionEvent event) {
-		HiLo.anti = 0;
+		
 		money.setText(Integer.toString(HiLo.anti));
 		Card.setText(Deck.getCard().get(0).toString());
 	}
@@ -115,4 +126,31 @@ public class HiloController {
 			isWinner = false;
 		}
 	}
+	 @FXML
+	    void SaveGame(ActionEvent event) throws IOException {
+		
+		 FileOutputStream fos = new FileOutputStream("./test.txt");
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+
+			oos.writeObject(HiLo.anti);
+			oos.close();
+			fos.close();
+	    }
+
+	    @FXML
+	    void LoadGame(ActionEvent event) throws ClassNotFoundException {
+	    	try {
+	    		
+	    		FileInputStream fis = new FileInputStream("./test.txt");
+	    		ObjectInputStream ois = new ObjectInputStream(fis);
+
+	    		HiLo.anti = (int) ois.readObject();
+	    		ois.close();
+	    		fis.close();
+	    		}catch(FileNotFoundException e){
+	    			System.out.println("No file");
+	    		}catch(IOException ioe){
+	    			System.out.println("Hit an IOException");
+	    		}
+	    }
 }
