@@ -1,13 +1,15 @@
 package games;
 
 import java.util.ArrayList;
+
+import models.Dealer;
 import models.Deck;
 import models.Human;
 
 public class BlackJack {
 
 	static ArrayList<Human> P = new ArrayList<>();
-
+	static ArrayList<Dealer> dealer = new ArrayList<>();
 	static Deck deck1 = new Deck();
 
 	static int check;
@@ -109,12 +111,23 @@ public class BlackJack {
 	public static Deck getDeck() {
 		return deck1;
 	}
+	
+	public static void dealerInitialDeal(Dealer dealer) {
+		Deck.nextCard(dealer, false);
+		Deck.nextCard(dealer, false);
+	}
+	
+	public static void dealerDraw(Dealer dealer) {
+		Deck.nextCard(dealer, false);
+	}
 
-	public static void startNewRound() {
+	public static void startNewRound(Dealer dealer) {
 
 		for (Human p : P) {
 			p.resetHand();
 		}
+		
+		dealer.resetHand();
 
 		try {
 			deck1.initialDeal(P);

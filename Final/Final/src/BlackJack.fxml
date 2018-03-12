@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="500.0" maxWidth="900.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
+<AnchorPane maxHeight="500.0" maxWidth="900.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Controller">
 
 
 
@@ -124,30 +124,30 @@
       <AnchorPane fx:id="dealerBoard" disable="true" layoutX="310.0" layoutY="14.0" prefHeight="50.0" prefWidth="280.0" visible="false">
          <children>
             <Label layoutX="122.0" layoutY="96.0" prefHeight="17.0" prefWidth="40.0" text="Dealer" />
-            <Label fx:id="DealCardTotal" layoutX="4.0" layoutY="96.0" text="Card Total" />
-            <AnchorPane fx:id="dealerCard1" layoutX="7.0" layoutY="139.0" prefHeight="66.0" prefWidth="48.0">
+            <Label fx:id="dealerCardTotal" layoutX="4.0" layoutY="96.0" text="Card Total" />
+            <AnchorPane layoutX="7.0" layoutY="139.0" prefHeight="66.0" prefWidth="48.0">
                <children>
-                  <Label fx:id="dSuit1" layoutX="13.0" text="Suit" />
+                  <Label fx:id="dealerCard1" layoutX="13.0" text="Suit" />
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="dealerCard2" layoutX="59.0" layoutY="139.0" prefHeight="66.0" prefWidth="48.0">
+            <AnchorPane layoutX="59.0" layoutY="139.0" prefHeight="66.0" prefWidth="48.0">
                <children>
-                  <Label layoutX="12.0" text="Suit" />
+                  <Label fx:id="dealerCard2" layoutX="12.0" text="Suit" />
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="dealerCard3" layoutX="114.0" layoutY="139.0" prefHeight="66.0" prefWidth="48.0">
+            <AnchorPane layoutX="114.0" layoutY="139.0" prefHeight="66.0" prefWidth="48.0">
                <children>
-                  <Label layoutX="13.0" text="Suit" />
+                  <Label fx:id="dealerCard3" layoutX="13.0" text="Suit" />
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="dealerCard4" layoutX="172.0" layoutY="139.0" prefHeight="66.0" prefWidth="48.0">
+            <AnchorPane layoutX="172.0" layoutY="139.0" prefHeight="66.0" prefWidth="48.0">
                <children>
-                  <Label layoutX="12.0" text="Suit" />
+                  <Label fx:id="dealerCard4" layoutX="12.0" text="Suit" />
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="dealerCard5" layoutX="228.0" layoutY="139.0" prefHeight="66.0" prefWidth="48.0">
+            <AnchorPane layoutX="228.0" layoutY="139.0" prefHeight="66.0" prefWidth="48.0">
                <children>
-                  <Label layoutX="13.0" text="Suit" />
+                  <Label fx:id="dealerCard5" layoutX="13.0" text="Suit" />
                </children>
             </AnchorPane>
          </children>

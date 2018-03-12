@@ -18,12 +18,16 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import models.Dealer;
 import models.Deck;
 import models.Human;
+import models.Player;
 
 public class Controller implements Initializable {
 
 	private ArrayList<Human> players = new ArrayList<>();
+	ArrayList<Dealer> dealer = new ArrayList<>();
+
 	private double pool = 0;
 	private int playerID = 0;
 
@@ -34,7 +38,13 @@ public class Controller implements Initializable {
 
 		if (!input.equals("") && event.getCode().equals(KeyCode.ENTER)) {
 
-			int number = Integer.parseInt(input);
+			int number = 0;
+
+			try {
+				number = Integer.parseInt(input);
+			} catch (NumberFormatException e) {
+				enterNumberOfPlayers.setText("Not Valid");
+			}
 
 			switch (number) {
 
@@ -47,10 +57,16 @@ public class Controller implements Initializable {
 
 				player1Board.setDisable(false);
 				player1Board.setVisible(true);
-				// dealerBoard.setDisable(false);
-				// dealerBoard.setVisible(true);
+
+				dealerBoard.setDisable(false);
+				dealerBoard.setVisible(true);
 
 				BlackJack.startNewGame(number);
+
+				dealer.add(new Dealer());
+				BlackJack.dealerInitialDeal(dealer.get(0));
+				setDealer(dealer.get(0));
+
 				players = BlackJack.getPlayers();
 
 				player1Name.setText(BlackJack.getPlayers().get(playerID).getName());
@@ -74,10 +90,15 @@ public class Controller implements Initializable {
 				player2Board.setDisable(false);
 				player3Board.setVisible(true);
 				player3Board.setDisable(false);
-				// dealerBoard.setDisable(false);
-				// dealerBoard.setVisible(true);
+
+				dealerBoard.setDisable(false);
+				dealerBoard.setVisible(true);
 
 				BlackJack.startNewGame(number);
+
+				dealer.add(new Dealer());
+				BlackJack.dealerInitialDeal(dealer.get(0));
+				setDealer(dealer.get(0));
 
 				players = BlackJack.getPlayers();
 
@@ -99,8 +120,9 @@ public class Controller implements Initializable {
 
 				enterNumberOfPlayers.setDisable(true);
 				enterNumberOfPlayers.setVisible(false);
-				// dealerBoard.setDisable(false);
-				// dealerBoard.setVisible(true);
+
+				dealerBoard.setDisable(false);
+				dealerBoard.setVisible(true);
 
 				player3Board.setVisible(true);
 				player3Board.setDisable(false);
@@ -110,6 +132,10 @@ public class Controller implements Initializable {
 				player2Board.setDisable(false);
 
 				BlackJack.startNewGame(number);
+
+				dealer.add(new Dealer());
+				BlackJack.dealerInitialDeal(dealer.get(0));
+				setDealer(dealer.get(0));
 
 				players = BlackJack.getPlayers();
 
@@ -223,12 +249,14 @@ public class Controller implements Initializable {
 
 		if (players.get(playerID).isBust()) {
 			if (!((playerID + 1) >= players.size())) {
-				promptText.setText(players.get(playerID).getName() + " Has Bust, " + players.get(playerID + 1).getName()+ " is Up");
+				promptText.setText(players.get(playerID).getName() + " Has Bust, " + players.get(playerID + 1).getName()
+						+ " is Up");
 			}
 			passTurn();
 		} else if (players.get(playerID).getHand().size() == 5) {
 			if (!((playerID + 1) >= players.size())) {
-				promptText.setText(players.get(playerID).getName() + " reached 5 Card Limit "+ players.get(playerID + 1).getName() + " is Up");
+				promptText.setText(players.get(playerID).getName() + " reached 5 Card Limit "
+						+ players.get(playerID + 1).getName() + " is Up");
 			}
 			passTurn();
 		}
@@ -238,10 +266,16 @@ public class Controller implements Initializable {
 	private void newRound(ActionEvent event) {
 
 		playerID = 0;
+
+		clearAll();
+
 		startNewRound.setVisible(false);
 		startNewRound.setDisable(true);
 
-		BlackJack.startNewRound();
+		BlackJack.startNewRound(dealer.get(0));
+
+		BlackJack.dealerInitialDeal(dealer.get(0));
+		setDealer(dealer.get(0));
 
 		playerOptionsView.setDisable(false);
 
@@ -268,8 +302,35 @@ public class Controller implements Initializable {
 		playerID++;
 
 		if (playerID >= players.size()) {
+			takeDealerTurn();
 			givePayOut();
 			playerOptionsView.setDisable(true);
+		}
+	}
+
+	private void takeDealerTurn() {
+
+		while (dealer.get(0).isDrawing()) {
+			Deck.nextCard(dealer.get(0), false);
+			setDealer(dealer.get(0));
+		}
+	}
+
+	private void setDealer(Dealer dealer) {
+
+		dealerCardTotal.setText(Integer.toString(dealer.getHandValue()));
+
+		dealerCard1.setText(dealer.getHand().get(0).toString());
+		dealerCard2.setText(dealer.getHand().get(1).toString());
+
+		if (dealer.getHand().size() > 2) {
+			dealerCard3.setText(dealer.getHand().get(2).toString());
+		}
+		if (dealer.getHand().size() > 3) {
+			dealerCard4.setText(dealer.getHand().get(3).toString());
+		}
+		if (dealer.getHand().size() > 4) {
+			dealerCard5.setText(dealer.getHand().get(4).toString());
 		}
 	}
 
@@ -299,6 +360,7 @@ public class Controller implements Initializable {
 		player3CardTotal.setText("");
 		player2CardTotal.setText("");
 		player1CardTotal.setText("");
+		dealerCardTotal.setText("");
 
 		p3Balance.setText("");
 		p2Balance.setText("");
@@ -309,17 +371,25 @@ public class Controller implements Initializable {
 		p1c3s1.setText("");
 		p1c4s1.setText("");
 		p1c5s1.setText("");
+
 		p2c1s1.setText("");
 		p2c2s1.setText("");
 		p2c3s1.setText("");
 		p2c4s1.setText("");
 		p2c5s1.setText("");
+
 		p2c1s1.setText("");
 		p3c2s1.setText("");
 		p3c3s1.setText("");
 		p3c4s1.setText("");
 		p3c5s1.setText("");
-		
+
+		dealerCard1.setText("");
+		dealerCard2.setText("");
+		dealerCard3.setText("");
+		dealerCard4.setText("");
+		dealerCard5.setText("");
+
 		pot.setText("");
 
 	}
@@ -405,30 +475,52 @@ public class Controller implements Initializable {
 	private void givePayOut() {
 
 		ArrayList<Human> winners = BlackJack.win();
+		System.out.println("Size: " + winners.size());
 
-		System.out.println(winners.size());
 		String text = "Winners: ";
 
-		if (!winners.isEmpty()) {
-			for (int i = 0; i < winners.size(); i++) {
-				text += winners.get(i).getName() + " ";
+		if (dealer.get(0).isBust()) {
+			System.out.println("DealerBust");
+			if (!winners.isEmpty()) {
+				System.out.println("Not Empty");
+				for (int i = 0; i < winners.size(); i++) {
+					text += winners.get(i).getName() + " ";
+				}
+				for (Human player : players) {
+					for (Human winner : winners) {
+						if (player.getName().equals(winner.getName())) {
+							winner.setBalance(winner.getBalance() + (pool / winners.size()));
+						}
+					}
+				}
+			}else {
+				System.out.println("Empty");
+				text+= "House";
 			}
 		} else {
-			text += "House";
+			System.out.println("Not Bust");
+			if (!winners.isEmpty() && winners.get(0).getHandValue() > dealer.get(0).getHandValue()) {
+				System.out.println("Not Empty ");
+				for (int i = 0; i < winners.size(); i++) {
+					text += winners.get(i).getName() + " ";
+				}
+				for (Human player : players) {
+					for (Human winner : winners) {
+						if (player.getName().equals(winner.getName())) {
+							winner.setBalance(winner.getBalance() + (pool / winners.size()));
+						}
+					}
+				}
+			} else {
+				System.out.println("HandValue less than dealer");
+				text += "House";
+			}
 		}
 
 		promptText.setText(text);
 
-		for (Human player : players) {
-			for (Human winner : winners) {
-				if (player.getName().equals(winner.getName())) {
-					winner.setBalance(winner.getBalance() + (pool / winners.size()));
-				}
-			}
-		}
-
 		if (players.size() == 1) {
-			setPlayer1(playerID);
+			setPlayer1(0);
 
 		} else if (players.size() == 2) {
 
@@ -446,109 +538,7 @@ public class Controller implements Initializable {
 	}
 
 	@FXML
-	private Label p3Balance;
-
-	@FXML
-	private Label p2Balance;;
-
-	@FXML
-	private Label p1Balance;
-
-	@FXML
-	private Label p1c1n1;
-
-	@FXML
-	private Label p1c1s1;
-
-	@FXML
-	private Label p1c2n1;
-
-	@FXML
-	private Label p1c2s1;
-
-	@FXML
-	private Label p1c3n1;
-
-	@FXML
-	private Label p1c3s1;
-
-	@FXML
-	private Label p1c4n1;
-
-	@FXML
-	private Label p1c4s1;
-
-	@FXML
-	private Label p1c5n1;
-
-	@FXML
-	private Label p1c5s1;
-
-	@FXML
-	private Label p2c1n1;
-
-	@FXML
-	private Label p2c1s1;
-
-	@FXML
-	private Label p2c2n1;
-
-	@FXML
-	private Label p2c2s1;
-
-	@FXML
-	private Label p2c3n1;
-
-	@FXML
-	private Label p2c3s1;
-
-	@FXML
-	private Label p2c4n1;
-
-	@FXML
-	private Label p2c4s1;
-
-	@FXML
-	private Label p2c5n1;
-
-	@FXML
-	private Label p2c5s1;
-
-	@FXML
-	private Label p3c1n1;
-
-	@FXML
-	private Label p3c1s1;
-
-	@FXML
-	private Label p3c2n1;
-
-	@FXML
-	private Label p3c2s1;
-
-	@FXML
-	private Label p3c3n1;
-
-	@FXML
-	private Label p3c3s1;
-
-	@FXML
-	private Label p3c4n1;
-
-	@FXML
-	private Label p3c4s1;
-
-	@FXML
-	private Label p3c5n1;
-
-	@FXML
-	private Label p3c5s1;
-
-	@FXML
-	private Label p3c1n2;
-
-	@FXML
-	private Label p3c1s2;
+	private Label promptText;
 
 	@FXML
 	private TextField enterNumberOfPlayers;
@@ -560,25 +550,46 @@ public class Controller implements Initializable {
 	private Label player3Name;
 
 	@FXML
+	private Label p3Balance;
+
+	@FXML
 	private Label player3CardTotal;
 
 	@FXML
 	private AnchorPane player3Card1;
 
 	@FXML
+	private Label p3c1s1;
+
+	@FXML
 	private AnchorPane player3Card2;
+
+	@FXML
+	private Label p3c2s1;
 
 	@FXML
 	private AnchorPane player3Card3;
 
 	@FXML
+	private Label p3c3s1;
+
+	@FXML
 	private AnchorPane player3Card4;
+
+	@FXML
+	private Label p3c4s1;
 
 	@FXML
 	private AnchorPane player3Card5;
 
 	@FXML
+	private Label p3c5s1;
+
+	@FXML
 	private AnchorPane player1Board;
+
+	@FXML
+	private Label p1Balance;
 
 	@FXML
 	private Label player1Name;
@@ -587,7 +598,40 @@ public class Controller implements Initializable {
 	private Label player1CardTotal;
 
 	@FXML
+	private AnchorPane player1Card1;
+
+	@FXML
+	private Label p1c1s1;
+
+	@FXML
+	private AnchorPane player1Card2;
+
+	@FXML
+	private Label p1c2s1;
+
+	@FXML
+	private AnchorPane Player1Card3;
+
+	@FXML
+	private Label p1c3s1;
+
+	@FXML
+	private AnchorPane player1Card4;
+
+	@FXML
+	private Label p1c4s1;
+
+	@FXML
+	private AnchorPane player1Card5;
+
+	@FXML
+	private Label p1c5s1;
+
+	@FXML
 	private AnchorPane player2Board;
+
+	@FXML
+	private Label p2Balance;
 
 	@FXML
 	private Label player2Name;
@@ -596,16 +640,58 @@ public class Controller implements Initializable {
 	private Label player2CardTotal;
 
 	@FXML
+	private AnchorPane player2Card1;
+
+	@FXML
+	private Label p2c1s1;
+
+	@FXML
+	private AnchorPane player2Card2;
+
+	@FXML
+	private Label p2c2s1;
+
+	@FXML
+	private AnchorPane player2Card3;
+
+	@FXML
+	private Label p2c3s1;
+
+	@FXML
+	private AnchorPane player2Card4;
+
+	@FXML
+	private Label p2c4s1;
+
+	@FXML
+	private AnchorPane player2Card5;
+
+	@FXML
+	private Label p2c5s1;
+
+	@FXML
 	private AnchorPane dealerBoard;
 
 	@FXML
-	private Label DealCardTotal;
+	private Label dealerCardTotal;
 
 	@FXML
-	private Label dNum1;
+	private Label dealerCard1;
 
 	@FXML
-	private Label dSuit1;
+	private Label dealerCard2;
+
+	@FXML
+	private Label dealerCard3;
+
+	@FXML
+	private Label dealerCard4;
+
+	@FXML
+	private Label dealerCard5;
+
+	@FXML
+	private AnchorPane playerOptionsView;
 
 	@FXML
 	private Label pot;
@@ -615,12 +701,6 @@ public class Controller implements Initializable {
 
 	@FXML
 	private Button hit;
-
-	@FXML
-	private AnchorPane playerOptionsView;
-
-	@FXML
-	private Label promptText;
 
 	@FXML
 	private Button doubleDown;
