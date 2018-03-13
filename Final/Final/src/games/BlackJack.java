@@ -1,12 +1,12 @@
 package games;
 
+import java.io.Serializable;
 import java.util.ArrayList;
-
 import models.Dealer;
 import models.Deck;
 import models.Human;
 
-public class BlackJack {
+public class BlackJack implements Serializable{
 
 	static ArrayList<Human> P = new ArrayList<>();
 	static ArrayList<Dealer> dealer = new ArrayList<>();
@@ -14,16 +14,16 @@ public class BlackJack {
 
 	static int check;
 	int count;
-	static int hand2;
+	int hand2;
 
-	public static void startNewGame(int numberOfPlayers) {
+	public void startNewGame(int numberOfPlayers) {
 
 		setPlayers(numberOfPlayers);
 		deck1 = new Deck();
 		deck1.initialDeal(P);
 	}
 
-	public static ArrayList<Human> win() {
+	public ArrayList<Human> win() {
 
 		ArrayList<Human> posWinners = new ArrayList<>();
 		ArrayList<Human> winners = new ArrayList<>();
@@ -104,7 +104,7 @@ public class BlackJack {
 		}
 	}
 
-	public static ArrayList<Human> getPlayers() {
+	public ArrayList<Human> getPlayers() {
 		return P;
 	}
 
@@ -112,7 +112,7 @@ public class BlackJack {
 		return deck1;
 	}
 	
-	public static void dealerInitialDeal(Dealer dealer) {
+	public void dealerInitialDeal(Dealer dealer) {
 		Deck.nextCard(dealer, false);
 		Deck.nextCard(dealer, false);
 	}
@@ -121,7 +121,7 @@ public class BlackJack {
 		Deck.nextCard(dealer, false);
 	}
 
-	public static void startNewRound(Dealer dealer) {
+	public void startNewRound(Dealer dealer) {
 
 		for (Human p : P) {
 			p.resetHand();
