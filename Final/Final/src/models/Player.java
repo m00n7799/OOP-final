@@ -9,7 +9,7 @@ public class Player implements Comparable<Player> {
 
 	private String name;
 	private int handValue;
-	double myBet;
+	public static double myBet;
 	private ArrayList<Boolean> higher = new ArrayList<Boolean>();
 	private boolean win = false;
 

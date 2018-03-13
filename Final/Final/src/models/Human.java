@@ -3,7 +3,7 @@ package models;
 public class Human extends Player {
 	
 	String name;
-	private double balance = 1500.00;
+	public static double balance = 1500.00;
 
 	public Human(String name) {
 		super(name);

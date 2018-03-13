@@ -34,7 +34,7 @@ public class Controller implements Initializable {
 	private BlackJack blackJack;
 	private double pool = 0;
 	private int playerID = 0;
-
+	int[] hand = new int[players.size()];
 	@FXML
 	void playerNumberEntered(KeyEvent event) {
 
@@ -555,7 +555,9 @@ public class Controller implements Initializable {
 			
     		FileOutputStream fileOut = new FileOutputStream("./blackJack.txt");
     		ObjectOutputStream outPutStream = new ObjectOutputStream(fileOut);
-    		outPutStream.writeObject(blackJack);
+    		
+    		
+			outPutStream.writeObject(players);
 
     		outPutStream.close();
     		fileOut.close();
@@ -573,7 +575,7 @@ public class Controller implements Initializable {
     		FileInputStream fileIn = new FileInputStream("./blackJack.txt");
     		ObjectInputStream inputStream = new ObjectInputStream(fileIn);
     		
-    		blackJack = (BlackJack) inputStream.readObject();
+    		players = (ArrayList<Human>) inputStream.readObject();
     		
     		fileIn.close();
     		inputStream.close();	
